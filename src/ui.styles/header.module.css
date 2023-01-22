@@ -121,3 +121,67 @@ label {
 legend {
   display: block;
 }
+
+.main_div {
+  display: flex;
+  height: 10vh;
+  font-size: 20px;
+  max-width: 1483px;
+  margin: 18px 227px 0 150px;
+}
+.img_logo {
+  width: auto;
+  size: auto;
+  margin: 10px 0 0 120px;
+}
+
+.ancor {
+  margin: 38px 0 0 47px;
+}
+.ancor a {
+  margin: 0 25px 0 0;
+  color: black;
+}
+
+.icon_links {
+  display: flex;
+  max-width: 250px;
+  margin: 18px 0 0 724px;
+}
+
+.img_nav_links {
+  margin: 0 0 0 50px;
+}
+
+@media (max-width: 1913px) {
+  .main_div {
+    display: flex;
+    height: 10vh;
+    font-size: 20px;
+    margin: 18px 227px 0 150px;
+  }
+  .icon_links {
+    display: flex;
+    max-width: 250px;
+    margin: 18px 0 0 auto;
+  }
+}
+
+@media (max-width: 1050px) {
+  .main_div {
+    display: flex;
+    height: 10vh;
+    font-size: 20px;
+    margin: 18px 227px 0 80px;
+  }
+  .icon_links {
+    display: flex;
+    max-width: 250px;
+    margin: 18px 0 0 auto;
+  }
+  .img_nav_links {
+    margin: 13px 10px 0 0;
+    width: 30px;
+    height: 30px;
+  }
+}
