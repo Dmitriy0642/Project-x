@@ -167,7 +167,7 @@ legend {
   }
 }
 
-@media (max-width: 1050px) {
+@media (max-width: 1120px) {
   .main_div {
     display: flex;
     height: 10vh;
