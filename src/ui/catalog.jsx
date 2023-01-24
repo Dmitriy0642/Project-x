@@ -7,10 +7,10 @@ import logoTshirt from "../LogoCatalog/logoTshirt.jpg";
 import logoShoes from "../LogoCatalog/logoShoes.jpg";
 import styles from "../ui.styles/catalog.module.css";
 import { useApi } from "../hooks/useApi";
-
+import filterOnCategoryToProduct from "../utils/filterOnCategoryToProduct";
 const Catalog = () => {
   const data = useApi();
-  console.log(data);
+  filterOnCategoryToProduct(data);
   return (
     <div className={styles.wrapper}>
       <Link to="/swetshirt">
