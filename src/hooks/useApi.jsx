@@ -6,19 +6,19 @@ import "react-toastify/dist/ReactToastify.css";
 
 const ApiContext = React.createContext();
 
-export const ApiProv = () => {
+export const useApi = () => {
   return useContext(ApiContext);
 };
 
-const UseApi = () => {
+export const ApiProvider = ({ children }) => {
   const [prod, setProd] = useState(null);
-  const [categ, setCateg] = useState(null);
+  const [firmCategory, setFirmCategory] = useState(null);
   useEffect(() => {
     const getData = async () => {
       try {
         const { data } = await axios.get(`${config.ApiEndPOint}` + `.json`);
         const { category, product } = data;
-        setCateg(Object.keys(category).map((item) => category[item]));
+        setFirmCategory(Object.keys(category).map((item) => category[item]));
         setProd(Object.keys(product).map((item) => product[item]));
       } catch {
         toast.error("Включите Впн");
@@ -26,11 +26,11 @@ const UseApi = () => {
     };
     getData();
   }, []);
-  return (
-    <ApiContext.Provider
-      value={{ product: prod, category: categ }}
-    ></ApiContext.Provider>
+  return prod !== null || firmCategory !== null ? (
+    <ApiContext.Provider value={{ prod: prod, firmCategory: firmCategory }}>
+      {children}
+    </ApiContext.Provider>
+  ) : (
+    <h1></h1>
   );
 };
-
-export default UseApi;
