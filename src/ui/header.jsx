@@ -3,6 +3,7 @@ import icon_logo from "../icons/logo.png";
 import icon_bascet from "../icons/bascet.png";
 import icon_search from "../icons/search.png";
 import styles from "../ui.styles/header.module.css";
+
 import { Link } from "react-router-dom";
 const Header = () => {
   return (
