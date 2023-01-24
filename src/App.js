@@ -3,6 +3,7 @@ import React from "react";
 import Header from "./ui/header";
 import Catalog from "./ui/catalog";
 import UseApi from "./hooks/useApi";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Header />
       <Catalog />
       <UseApi />
+      <ToastContainer />
     </div>
   );
 }
