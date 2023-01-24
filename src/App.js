@@ -4,14 +4,16 @@ import Catalog from "./ui/catalog";
 import { ToastContainer } from "react-toastify";
 import { ApiProvider } from "./hooks/useApi";
 import { Switch, Route } from "react-router-dom";
+import ReviewFormCatalog from "./common/reviewFormCatalog";
 function App() {
   return (
     <div>
       <Header />
       <ApiProvider>
-        <Switch>
+        {/* <Switch>
           <Route path="/" exact component={Catalog} />
-        </Switch>
+          <Route path="/:name" component={ReviewForm} />
+        </Switch> */}
       </ApiProvider>
       <ToastContainer />
     </div>
