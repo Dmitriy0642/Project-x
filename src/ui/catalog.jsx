@@ -13,13 +13,13 @@ const Catalog = () => {
   filterOnCategoryToProduct(data);
   return (
     <div className={styles.wrapper}>
-      <Link to="/swetshirt">
+      <Link to="/sweatshirt">
         <img src={logoSwetshirt} alt="" />
       </Link>
       <h2 className={styles.title}>Stone Island Swetshirt</h2>
       <div className={styles.second_block}>
         <div className={styles.block_Sneakers}>
-          <Link to="/shoes">
+          <Link to="/boots">
             <img src={logoShoes} alt="" className={styles.logo_img} />
           </Link>
           <h2 className={styles.title}>Sneakers</h2>
@@ -39,7 +39,7 @@ const Catalog = () => {
           <h2 className={styles.title}>Socks</h2>
         </div>
         <div className={styles.block_tshorts}>
-          <Link to="/tshirts">
+          <Link to="/t-shirt">
             <img src={logoTshirt} alt="" className={styles.logo_img} />
           </Link>
           <h2 className={styles.title}>T-shirts</h2>

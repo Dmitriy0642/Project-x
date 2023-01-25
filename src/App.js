@@ -10,10 +10,10 @@ function App() {
     <div>
       <Header />
       <ApiProvider>
-        {/* <Switch>
+        <Switch>
           <Route path="/" exact component={Catalog} />
-          <Route path="/:name" component={ReviewForm} />
-        </Switch> */}
+          <Route path="/:name" component={ReviewFormCatalog} />
+        </Switch>
       </ApiProvider>
       <ToastContainer />
     </div>
