@@ -124,8 +124,8 @@ legend {
 
 .form {
   box-shadow: 1px 1px 12px black;
-  margin: 0 0 0 120px;
-  width: 60%;
+  margin: 0 0 0 50px;
+  width: 500px;
   height: 60%;
   font-family: "Roboto", sans-serif;
 }
@@ -150,16 +150,6 @@ legend {
 }
 
 .button_sizes {
-  background-color: gray;
-  color: white;
-  border-radius: 50%;
-  height: 30px;
-  width: 50px;
-  margin: 0 0 0 35px;
-  border: 1px solid black;
-}
-
-.button_sizes-active {
   border: 1px solid gray;
   background-color: pink;
   color: white;
@@ -167,4 +157,34 @@ legend {
   height: 30px;
   width: 50px;
   margin: 0 0 0 35px;
+}
+
+.button_sizes_active {
+  color: white;
+  background-color: gray;
+  border-radius: 50%;
+  height: 30px;
+  width: 50px;
+  margin: 0 0 0 35px;
+  border: 1px solid black;
+}
+
+.add_to_bascet {
+  margin: 50px 0 0 167px;
+  border: 1px solid black;
+  background-color: grey;
+  color: white;
+  border-radius: 15px;
+  height: 30px;
+  width: auto;
+}
+
+.add_to_bascet_disable {
+  margin: 50px 0 0 167px;
+  border: 1px solid black;
+  background: pink;
+  color: white;
+  border-radius: 15px;
+  height: 30px;
+  width: auto;
 }
