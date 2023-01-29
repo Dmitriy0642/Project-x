@@ -19,6 +19,7 @@ const ReviewCardProduct = ({ match }) => {
         <div className={styles.wrapper} key={item._id}>
           <img src={item.img[0]} className={styles.img_product}></img>
           <ReviewCardForm
+            obj={singleData}
             name={item.name}
             _id={item._id}
             price={item.price}

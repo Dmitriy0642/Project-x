@@ -19,8 +19,7 @@ const useProductbascet = () => {
         return (item = { ...item, quantity: remakeSizes[i] });
       });
       const dataToFormat = JSON.stringify(pushNullSizesToArr);
-      if (localStorage.length >= 1) {
-      } else if (localStorage.length === 0) {
+      if (localStorage.length === 0) {
         localStorage.setItem("AllData", dataToFormat);
       }
     };

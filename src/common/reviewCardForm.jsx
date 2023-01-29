@@ -2,16 +2,18 @@ import React, { useState } from "react";
 import styles from "../common/styles.common/reviewCardForm.module.css";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-const ReviewCardForm = ({ name, price, _id, quantity }) => {
+import addedToBascet from "../utils/addedToBascet";
+const ReviewCardForm = ({ name, price, _id, quantity, obj }) => {
   const [size, setSize] = useState(null);
   const handleClick = (e) => {
     setSize(e.target.innerText);
   };
 
-  const handleSelect = () => {
+  const handleSelect = (object, initSizes) => {
     if (size === null) {
       toast.error("Размер не выбран");
     } else if (size === size) {
+      addedToBascet(object, initSizes);
       toast("Товар Добавлен в корзину");
     }
   };
@@ -39,7 +41,9 @@ const ReviewCardForm = ({ name, price, _id, quantity }) => {
         className={
           size === null ? styles.add_to_bascet : styles.add_to_bascet_disable
         }
-        onClick={handleSelect}
+        onClick={() => {
+          handleSelect(obj[0]);
+        }}
       >
         Добавить в корзину
       </button>
