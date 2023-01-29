@@ -9,11 +9,11 @@ const ReviewCardForm = ({ name, price, _id, quantity, obj }) => {
     setSize(e.target.innerText);
   };
 
-  const handleSelect = (object, initSizes) => {
+  const handleSelect = (object, initialSize) => {
     if (size === null) {
       toast.error("Размер не выбран");
     } else if (size === size) {
-      addedToBascet(object, initSizes);
+      addedToBascet(object, size);
       toast("Товар Добавлен в корзину");
     }
   };
