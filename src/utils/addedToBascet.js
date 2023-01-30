@@ -1,17 +1,41 @@
-const addedToBascet = (object, initialSize) => {
-  const allData = localStorage.getItem("AllData");
-  const parseData = JSON.parse(allData);
+const addedToBascet = (object, selectedSize) => {
+  const storageData = JSON.parse(localStorage.getItem("AllData"));
 
-  const getItemElemntById = parseData.filter((item) => item._id === object._id);
-  const receivedSingleData = getItemElemntById[0];
+  ///Filtered data from storage
+  const filtradeSingleData = storageData.filter(
+    (item) => item._id === object._id
+  );
 
-  const newQuantity = receivedSingleData.quantity.map((item) => {
-    if (item.size === initialSize) {
-      return { ...item, value: (item.value += 1) };
+  ///obj data
+  const objData = filtradeSingleData[0];
+
+  const initialyQuantityFromObj = object.quantity.filter(
+    (item) => `${item.size}` === `${selectedSize}`
+  );
+
+  const secondQuantityFromObj = objData.quantity.filter(
+    (item) => `${item.size}` === `${selectedSize}`
+  );
+
+  const newQuantity = objData.quantity.map((item) => {
+    if (`${item.size}` === `${selectedSize}`) {
+      if (secondQuantityFromObj[0].value < initialyQuantityFromObj[0].value) {
+        return { ...item, value: (item.value += 1) };
+      }
     }
     return item;
   });
-  console.log(newQuantity);
-};
 
+  const newObj = {
+    ...objData,
+    quantity: newQuantity,
+  };
+  const newStorage = storageData.map((item) => {
+    if (item._id === object._id) {
+      return newObj;
+    }
+    return item;
+  });
+  localStorage.setItem("AllData", JSON.stringify(newStorage));
+};
 export default addedToBascet;
