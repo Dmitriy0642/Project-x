@@ -16,9 +16,9 @@ function App() {
       <ApiProvider>
         <Switch>
           <Route path="/:name/:postId" component={ReviewCardProduct} />
+          <Route path="/basket" component={Bascet} />
           <Route path="/" exact component={Catalog} />
           <Route path="/:name" component={ReviewFormCatalog} />
-          <Route path="/basket" component={Bascet} />
         </Switch>
       </ApiProvider>
       <ToastContainer />
