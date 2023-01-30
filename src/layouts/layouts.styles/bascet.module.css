@@ -123,87 +123,63 @@ legend {
 }
 
 .main_div {
+  font-family: "Roboto", sans-serif;
+  margin: 50px 0 0 280px;
+}
+
+.product_div {
   display: flex;
 }
 
-@media (max-width: 2020px) {
-  .wrapper {
-    display: flex;
-    margin: 160px 0 0 600px;
-    font-family: "Roboto", sans-serif;
-  }
-  .img_product {
-    height: 78%;
-    width: 56%;
-  }
-  .main_div {
-    display: flex;
-  }
+.img_product {
+  margin: 10px 0 20px 0;
+  width: 20%;
+  height: 20%;
 }
 
-@media (max-width: 1700px) {
-  .wrapper {
-    display: flex;
-    margin: 160px 0 0 630px;
-  }
-  .img_product {
-    height: 58%;
-    width: 58%;
-  }
-  .main_div {
-    display: flex;
-  }
+.first_div {
+  margin: 15px 25px 0 25px;
 }
-@media (max-width: 1500px) {
-  .wrapper {
-    display: flex;
-    margin: 160px 0 0 540px;
-  }
-  .img_product {
-    height: 45%;
-    width: 45%;
-  }
-  .main_div {
-    display: flex;
-  }
-}
-@media (max-width: 1300px) {
-  .wrapper {
-    display: flex;
-    margin: 160px 0 0 440px;
-  }
-  .img_product {
-    height: 45%;
-    width: 45%;
-  }
-  .main_div {
-    display: flex;
-  }
-}
-@media (max-width: 1200px) {
-  .wrapper {
-    display: flex;
-    margin: 160px 0 0 430px;
-  }
-  .img_product {
-    height: 45%;
-    width: 45%;
-  }
-  .main_div {
-    display: flex;
-  }
+.title_product {
+  font-size: 20px;
+  margin: 20px 55px 0 55px;
 }
 
-@media (max-width: 1150px) {
-  .wrapper {
-    display: flex;
-    margin: 160px 0 0 390px;
-  }
-  .img_product {
-    height: 45%;
-    width: 45%;
-  }
-  .main_div {
-    display: flex;
-  }
+.second_div {
+  margin: 15px 25px 0 25px;
+}
+
+.title_review {
+  margin: 13px 0 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.third_block {
+  margin: 15px 25px 0 25px;
+}
+
+.button_block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button_sizes {
+  margin: 20px 0 0 0;
+  color: black;
+  height: 50%;
+  width: 30%;
+  background-color: gainsboro;
+  border-radius: 20px;
+  border: 1px solid gray;
+}
+
+.button_selected_value {
+  width: 30px;
+  height: 30px;
+  margin: 20px 15px 0 15px;
+  border-radius: 50%;
+  border: 1px solid black;
 }

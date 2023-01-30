@@ -122,88 +122,69 @@ legend {
   display: block;
 }
 
-.main_div {
+.form {
+  box-shadow: 1px 1px 12px black;
+  margin: 0 0 0 50px;
+  width: 500px;
+  height: 60%;
+  font-family: "Roboto", sans-serif;
+}
+
+.title_form {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0 0 0;
+  font-size: 22px;
+}
+
+.form_category {
+  margin: 35px 0 0 15px;
+}
+
+.block_button {
   display: flex;
 }
 
-@media (max-width: 2020px) {
-  .wrapper {
-    display: flex;
-    margin: 160px 0 0 600px;
-    font-family: "Roboto", sans-serif;
-  }
-  .img_product {
-    height: 78%;
-    width: 56%;
-  }
-  .main_div {
-    display: flex;
-  }
+.button_block {
+  margin: 55px 0 0 55px;
 }
 
-@media (max-width: 1700px) {
-  .wrapper {
-    display: flex;
-    margin: 160px 0 0 630px;
-  }
-  .img_product {
-    height: 58%;
-    width: 58%;
-  }
-  .main_div {
-    display: flex;
-  }
-}
-@media (max-width: 1500px) {
-  .wrapper {
-    display: flex;
-    margin: 160px 0 0 540px;
-  }
-  .img_product {
-    height: 45%;
-    width: 45%;
-  }
-  .main_div {
-    display: flex;
-  }
-}
-@media (max-width: 1300px) {
-  .wrapper {
-    display: flex;
-    margin: 160px 0 0 440px;
-  }
-  .img_product {
-    height: 45%;
-    width: 45%;
-  }
-  .main_div {
-    display: flex;
-  }
-}
-@media (max-width: 1200px) {
-  .wrapper {
-    display: flex;
-    margin: 160px 0 0 430px;
-  }
-  .img_product {
-    height: 45%;
-    width: 45%;
-  }
-  .main_div {
-    display: flex;
-  }
+.button_sizes {
+  border: 1px solid gray;
+  background-color: pink;
+  color: white;
+  border-radius: 50%;
+  height: 30px;
+  width: 50px;
+  margin: 0 0 0 35px;
 }
 
-@media (max-width: 1150px) {
-  .wrapper {
-    display: flex;
-    margin: 160px 0 0 390px;
-  }
-  .img_product {
-    height: 45%;
-    width: 45%;
-  }
-  .main_div {
-    display: flex;
-  }
+.button_sizes_active {
+  color: white;
+  background-color: gray;
+  border-radius: 50%;
+  height: 30px;
+  width: 50px;
+  margin: 0 0 0 35px;
+  border: 1px solid black;
+}
+
+.add_to_bascet {
+  margin: 50px 0 0 167px;
+  border: 1px solid black;
+  background-color: grey;
+  color: white;
+  border-radius: 15px;
+  height: 30px;
+  width: auto;
+}
+
+.add_to_bascet_disable {
+  margin: 50px 0 0 167px;
+  border: 1px solid black;
+  background: pink;
+  color: white;
+  border-radius: 15px;
+  height: 30px;
+  width: auto;
 }
