@@ -14,7 +14,6 @@ const ReviewCardForm = ({ name, price, _id, quantity, obj }) => {
       toast.error("Размер не выбран");
     } else if (size === size) {
       addedToBascet(object, size);
-      toast("Товар Добавлен в корзину");
     }
   };
 
