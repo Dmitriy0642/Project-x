@@ -3,22 +3,17 @@ import styles from "./layouts.styles/bascet.module.css";
 const Bascet = () => {
   const getDataFromLs = localStorage.getItem("AllData");
   const parseDataToFormat = JSON.parse(getDataFromLs);
-  const objData = parseDataToFormat.map((item) => {
-    return item.quantity;
-  });
-  const filterData = [];
-  objData.forEach((item, index) => {
-    let checked = 0;
-    item.forEach((item) => {
-      if (item.value > 0) {
-        checked += 1;
+  const filterData = parseDataToFormat.filter((item) => {
+    let cheked = false;
+    item.quantity.forEach((elem) => {
+      if (elem.value > 0) {
+        cheked = true;
       }
     });
-    if (checked > 0) {
-      filterData.push(parseDataToFormat[index]);
+    if (cheked) {
+      return item;
     }
   });
-
   return (
     <div className={styles.main_div}>
       {filterData.map((item) => (
@@ -34,11 +29,14 @@ const Bascet = () => {
           </div>
           <div className={styles.third_block}>
             <h2 className={styles.title_product}>Размеры товара</h2>
+
             {item.quantity.map((quan) => (
               <div className={styles.button_block} key={quan.size}>
+                <button className={styles.button_selected_value}>+</button>
                 <button className={styles.button_sizes}>
                   {quan.size}({quan.value})
                 </button>
+                <button className={styles.button_selected_value}>-</button>
               </div>
             ))}
           </div>

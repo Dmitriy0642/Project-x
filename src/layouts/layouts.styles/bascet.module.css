@@ -175,3 +175,11 @@ legend {
   border-radius: 20px;
   border: 1px solid gray;
 }
+
+.button_selected_value {
+  width: 30px;
+  height: 30px;
+  margin: 20px 15px 0 15px;
+  border-radius: 50%;
+  border: 1px solid black;
+}
