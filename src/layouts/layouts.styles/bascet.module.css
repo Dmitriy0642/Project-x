@@ -123,10 +123,55 @@ legend {
 }
 
 .main_div {
+  font-family: "Roboto", sans-serif;
   margin: 50px 0 0 280px;
 }
 
+.product_div {
+  display: flex;
+}
+
 .img_product {
+  margin: 10px 0 20px 0;
   width: 20%;
   height: 20%;
+}
+
+.first_div {
+  margin: 15px 25px 0 25px;
+}
+.title_product {
+  font-size: 20px;
+  margin: 20px 55px 0 55px;
+}
+
+.second_div {
+  margin: 15px 25px 0 25px;
+}
+
+.title_review {
+  margin: 13px 0 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.third_block {
+  margin: 15px 25px 0 25px;
+}
+
+.button_block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button_sizes {
+  margin: 20px 0 0 0;
+  color: black;
+  height: 50%;
+  width: 30%;
+  background-color: gainsboro;
+  border-radius: 20px;
+  border: 1px solid gray;
 }
