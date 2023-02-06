@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./layouts.styles/bascet.module.css";
+import Counter from "./counter";
 const Bascet = () => {
   const getDataFromLs = localStorage.getItem("AllData");
   const parseDataToFormat = JSON.parse(getDataFromLs);
@@ -48,33 +49,9 @@ const Bascet = () => {
             <h2 className={styles.title_product}>Цена товара</h2>
             <h2 className={styles.title_review}>{item.price}$</h2>
           </div>
-          {console.log(item._id)}
           <div className={styles.third_block}>
             <h2 className={styles.title_product}>Размеры товара</h2>
-
-            {item.quantity.map((quan) => (
-              <div className={styles.button_block} key={quan.size}>
-                <button
-                  id={quan.size}
-                  className={styles.button_selected_value}
-                  onClick={handleDecrement}
-                >
-                  +
-                </button>
-                <button className={styles.button_sizes}>
-                  {quan.size}({quan.value})
-                </button>
-                <button
-                  id={quan.size}
-                  className={styles.button_selected_value}
-                  onClick={() => {
-                    handleIncrement(quan.size);
-                  }}
-                >
-                  -
-                </button>
-              </div>
-            ))}
+            {<Counter data={item} quantity={item.quantity} key={item._id} />}
           </div>
         </div>
       ))}
