@@ -1,4 +1,5 @@
 import { toast } from "react-toastify";
+
 const handleIncrement = (quantity, e, state, data) => {
   const getDataWithLs = localStorage.getItem("AllData");
   const parseDataToFormat = JSON.parse(getDataWithLs);
@@ -67,10 +68,7 @@ const handleDecrement = (quantity, e, state, data) => {
   localStorage.setItem("AllData", JSON.stringify(pushDataToLs));
 };
 
-const filtradeDataBascet = () => {};
-
 const servicesBascet = {
-  filtradeDataInbascet: filtradeDataBascet,
   increment: handleIncrement,
   decrement: handleDecrement,
 };

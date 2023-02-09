@@ -3,15 +3,22 @@ import React, { useState } from "react";
 import styles from "./layouts.styles/bascet.module.css";
 import servicesBascet from "../utils/bascetServices";
 
-const Counter = ({ data, quantity }) => {
+const Counter = ({
+  data,
+  quantity,
+  handleDecrementAmount,
+  handleIncrementAmount,
+}) => {
   const [countDec, setCountInc] = useState();
   const [countInc, setCountDec] = useState();
 
   const handleIncrement = (e) => {
     servicesBascet.increment(quantity, e, setCountInc, data);
+    handleDecrementAmount(data.price);
   };
   const handleDecrement = (e) => {
     servicesBascet.decrement(quantity, e, setCountDec, data);
+    handleIncrementAmount(data.price);
   };
 
   return (
