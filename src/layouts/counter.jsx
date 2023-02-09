@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import { toast } from "react-toastify";
+
 import styles from "./layouts.styles/bascet.module.css";
 import servicesBascet from "../utils/bascetServices";
 
 const Counter = ({ data, quantity }) => {
-  const getDataWithLs = localStorage.getItem("AllData");
-  const parseDataToFormat = JSON.parse(getDataWithLs);
   const [countDec, setCountInc] = useState();
   const [countInc, setCountDec] = useState();
 
@@ -15,6 +13,7 @@ const Counter = ({ data, quantity }) => {
   const handleDecrement = (e) => {
     servicesBascet.decrement(quantity, e, setCountDec, data);
   };
+
   return (
     <>
       {quantity.map((quan) => (

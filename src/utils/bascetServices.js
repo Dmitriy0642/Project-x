@@ -67,7 +67,10 @@ const handleDecrement = (quantity, e, state, data) => {
   localStorage.setItem("AllData", JSON.stringify(pushDataToLs));
 };
 
+const filtradeDataBascet = () => {};
+
 const servicesBascet = {
+  filtradeDataInbascet: filtradeDataBascet,
   increment: handleIncrement,
   decrement: handleDecrement,
 };
