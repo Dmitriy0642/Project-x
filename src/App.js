@@ -6,7 +6,7 @@ import { ApiProvider } from "./hooks/useApi";
 import { Switch, Route } from "react-router-dom";
 import ReviewFormCatalog from "./common/reviewFormCatalog";
 import ReviewCardProduct from "./common/reviewCardProduct";
-import useProductbascet from "./hooks/useProductToBascet";
+import useProductbascet from "./utils/useProductToBascet";
 import Bascet from "./layouts/bascet";
 function App() {
   useProductbascet();

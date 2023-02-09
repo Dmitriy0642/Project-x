@@ -16,26 +16,6 @@ const Bascet = () => {
     }
   });
 
-  const handleDecrement = (e) => {
-    console.log(e.target.id);
-    // const newQuantity = dataObj.map((item) => {
-    //   if (`${item.size}` === `${e.target.id}`) {
-    //     return (item.value += 1);
-    //   }
-    //   return { size: item.size, value: item.value };
-    // });
-    // const pushDataToLs = parseDataToFormat.map((item) => {
-    //   if (item._id === filterData[0]._id) {
-    //     return filterData[0];
-    //   }
-    //   return item;
-    // });
-    // localStorage.setItem("AllData", JSON.stringify(pushDataToLs));
-  };
-
-  const handleIncrement = (_id) => {
-    console.log(_id);
-  };
   return (
     <div className={styles.main_div}>
       {filterData.map((item) => (
