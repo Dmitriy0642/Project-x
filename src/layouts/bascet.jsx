@@ -24,13 +24,13 @@ const Bascet = () => {
       });
     });
   }, []);
-  const handleDecrementAmount = (price) => {
+  const handleIncrementAmount = (price) => {
     setAmount((prevState) => (prevState += price));
   };
-  const handleIncrementAmount = (price) => {
+  const handleDecrementAmount = (price) => {
     setAmount((prevState) => (prevState -= price));
   };
-
+  console.log("amount", amount);
   return filterData.length <= 0 ? (
     <h2>Корзина Пуста</h2>
   ) : (

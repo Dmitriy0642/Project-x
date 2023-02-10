@@ -185,7 +185,8 @@ legend {
 }
 
 .countAmount {
-  margin: 15px 0 15px 0;
+  margin: 10px 0 25px 40px;
+
   font-family: "Roboto", sans-serif;
   font-size: 20px;
 }
