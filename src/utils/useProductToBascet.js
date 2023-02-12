@@ -20,7 +20,9 @@ const useProductbascet = () => {
       });
       const dataToFormat = JSON.stringify(pushNullSizesToArr);
       const dataSizes = JSON.stringify(remakeSizes);
+      const initialSizesFromDb = JSON.stringify(allSizes);
       if (localStorage.length === 0) {
+        localStorage.setItem("InitialSizes", initialSizesFromDb);
         localStorage.setItem("AllData", dataToFormat);
         localStorage.setItem("AllSizes", dataSizes);
       }
