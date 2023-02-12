@@ -1,20 +1,25 @@
 import React, { useState } from "react";
-import { toast } from "react-toastify";
 import styles from "./layouts.styles/bascet.module.css";
 import servicesBascet from "../utils/bascetServices";
 
-const Counter = ({ data, quantity }) => {
-  const getDataWithLs = localStorage.getItem("AllData");
-  const parseDataToFormat = JSON.parse(getDataWithLs);
+const Counter = ({
+  data,
+  quantity,
+  handleDecrementAmount,
+  handleIncrementAmount,
+}) => {
   const [countDec, setCountInc] = useState();
   const [countInc, setCountDec] = useState();
 
   const handleIncrement = (e) => {
     servicesBascet.increment(quantity, e, setCountInc, data);
+    handleIncrementAmount(data.price);
   };
   const handleDecrement = (e) => {
     servicesBascet.decrement(quantity, e, setCountDec, data);
+    handleDecrementAmount(data.price);
   };
+
   return (
     <>
       {quantity.map((quan) => (

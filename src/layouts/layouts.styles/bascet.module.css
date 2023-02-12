@@ -183,3 +183,10 @@ legend {
   border-radius: 50%;
   border: 1px solid black;
 }
+
+.countAmount {
+  margin: 10px 0 25px 40px;
+
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+}

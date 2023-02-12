@@ -1,16 +1,28 @@
 import { toast } from "react-toastify";
+
 const handleIncrement = (quantity, e, state, data) => {
   const getDataWithLs = localStorage.getItem("AllData");
   const parseDataToFormat = JSON.parse(getDataWithLs);
+  const getDataWithLsInitialSizes = localStorage.getItem("InitialSizes");
+  const initiSizesToFormat = JSON.parse(getDataWithLsInitialSizes);
   const filtradeQuan = quantity.filter(
     (item) => `${item.size}` === `${e.target.id}`
   );
-
+  const arrayOfSelecedItem = [];
+  const checkedInitialSizeValue = parseDataToFormat.map((item, index) => {
+    if (item._id === data._id) {
+      arrayOfSelecedItem.push(initiSizesToFormat[index]);
+    }
+  });
+  const filteredInitialValuesFromSelecedItem = arrayOfSelecedItem[0].filter(
+    (item) => `${item.size}` === `${e.target.id}`
+  );
+  const initialValuesOfItem = filteredInitialValuesFromSelecedItem[0];
   const getObjQuan = filtradeQuan[0];
   state(getObjQuan);
-  if (getObjQuan.value <= 0) {
+  if (getObjQuan.value < initialValuesOfItem.value) {
     getObjQuan.value += 1;
-    if (getObjQuan.value <= 1) {
+    if (getObjQuan.value === initialValuesOfItem.value) {
       toast.error("Вы выбрали последний размер данного товара");
     }
   }
@@ -24,6 +36,7 @@ const handleIncrement = (quantity, e, state, data) => {
     name: data.name,
     quantity: quantity,
   };
+
   const pushDataToLs = parseDataToFormat.map((item) => {
     if (item._id === newData._id) {
       return newData;
@@ -36,15 +49,27 @@ const handleIncrement = (quantity, e, state, data) => {
 const handleDecrement = (quantity, e, state, data) => {
   const getDataWithLs = localStorage.getItem("AllData");
   const parseDataToFormat = JSON.parse(getDataWithLs);
+  const getDataWithLsInitialSizes = localStorage.getItem("InitialSizes");
+  const initiSizesToFormat = JSON.parse(getDataWithLsInitialSizes);
   const filtradeQuan = quantity.filter(
     (item) => `${item.size}` === `${e.target.id}`
   );
+  const arrayOfSelecedItem = [];
+  const checkedInitialSizeValue = parseDataToFormat.map((item, index) => {
+    if (item._id === data._id) {
+      arrayOfSelecedItem.push(initiSizesToFormat[index]);
+    }
+  });
+  const filteredInitialValuesFromSelecedItem = arrayOfSelecedItem[0].filter(
+    (item) => `${item.size}` === `${e.target.id}`
+  );
+  const initialValuesOfItem = filteredInitialValuesFromSelecedItem[0];
 
   const getObjQuan = filtradeQuan[0];
   state(getObjQuan);
-  if (getObjQuan.value === 1) {
+  if (getObjQuan.value === initialValuesOfItem.value) {
     getObjQuan.value -= 1;
-    if (getObjQuan.value < 0) {
+    if (getObjQuan.value < initialValuesOfItem.value) {
     }
   }
 
