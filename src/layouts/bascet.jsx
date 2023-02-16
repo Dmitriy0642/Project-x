@@ -30,7 +30,10 @@ const Bascet = () => {
   const handleDecrementAmount = (price) => {
     setAmount((prevState) => (prevState -= price));
   };
-  console.log("amount", amount);
+  const handleClick = () => {
+    console.log("click");
+  };
+
   return filterData.length <= 0 ? (
     <h2>Корзина Пуста</h2>
   ) : (
@@ -65,7 +68,10 @@ const Bascet = () => {
         </div>
       ))}
       <div className={styles.block_finish_order}>
-        <button className={styles.button_added_finish_order}>
+        <button
+          className={styles.button_added_finish_order}
+          onClick={handleClick}
+        >
           Оформить заказ
         </button>
       </div>

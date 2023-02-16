@@ -65,8 +65,7 @@ const Counter = ({
     if (filteredQuan[0].value === filtradeSelectedQuan[0].value) {
       handleDecrementAmount(data.price);
     }
-    console.log("fromDb", filteredQuan[0]);
-    console.log("selectedQuan", filtradeSelectedQuan[0]);
+
     servicesBascet.decrement(quantity, e, setCountDec, data);
   };
 
