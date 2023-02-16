@@ -38,6 +38,7 @@ const Bascet = () => {
       <h2 className={styles.countAmount}>
         Общая стоимость товара в корзине : {amount}$
       </h2>
+
       {filterData.map((item) => (
         <div className={styles.product_div} key={item._id}>
           <img src={item.img[0]} alt="" className={styles.img_product} />
@@ -63,6 +64,11 @@ const Bascet = () => {
           </div>
         </div>
       ))}
+      <div className={styles.block_finish_order}>
+        <button className={styles.button_added_finish_order}>
+          Оформить заказ
+        </button>
+      </div>
     </div>
   );
 };
