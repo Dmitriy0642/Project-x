@@ -16,8 +16,8 @@ function App() {
       <Header />
       <ApiProvider>
         <Switch>
-          <Route path="/login" component={LoginForm} />
           <Route path="/:name/:postId" component={ReviewCardProduct} />
+          <Route path="/login" component={LoginForm} />
           <Route path="/basket" component={Bascet} />
           <Route path="/" exact component={Catalog} />
           <Route path="/:name" component={ReviewFormCatalog} />
