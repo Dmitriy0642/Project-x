@@ -29,6 +29,7 @@ const LoginForm = () => {
     setErrors(errors);
     return Object.keys(errors).length === 0;
   };
+  const isValid = Object.keys(errors).length === 0;
   const handleSubmit = (e) => {
     e.preventDefault();
     const isValid = validate();
@@ -55,7 +56,9 @@ const LoginForm = () => {
           name="password"
           error={errors.password}
         />
-        <button className={styles.button_submit}>Отправить</button>
+        <button className={styles.button_submit} disabled={!isValid}>
+          Отправить
+        </button>
       </form>
     </div>
   );
