@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "../ui-forms/ui-form.module.css";
-const TextField = ({ label, type, name, onChange, value }) => {
+const TextField = ({ label, type, name, onChange, value, error }) => {
   return (
     <div>
       <label htmlFor={name} className={styles.label_name}>
@@ -14,6 +14,7 @@ const TextField = ({ label, type, name, onChange, value }) => {
         onChange={onChange}
         name={name}
       />
+      {error && <p>{error}</p>}
     </div>
   );
 };
