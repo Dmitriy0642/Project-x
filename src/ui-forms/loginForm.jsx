@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import TextField from "./textField";
-import styles from "../ui-forms/ui-form.module.css";
 import { validator } from "../utils/validator";
 const LoginForm = () => {
   const [data, setData] = useState({ email: "", password: "" });
@@ -37,9 +36,9 @@ const LoginForm = () => {
     console.log(data);
   };
   return (
-    <div className={styles.main_div}>
-      <form className={styles.main_form} onSubmit={handleSubmit}>
-        <h1 className={styles.title_login}>Login</h1>
+    <div className="container mt-5">
+      <form onSubmit={handleSubmit}>
+        <h1>Login</h1>
         <TextField
           type="text"
           value={data.email}
@@ -56,9 +55,7 @@ const LoginForm = () => {
           name="password"
           error={errors.password}
         />
-        <button className={styles.button_submit} disabled={!isValid}>
-          Отправить
-        </button>
+        <button disabled={!isValid}>Отправить</button>
       </form>
     </div>
   );
