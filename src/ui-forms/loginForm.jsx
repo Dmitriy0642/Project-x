@@ -1,24 +1,13 @@
 import React, { useEffect, useState } from "react";
 import TextField from "./textField";
 import { validator } from "../utils/validator";
+import styles from "./ui-form.module.css";
+import validatorConfig from "../utils/validatorConfig";
 const LoginForm = () => {
   const [data, setData] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
   const handleChange = ({ target }) => {
     setData((prevState) => ({ ...prevState, [target.name]: target.value }));
-  };
-  const validatorConfig = {
-    email: {
-      isRequired: { message: "Электронная почта ,обязательна для заполнения" },
-      isEmail: { message: "Email введен не корректно" },
-    },
-    password: {
-      isRequired: { message: "Пароль ,обязателен для заполнения" },
-      isCapitalSymbol: { message: "Пароль должен содержать заглавную букву" },
-      isCapitalLength: {
-        message: "Длинна пароля должна быть больше 8 символов",
-      },
-    },
   };
   useEffect(() => {
     validate();
@@ -33,12 +22,11 @@ const LoginForm = () => {
     e.preventDefault();
     const isValid = validate();
     if (!isValid) return;
-    console.log(data);
   };
   return (
-    <div className="container mt-5">
-      <form onSubmit={handleSubmit}>
-        <h1>Login</h1>
+    <div className={styles.main_div}>
+      <form onSubmit={handleSubmit} className={styles.main_form}>
+        <h1 className={styles.title_login}>Login</h1>
         <TextField
           type="text"
           value={data.email}
@@ -55,7 +43,9 @@ const LoginForm = () => {
           name="password"
           error={errors.password}
         />
-        <button disabled={!isValid}>Отправить</button>
+        <button disabled={!isValid} className={styles.button_submit}>
+          Отправить
+        </button>
       </form>
     </div>
   );
