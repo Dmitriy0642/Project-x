@@ -1,6 +1,6 @@
 import { useApi } from "../hooks/useApi";
-import filterOnCategoryToProduct from "../utils/filterOnCategoryToProduct";
-import filtredSoloData from "../utils/filterSingleDataForSingleVieving";
+import filterOnCategoryToProduct from "../functions/filterOnCategoryToProduct";
+import filtredSoloData from "../functions/filterSingleDataForSingleVieving";
 import styles from "../common/styles.common/reviewCardProduct.module.css";
 import ReviewCardForm from "./reviewCardForm";
 const ReviewCardProduct = ({ match }) => {
