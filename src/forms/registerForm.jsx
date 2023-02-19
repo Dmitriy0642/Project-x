@@ -3,7 +3,7 @@ import TextField from "./textField";
 import { validator } from "../utils/validator";
 import styles from "./ui-form.module.css";
 import validatorConfig from "../utils/validatorConfig";
-const LoginForm = () => {
+const RegisterForm = () => {
   const [data, setData] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
   const handleChange = ({ target }) => {
@@ -48,4 +48,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default RegisterForm;

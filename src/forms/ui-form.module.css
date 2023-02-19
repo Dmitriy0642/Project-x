@@ -6,16 +6,6 @@
   align-items: center;
 }
 
-.main_form {
-  width: auto;
-  padding: 32px;
-  justify-content: center;
-  border-radius: 10px;
-  box-shadow: 0 4px 16px #ccc;
-  font-family: "Roboto", sans-serif;
-  letter-spacing: 1px;
-}
-
 .label_name {
   margin: 10px 0 0 0;
 }
@@ -39,4 +29,22 @@
 .input {
   border: 1px solid black;
   margin: 10px 0 10px 8px;
+}
+
+.container_form {
+  width: auto;
+  padding: 52px;
+  justify-content: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px #ccc;
+  font-family: "Roboto", sans-serif;
+  letter-spacing: 1px;
+}
+
+.switch_form {
+  margin: 15px 0 0 23px;
+}
+
+.link_switched_forms {
+  cursor: pointer;
 }
