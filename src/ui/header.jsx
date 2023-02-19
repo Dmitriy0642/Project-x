@@ -13,7 +13,7 @@ const Header = () => {
       </Link>
       <ul className={styles.ancor}>
         <Link to="/">Главная</Link>
-        <Link to="#">№</Link>
+        <Link to="/test">№</Link>
         <Link to="#">№</Link>
         <Link to="/aboutShop">О нас</Link>
       </ul>
