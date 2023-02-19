@@ -6,9 +6,9 @@ import { ApiProvider } from "./hooks/useApi";
 import { Switch, Route } from "react-router-dom";
 import ReviewFormCatalog from "./common/reviewFormCatalog";
 import ReviewCardProduct from "./common/reviewCardProduct";
-import useProductbascet from "./utils/useProductToBascet";
+import useProductbascet from "./functions/useProductToBascet";
 import Bascet from "./layouts/bascet";
-import LoginForm from "./ui-forms/loginForm";
+import Login from "./forms/login";
 function App() {
   useProductbascet();
   return (
@@ -17,7 +17,7 @@ function App() {
       <ApiProvider>
         <Switch>
           <Route path="/:name/:postId" component={ReviewCardProduct} />
-          <Route path="/login" component={LoginForm} />
+          <Route path="/login/:type?" component={Login} />
           <Route path="/basket" component={Bascet} />
           <Route path="/" exact component={Catalog} />
           <Route path="/:name" component={ReviewFormCatalog} />

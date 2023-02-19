@@ -3,7 +3,7 @@ import TextField from "./textField";
 import { validator } from "../utils/validator";
 import styles from "./ui-form.module.css";
 import validatorConfig from "../utils/validatorConfig";
-const LoginForm = () => {
+const RegisterForm = () => {
   const [data, setData] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
   const handleChange = ({ target }) => {
@@ -24,31 +24,28 @@ const LoginForm = () => {
     if (!isValid) return;
   };
   return (
-    <div className={styles.main_div}>
-      <form onSubmit={handleSubmit} className={styles.main_form}>
-        <h1 className={styles.title_login}>Login</h1>
-        <TextField
-          type="text"
-          value={data.email}
-          label="Email"
-          onChange={handleChange}
-          name="email"
-          error={errors.email}
-        />
-        <TextField
-          type="password"
-          value={data.password}
-          label="Пароль"
-          onChange={handleChange}
-          name="password"
-          error={errors.password}
-        />
-        <button disabled={!isValid} className={styles.button_submit}>
-          Отправить
-        </button>
-      </form>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <TextField
+        type="text"
+        value={data.email}
+        label="Email"
+        onChange={handleChange}
+        name="email"
+        error={errors.email}
+      />
+      <TextField
+        type="password"
+        value={data.password}
+        label="Пароль"
+        onChange={handleChange}
+        name="password"
+        error={errors.password}
+      />
+      <button disabled={!isValid} className={styles.button_submit}>
+        Отправить
+      </button>
+    </form>
   );
 };
 
-export default LoginForm;
+export default RegisterForm;

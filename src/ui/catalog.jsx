@@ -7,7 +7,7 @@ import logoTshirt from "../LogoCatalog/logoTshirt.jpg";
 import logoShoes from "../LogoCatalog/logoShoes.jpg";
 import styles from "../ui.styles/catalog.module.css";
 import { useApi } from "../hooks/useApi";
-import filterOnCategoryToProduct from "../utils/filterOnCategoryToProduct";
+import filterOnCategoryToProduct from "../functions/filterOnCategoryToProduct";
 const Catalog = () => {
   const data = useApi();
   filterOnCategoryToProduct(data);

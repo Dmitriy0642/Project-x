@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "../common/styles.common/reviewFormCatalog.module.css";
 import { useApi } from "../hooks/useApi";
-import filterOnCategoryToProduct from "../utils/filterOnCategoryToProduct";
+import filterOnCategoryToProduct from "../functions/filterOnCategoryToProduct";
 
 const ReviewFormCatalog = ({ match }) => {
   const url = match.url;
