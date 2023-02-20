@@ -25,5 +25,8 @@ const validatorConfig = {
     },
     isCapitalValidationPass: { message: "Пароли не совпадают " },
   },
+  sity: {
+    isRequired: { message: "Город обязателен для заполнения" },
+  },
 };
 export default validatorConfig;

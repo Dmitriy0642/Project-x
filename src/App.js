@@ -8,7 +8,8 @@ import ReviewFormCatalog from "./common/reviewFormCatalog";
 import ReviewCardProduct from "./common/reviewCardProduct";
 import useProductbascet from "./functions/useProductToBascet";
 import Bascet from "./layouts/bascet";
-import Login from "./forms/login";
+import Login from "./layouts/login";
+import Order from "./layouts/order";
 
 function App() {
   useProductbascet();
@@ -18,6 +19,7 @@ function App() {
       <ApiProvider>
         <Switch>
           <Route path="/basket" component={Bascet} />
+          <Route path="/order" component={Order} />
           <Route path="/:name/:postId" component={ReviewCardProduct} />
           <Route path="/login/:type?" component={Login} />
           <Route path="/:name" component={ReviewFormCatalog} />
