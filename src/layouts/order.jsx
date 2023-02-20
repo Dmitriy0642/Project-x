@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import TextField from "../forms/textField";
 import validatorConfig from "../utils/validatorConfig";
 import { validator } from "../utils/validator";
+import RadioField from "../forms/radioField";
 const Order = () => {
   const [data, setData] = useState({
     numtel: "",
     fio: "",
     sity: "",
+    post: "СДЭК",
   });
   const [errors, setErrors] = useState({});
   useEffect(() => {
@@ -57,8 +59,16 @@ const Order = () => {
               onChange={handleChange}
               error={errors.sity}
             />
-            {/* <TextField />
-            <TextField /> */}
+            <RadioField
+              options={[
+                { name: "СДЭК", value: "СДЭК" },
+                { name: "ПочтаРоссии", value: "ПочтаРоссии" },
+                { name: "DHL", value: "DHL" },
+              ]}
+              value={data.post}
+              name="post"
+              onChange={handleChange}
+            />
             <button
               className="btn btn-primary w-100 mx-auto"
               disabled={!isValid}
