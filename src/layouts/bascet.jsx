@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import styles from "./layouts.styles/bascet.module.css";
 import Counter from "./counter";
+import { useHistory } from "react-router-dom";
 
 const Bascet = () => {
+  const history = useHistory();
   const [amount, setAmount] = useState(0);
   const getDataFromLs = localStorage.getItem("AllData");
   const parseDataToFormat = JSON.parse(getDataFromLs);
@@ -31,7 +33,7 @@ const Bascet = () => {
     setAmount((prevState) => (prevState -= price));
   };
   const handleClick = () => {
-    console.log("click");
+    history.push("/order");
   };
 
   return filterData.length <= 0 ? (

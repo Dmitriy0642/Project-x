@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import TextField from "./textField";
 import { validator } from "../utils/validator";
-import styles from "./ui-form.module.css";
 import validatorConfig from "../utils/validatorConfig";
 const RegisterForm = () => {
   const [data, setData] = useState({
