@@ -1,4 +1,6 @@
 export function validator(data, config) {
+  const pass = data.password;
+  const submitetPass = data.passwordagain;
   const errors = {};
   function validate(valifateMethod, data, config) {
     let statusValidate;
@@ -18,6 +20,15 @@ export function validator(data, config) {
       }
       case "isCapitalLength": {
         statusValidate = data.length < 8;
+        break;
+      }
+      case "isNumTel": {
+        const numTelRegExpAgain = /^\d+$/g;
+        statusValidate = !numTelRegExpAgain.test(data);
+        break;
+      }
+      case "isCapitalValidationPass": {
+        statusValidate = `${pass}` !== `${submitetPass}`;
         break;
       }
       default:

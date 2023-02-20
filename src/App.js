@@ -9,6 +9,7 @@ import ReviewCardProduct from "./common/reviewCardProduct";
 import useProductbascet from "./functions/useProductToBascet";
 import Bascet from "./layouts/bascet";
 import Login from "./forms/login";
+
 function App() {
   useProductbascet();
   return (
@@ -16,11 +17,11 @@ function App() {
       <Header />
       <ApiProvider>
         <Switch>
+          <Route path="/basket" component={Bascet} />
           <Route path="/:name/:postId" component={ReviewCardProduct} />
           <Route path="/login/:type?" component={Login} />
-          <Route path="/basket" component={Bascet} />
-          <Route path="/" exact component={Catalog} />
           <Route path="/:name" component={ReviewFormCatalog} />
+          <Route path="/" component={Catalog} />
         </Switch>
       </ApiProvider>
       <ToastContainer />

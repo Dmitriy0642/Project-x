@@ -41,7 +41,7 @@ const LoginForm = () => {
         name="password"
         error={errors.password}
       />
-      <button disabled={!isValid} className={styles.button_submit}>
+      <button disabled={!isValid} className="btn btn-primary w-100 mx-auto">
         Отправить
       </button>
     </form>
