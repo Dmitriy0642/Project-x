@@ -9,7 +9,6 @@ import ReviewCardProduct from "./common/reviewCardProduct";
 import useProductbascet from "./functions/useProductToBascet";
 import Bascet from "./layouts/bascet";
 import Login from "./forms/login";
-import Test from "./forms/test";
 
 function App() {
   useProductbascet();
