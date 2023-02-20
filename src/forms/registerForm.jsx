@@ -68,7 +68,7 @@ const RegisterForm = () => {
         value={data.passwordagain}
         label="Повторите пароль"
         onChange={handleChange}
-        name="passwordAgain"
+        name="passwordagain"
         error={errors.passwordagain}
       />
 
