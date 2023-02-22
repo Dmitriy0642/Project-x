@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import config from "../config.json";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import httpService from "../services/http.service";
 const ApiContext = React.createContext();
 
 export const useApi = () => {
@@ -16,7 +16,9 @@ export const ApiProvider = ({ children }) => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const { data } = await axios.get(`${config.ApiEndPOint}` + `.json`);
+        const { data } = await httpService.get(
+          `${config.ApiEndPOint}` + `.json`
+        );
         const { category, product } = data;
         setFirmCategory(Object.keys(category).map((item) => category[item]));
         setProd(Object.keys(product).map((item) => product[item]));
