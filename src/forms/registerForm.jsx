@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import TextField from "./textField";
 import { validator } from "../utils/validator";
 import validatorConfig from "../utils/validatorConfig";
+import { useAuth } from "../hooks/useAuth";
 const RegisterForm = () => {
   const [data, setData] = useState({
     email: "",
@@ -10,6 +11,7 @@ const RegisterForm = () => {
     numtel: "",
     fio: "",
   });
+  const { signUp } = useAuth();
   const [errors, setErrors] = useState({});
   const handleChange = ({ target }) => {
     setData((prevState) => ({ ...prevState, [target.name]: target.value }));
@@ -27,6 +29,8 @@ const RegisterForm = () => {
     e.preventDefault();
     const isValid = validate();
     if (!isValid) return;
+    console.log(data);
+    signUp(data);
   };
   return (
     <form onSubmit={handleSubmit}>
