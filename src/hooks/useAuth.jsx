@@ -21,9 +21,18 @@ const AuthProvider = ({ children }) => {
         returnSecureToken: true,
       });
       setTokens(data);
-      createUser({ _id: data.localId, email });
+      await createUser({ _id: data.localId, email });
     } catch (error) {
       console.log(error);
+      const { code, message } = error.response.data.error;
+      if (code === 400) {
+        if (message === "EMAIL_EXISTS") {
+          const ErrorObject = {
+            email: "Пользователь с таким email уже существует",
+          };
+          throw ErrorObject;
+        }
+      }
     }
   }
 

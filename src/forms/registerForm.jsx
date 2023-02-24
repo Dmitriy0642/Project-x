@@ -3,6 +3,7 @@ import TextField from "./textField";
 import { validator } from "../utils/validator";
 import validatorConfig from "../utils/validatorConfig";
 import { useAuth } from "../hooks/useAuth";
+import { async } from "q";
 const RegisterForm = () => {
   const [data, setData] = useState({
     email: "",
@@ -25,12 +26,15 @@ const RegisterForm = () => {
     return Object.keys(errors).length === 0;
   };
   const isValid = Object.keys(errors).length === 0;
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const isValid = validate();
     if (!isValid) return;
-    console.log(data);
-    signUp(data);
+    try {
+      await signUp(data);
+    } catch (error) {
+      setErrors(error);
+    }
   };
   return (
     <form onSubmit={handleSubmit}>
