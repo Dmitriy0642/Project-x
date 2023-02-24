@@ -10,22 +10,25 @@ import useProductbascet from "./functions/useProductToBascet";
 import Bascet from "./layouts/bascet";
 import Login from "./layouts/login";
 import Order from "./layouts/order";
+import AuthProvider from "./hooks/useAuth";
 
 function App() {
   useProductbascet();
   return (
     <div>
-      <Header />
-      <ApiProvider>
-        <Switch>
-          <Route path="/basket" component={Bascet} />
-          <Route path="/order" component={Order} />
-          <Route path="/:name/:postId" component={ReviewCardProduct} />
-          <Route path="/login/:type?" component={Login} />
-          <Route path="/:name" component={ReviewFormCatalog} />
-          <Route path="/" component={Catalog} />
-        </Switch>
-      </ApiProvider>
+      <AuthProvider>
+        <Header />
+        <ApiProvider>
+          <Switch>
+            <Route path="/basket" component={Bascet} />
+            <Route path="/order" component={Order} />
+            <Route path="/:name/:postId" component={ReviewCardProduct} />
+            <Route path="/login/:type?" component={Login} />
+            <Route path="/:name" component={ReviewFormCatalog} />
+            <Route path="/" component={Catalog} />
+          </Switch>
+        </ApiProvider>
+      </AuthProvider>
       <ToastContainer />
     </div>
   );
