@@ -88,6 +88,29 @@ const AuthProvider = ({ children }) => {
     }
   }, []);
 
+  async function htttpAuth() {
+    const key = "AIzaSyCFKm-NzKP4yGvPnz2hgVWOjk0zxb4d_to";
+    const url = "https://securetoken.googleapis.com/v1/token?key=";
+    const expiresDate = localStorageService.getTokenExpiresDate();
+    const refreshToken = localStorageService.getRefrestTokent();
+    if (refreshToken && expiresDate < Date.now()) {
+      const { data } = await axios.post(url + key, {
+        grant_type: "refresh_token",
+        refresh_token: refreshToken,
+      });
+      console.log(data);
+      localStorageService.setTokens({
+        refreshToken: data.refresh_token,
+        idToken: data.id_token,
+        localId: data.user_id,
+        expiresIn: data.expires_in,
+      });
+    }
+  }
+  useEffect(() => {
+    htttpAuth();
+  }, []);
+
   return (
     <AuthContext.Provider value={{ signUp, currentUser, logIn }}>
       {children}
