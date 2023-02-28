@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import TextField from "./textField";
 import { validator } from "../utils/validator";
-import styles from "./ui-form.module.css";
 import validatorConfig from "../utils/validatorConfig";
+import { useHistory } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 const LoginForm = () => {
   const [data, setData] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
+  const history = useHistory();
+  const { logIn } = useAuth();
   const handleChange = ({ target }) => {
     setData((prevState) => ({ ...prevState, [target.name]: target.value }));
   };
@@ -18,10 +21,16 @@ const LoginForm = () => {
     return Object.keys(errors).length === 0;
   };
   const isValid = Object.keys(errors).length === 0;
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const isValid = validate();
     if (!isValid) return;
+    try {
+      await logIn(data);
+      history.push("/");
+    } catch (error) {
+      setErrors(error);
+    }
   };
   return (
     <form onSubmit={handleSubmit}>

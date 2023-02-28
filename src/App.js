@@ -21,9 +21,9 @@ function App() {
         <ApiProvider>
           <Switch>
             <Route path="/basket" component={Bascet} />
-            <Route path="/order" component={Order} />
-            <Route path="/:name/:postId" component={ReviewCardProduct} />
             <Route path="/login/:type?" component={Login} />
+            <Route path="/:name/:postId" component={ReviewCardProduct} />
+            <Route path="/order" component={Order} />
             <Route path="/:name" component={ReviewFormCatalog} />
             <Route path="/" component={Catalog} />
           </Switch>

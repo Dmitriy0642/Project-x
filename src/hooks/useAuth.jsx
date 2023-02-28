@@ -1,7 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import userService from "../services/user.service";
-import { setTokens } from "../services/localStorage.service";
+import localStorageService, {
+  setTokens,
+} from "../services/localStorage.service";
 
 const AuthContext = React.createContext();
 
@@ -10,8 +12,8 @@ export const useAuth = () => {
 };
 
 const AuthProvider = ({ children }) => {
-  const [users, setUsers] = useState();
-  async function signUp({ email, password, ...rest }) {
+  const [currentUser, setUsers] = useState({});
+  async function signUp({ email, password }) {
     const key = `AIzaSyCFKm-NzKP4yGvPnz2hgVWOjk0zxb4d_to`;
     const url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${key}`;
     try {
@@ -36,17 +38,60 @@ const AuthProvider = ({ children }) => {
     }
   }
 
+  async function logIn({ email, password }) {
+    const key = "AIzaSyCFKm-NzKP4yGvPnz2hgVWOjk0zxb4d_to";
+    const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${key}`;
+    try {
+      const { data } = await axios.post(url, {
+        email,
+        password,
+        returnSecureToken: true,
+      });
+      setTokens(data);
+      getUserData();
+    } catch (error) {
+      const { code, message } = error.response.data.error;
+      if (code === 400) {
+        if (message === "INVALID_PASSWORD") {
+          const errorObject = { password: "Неверный пароль" };
+          throw errorObject;
+        }
+        if (message === "EMAIL_NOT_FOUND") {
+          const errorObject = { email: "Неверный email" };
+          throw errorObject;
+        }
+      }
+    }
+  }
+
   async function createUser(data) {
     try {
-      const { content } = userService.create(data);
+      const { content } = await userService.create(data);
       setUsers(content);
     } catch (error) {
       console.log(error);
     }
   }
 
+  async function getUserData() {
+    try {
+      const data = await userService.getCurrentUser();
+      setUsers(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    if (localStorageService.getAccesToken()) {
+      getUserData();
+    }
+  }, []);
+
   return (
-    <AuthContext.Provider value={{ signUp }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ signUp, currentUser, logIn }}>
+      {children}
+    </AuthContext.Provider>
   );
 };
 
