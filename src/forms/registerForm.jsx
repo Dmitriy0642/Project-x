@@ -3,7 +3,8 @@ import TextField from "./textField";
 import { validator } from "../utils/validator";
 import validatorConfig from "../utils/validatorConfig";
 import { useAuth } from "../hooks/useAuth";
-import { async } from "q";
+import { useHistory } from "react-router-dom";
+
 const RegisterForm = () => {
   const [data, setData] = useState({
     email: "",
@@ -12,6 +13,7 @@ const RegisterForm = () => {
     numtel: "",
     fio: "",
   });
+  const history = useHistory();
   const { signUp } = useAuth();
   const [errors, setErrors] = useState({});
   const handleChange = ({ target }) => {
@@ -32,6 +34,7 @@ const RegisterForm = () => {
     if (!isValid) return;
     try {
       await signUp(data);
+      history.push("/");
     } catch (error) {
       setErrors(error);
     }
