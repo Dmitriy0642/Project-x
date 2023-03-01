@@ -37,7 +37,7 @@ const Bascet = () => {
     setAmount((prevState) => (prevState -= price));
   };
   const handleClick = () => {
-    if (currentUser === undefined) {
+    if (currentUser === undefined || currentUser === null) {
       toast.error("Чтобы оформить заказ ,вам необходимо зарегестрироваться");
     } else {
       history.push("/order");

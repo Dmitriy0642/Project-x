@@ -4,6 +4,7 @@ import userService from "../services/user.service";
 import localStorageService, {
   setTokens,
 } from "../services/localStorage.service";
+import { useHistory } from "react-router-dom";
 
 const AuthContext = React.createContext();
 
@@ -12,6 +13,7 @@ export const useAuth = () => {
 };
 
 const AuthProvider = ({ children }) => {
+  const history = useHistory();
   const [currentUser, setUsers] = useState();
   async function signUp({ email, password }) {
     const key = `AIzaSyCFKm-NzKP4yGvPnz2hgVWOjk0zxb4d_to`;
@@ -106,12 +108,18 @@ const AuthProvider = ({ children }) => {
       });
     }
   }
+  function logOut() {
+    localStorageService.authRemoveData();
+    setUsers(null);
+    history.push("/");
+  }
+
   useEffect(() => {
     httpAuth();
   }, []);
 
   return (
-    <AuthContext.Provider value={{ signUp, currentUser, logIn }}>
+    <AuthContext.Provider value={{ signUp, currentUser, logIn, logOut }}>
       {children}
     </AuthContext.Provider>
   );
