@@ -15,7 +15,7 @@ export const useAuth = () => {
 const AuthProvider = ({ children }) => {
   const history = useHistory();
   const [currentUser, setUsers] = useState();
-  async function signUp({ email, password }) {
+  async function signUp({ email, password, ...rest }) {
     const key = `AIzaSyCFKm-NzKP4yGvPnz2hgVWOjk0zxb4d_to`;
     const url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${key}`;
     try {
@@ -25,7 +25,7 @@ const AuthProvider = ({ children }) => {
         returnSecureToken: true,
       });
       setTokens(data);
-      await createUser({ _id: data.localId, email });
+      await createUser({ _id: data.localId, email, ...rest });
     } catch (error) {
       console.log(error);
       const { code, message } = error.response.data.error;
