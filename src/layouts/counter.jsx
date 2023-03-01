@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styles from "./layouts.styles/bascet.module.css";
 import servicesBascet from "../utils/bascetServices";
-import { logDOM } from "@testing-library/react";
 
 const Counter = ({
   data,

@@ -12,7 +12,7 @@ export const useAuth = () => {
 };
 
 const AuthProvider = ({ children }) => {
-  const [currentUser, setUsers] = useState({});
+  const [currentUser, setUsers] = useState();
   async function signUp({ email, password }) {
     const key = `AIzaSyCFKm-NzKP4yGvPnz2hgVWOjk0zxb4d_to`;
     const url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${key}`;
@@ -88,7 +88,7 @@ const AuthProvider = ({ children }) => {
     }
   }, []);
 
-  async function htttpAuth() {
+  async function httpAuth() {
     const key = "AIzaSyCFKm-NzKP4yGvPnz2hgVWOjk0zxb4d_to";
     const url = "https://securetoken.googleapis.com/v1/token?key=";
     const expiresDate = localStorageService.getTokenExpiresDate();
@@ -98,7 +98,6 @@ const AuthProvider = ({ children }) => {
         grant_type: "refresh_token",
         refresh_token: refreshToken,
       });
-      console.log(data);
       localStorageService.setTokens({
         refreshToken: data.refresh_token,
         idToken: data.id_token,
@@ -108,7 +107,7 @@ const AuthProvider = ({ children }) => {
     }
   }
   useEffect(() => {
-    htttpAuth();
+    httpAuth();
   }, []);
 
   return (

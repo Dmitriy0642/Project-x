@@ -2,8 +2,12 @@ import React, { useEffect, useState } from "react";
 import styles from "./layouts.styles/bascet.module.css";
 import Counter from "./counter";
 import { useHistory } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
+import { toast } from "react-toastify";
 
 const Bascet = () => {
+  const { currentUser } = useAuth();
+  console.log(currentUser);
   const history = useHistory();
   const [amount, setAmount] = useState(0);
   const getDataFromLs = localStorage.getItem("AllData");
@@ -33,7 +37,11 @@ const Bascet = () => {
     setAmount((prevState) => (prevState -= price));
   };
   const handleClick = () => {
-    history.push("/order");
+    if (currentUser === undefined) {
+      toast.error("Чтобы оформить заказ ,вам необходимо зарегестрироваться");
+    } else {
+      history.push("/order");
+    }
   };
 
   return filterData.length <= 0 ? (
