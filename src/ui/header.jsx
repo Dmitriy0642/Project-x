@@ -20,7 +20,7 @@ const Header = () => {
         <Link to="#">№</Link>
         <Link to="/aboutShop">О нас</Link>
       </ul>
-      {currentUser === undefined ? (
+      {currentUser === undefined || currentUser === null ? (
         <div className={styles.icon_links}>
           <Link to="/login">
             <img src={icon_login} alt="" className={styles.img_nav_links} />
