@@ -12,6 +12,7 @@ import Login from "./layouts/login";
 import Order from "./layouts/order";
 import AuthProvider from "./hooks/useAuth";
 import LogOut from "./layouts/logOut";
+import PersonalArea from "./ui/personalArea";
 
 function App() {
   useProductbascet();
@@ -22,6 +23,7 @@ function App() {
         <ApiProvider>
           <Switch>
             <Route path="/logout" component={LogOut} />
+            <Route path="/profile" component={PersonalArea} />
             <Route path="/basket" component={Bascet} />
             <Route path="/login/:type?" component={Login} />
             <Route path="/:name/:postId" component={ReviewCardProduct} />

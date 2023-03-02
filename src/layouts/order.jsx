@@ -8,6 +8,7 @@ const Order = () => {
     numtel: "",
     fio: "",
     sity: "",
+    address: "",
     post: "СДЭК",
   });
   const [errors, setErrors] = useState({});
@@ -58,6 +59,14 @@ const Order = () => {
               value={data.sity}
               onChange={handleChange}
               error={errors.sity}
+            />
+            <TextField
+              name="address"
+              type="text"
+              label="Точный Адрес"
+              value={data.address}
+              onChange={handleChange}
+              error={errors.address}
             />
             <RadioField
               options={[

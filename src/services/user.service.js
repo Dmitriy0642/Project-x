@@ -21,6 +21,18 @@ const userService = {
     );
     return data;
   },
+  getRefreshUser: async (balance) => {
+    const accesToken = localStorageService.getAccesToken();
+    console.log(balance);
+    const { data } = await httpService.put(
+      `${userEndPoint}` +
+        localStorageService.getUserId() +
+        `/balance` +
+        `.json?auth=${accesToken}`,
+      balance
+    );
+    return data;
+  },
 };
 
 export default userService;

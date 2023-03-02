@@ -4,10 +4,11 @@ import Counter from "./counter";
 import { useHistory } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import { toast } from "react-toastify";
+import userService from "../services/user.service";
+import axios from "axios";
 
 const Bascet = () => {
   const { currentUser } = useAuth();
-  console.log(currentUser);
   const history = useHistory();
   const [amount, setAmount] = useState(0);
   const getDataFromLs = localStorage.getItem("AllData");
@@ -36,10 +37,25 @@ const Bascet = () => {
   const handleDecrementAmount = (price) => {
     setAmount((prevState) => (prevState -= price));
   };
+
+  async function overWriting(balance) {
+    try {
+      const data = await userService.getRefreshUser(balance);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
   const handleClick = () => {
     if (currentUser === undefined || currentUser === null) {
-      toast.error("Чтобы оформить заказ ,вам необходимо зарегестрироваться");
-    } else {
+      toast.error("Вам необходимо зарегестрироваться");
+    } else if (currentUser.balance < amount) {
+      toast.error("Сумма заказа превышает баланс");
+    }
+
+    if (currentUser.balance >= amount) {
+      const remainingBalacne = currentUser.balance - amount;
+      overWriting(remainingBalacne);
       history.push("/order");
     }
   };
@@ -51,7 +67,9 @@ const Bascet = () => {
       <h2 className={styles.countAmount}>
         Общая стоимость товара в корзине : {amount}$
       </h2>
-
+      <h2 className={styles.balance_title}>
+        Ваш Баланс : {currentUser.balance}$
+      </h2>
       {filterData.map((item) => (
         <div className={styles.product_div} key={item._id}>
           <img src={item.img[0]} alt="" className={styles.img_product} />

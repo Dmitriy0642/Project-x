@@ -18,8 +18,11 @@ const Profile = () => {
         />
       </div>
       <div className={" dropdown-menu" + (isOpen ? " show" : "")}>
-        <Link to="logout" className="dropdown-item">
-          LogOut
+        <Link to="/logout" className="dropdown-item">
+          Log Out
+        </Link>
+        <Link to="/profile" className="dropdown-item">
+          Profile
         </Link>
       </div>
     </div>
