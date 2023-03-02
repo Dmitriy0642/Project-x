@@ -25,7 +25,7 @@ const AuthProvider = ({ children }) => {
         returnSecureToken: true,
       });
       setTokens(data);
-      await createUser({ _id: data.localId, email, ...rest });
+      await createUser({ _id: data.localId, email, ...rest, balance: 10000 });
     } catch (error) {
       console.log(error);
       const { code, message } = error.response.data.error;

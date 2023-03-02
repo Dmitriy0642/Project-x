@@ -190,6 +190,12 @@ legend {
   font-family: "Roboto", sans-serif;
   font-size: 20px;
 }
+.balance_title {
+  margin: 10px 0 25px 40px;
+
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+}
 
 .block_finish_order {
   margin: 0 0 0 590px;

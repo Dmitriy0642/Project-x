@@ -28,5 +28,10 @@ const validatorConfig = {
   sity: {
     isRequired: { message: "Город обязателен для заполнения" },
   },
+  address: {
+    isRequired: {
+      message: "Адресс обязателен для заполнения",
+    },
+  },
 };
 export default validatorConfig;
