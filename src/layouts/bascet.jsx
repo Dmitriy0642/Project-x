@@ -41,7 +41,6 @@ const Bascet = () => {
   async function overWriting(balance) {
     try {
       const data = await userService.getRefreshUser(balance);
-      console.log(data);
     } catch (error) {
       console.log(error);
     }
