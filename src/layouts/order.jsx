@@ -3,6 +3,10 @@ import TextField from "../forms/textField";
 import validatorConfig from "../utils/validatorConfig";
 import { validator } from "../utils/validator";
 import RadioField from "../forms/radioField";
+import orderService from "../services/orders.service";
+import { useAuth } from "../hooks/useAuth";
+import { toast } from "react-toastify";
+
 const Order = () => {
   const [data, setData] = useState({
     numtel: "",
@@ -11,6 +15,7 @@ const Order = () => {
     address: "",
     post: "СДЭК",
   });
+
   const [errors, setErrors] = useState({});
   useEffect(() => {
     validate();
@@ -20,12 +25,31 @@ const Order = () => {
     setErrors(errors);
     return Object.keys(errors).length === 0;
   };
-  const isValid = Object.keys(errors).length === 0;
-  const handleSubmit = (e) => {
-    e.preventDefault();
 
+  const getDataFromLs = localStorage.getItem("AllData");
+  const parseDataToFormat = JSON.parse(getDataFromLs);
+  const purchasedProd = parseDataToFormat.filter((item) => {
+    let cheked = false;
+    item.quantity.forEach((elem) => {
+      if (elem.value > 0) {
+        cheked = true;
+      }
+    });
+    if (cheked) {
+      return item;
+    }
+  });
+
+  const isValid = Object.keys(errors).length === 0;
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     const isValid = validate();
     if (!isValid) return;
+    await orderService.create(data);
+    await orderService.createPurchasedProd(purchasedProd);
+    toast.success(
+      "Спасибо за покупку в нашем магазине,ваш заказ оформлен ожидайте обратной связи "
+    );
   };
   const handleChange = ({ target }) => {
     setData((prevState) => ({ ...prevState, [target.name]: target.value }));
