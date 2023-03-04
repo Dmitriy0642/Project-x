@@ -18,7 +18,8 @@ const orderService = {
     const { data } = await httpService.put(
       `${userEndPoint}` +
         localStorageService.getUserId() +
-        `/purchasedProduct` +
+        `/purchasedItem` +
+        `/${prod._id}` +
         `.json?auth=${accesToken}`,
       prod
     );

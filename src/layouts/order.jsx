@@ -9,12 +9,14 @@ import { useHistory } from "react-router-dom";
 
 const Order = () => {
   const history = useHistory();
+  const [purchased, setPurchased] = useState();
   const [data, setData] = useState({
     numtel: "",
     fio: "",
     sity: "",
     address: "",
     post: "СДЭК",
+    purchasedItem: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -40,6 +42,9 @@ const Order = () => {
       return item;
     }
   });
+  useEffect(() => {
+    setPurchased(purchasedProd);
+  }, []);
 
   const isValid = Object.keys(errors).length === 0;
   const handleSubmit = async (e) => {
@@ -47,16 +52,17 @@ const Order = () => {
     const isValid = validate();
     if (!isValid) return;
     await orderService.create(data);
-    await orderService.createPurchasedProd(purchasedProd);
+    await purchased.map((item) => orderService.createPurchasedProd(item));
+
     toast.success(
       "Спасибо за покупку в нашем магазине,ваш заказ оформлен ожидайте обратной связи "
     );
     const emptyArr = [];
     localStorage.setItem("AllData", emptyArr);
     history.push("/");
-    setTimeout(() => {
-      window.location.reload();
-    }, 3000);
+    // setTimeout(() => {
+    //   window.location.reload();
+    // }, 3000);
   };
   const handleChange = ({ target }) => {
     setData((prevState) => ({ ...prevState, [target.name]: target.value }));
