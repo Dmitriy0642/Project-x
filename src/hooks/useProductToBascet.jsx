@@ -22,9 +22,6 @@ const useProductbascet = () => {
         return (item = { ...item, quantity: remakeSizes[i] });
       });
 
-      console.log(allSizes);
-      console.log(remakeSizes);
-
       if (
         localStorage.getItem("AllData") === null ||
         JSON.parse(localStorage.getItem("AllData").length === 0)

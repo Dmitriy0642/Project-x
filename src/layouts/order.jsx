@@ -51,8 +51,12 @@ const Order = () => {
     toast.success(
       "Спасибо за покупку в нашем магазине,ваш заказ оформлен ожидайте обратной связи "
     );
-
+    const emptyArr = [];
+    localStorage.setItem("AllData", emptyArr);
     history.push("/");
+    setTimeout(() => {
+      window.location.reload();
+    }, 3000);
   };
   const handleChange = ({ target }) => {
     setData((prevState) => ({ ...prevState, [target.name]: target.value }));
