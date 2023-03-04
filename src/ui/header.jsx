@@ -6,6 +6,7 @@ import styles from "../ui.styles/header.module.css";
 import { useAuth } from "../hooks/useAuth";
 import { Link } from "react-router-dom";
 import Profile from "./profile";
+
 const Header = () => {
   const { currentUser } = useAuth();
 
@@ -25,10 +26,10 @@ const Header = () => {
           <Link to="/login">
             <img src={icon_login} alt="" className={styles.img_nav_links} />
           </Link>
-          <Link to="/filter">
+          <Link to="/">
             <img src={icon_search} alt="" className={styles.img_nav_links} />
           </Link>
-          <Link to="/basket">
+          <Link to="/">
             <img src={icon_bascet} alt="" className={styles.img_nav_links} />
           </Link>
         </div>

@@ -24,6 +24,7 @@ const Bascet = () => {
       return item;
     }
   });
+
   useEffect(() => {
     filterData.map((item) => {
       item.quantity.forEach((quan) => {
