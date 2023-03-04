@@ -4,10 +4,11 @@ import validatorConfig from "../utils/validatorConfig";
 import { validator } from "../utils/validator";
 import RadioField from "../forms/radioField";
 import orderService from "../services/orders.service";
-import { useAuth } from "../hooks/useAuth";
 import { toast } from "react-toastify";
+import { useHistory } from "react-router-dom";
 
 const Order = () => {
+  const history = useHistory();
   const [data, setData] = useState({
     numtel: "",
     fio: "",
@@ -50,6 +51,8 @@ const Order = () => {
     toast.success(
       "Спасибо за покупку в нашем магазине,ваш заказ оформлен ожидайте обратной связи "
     );
+
+    history.push("/");
   };
   const handleChange = ({ target }) => {
     setData((prevState) => ({ ...prevState, [target.name]: target.value }));

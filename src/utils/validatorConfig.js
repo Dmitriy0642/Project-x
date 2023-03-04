@@ -16,6 +16,9 @@ const validatorConfig = {
   numtel: {
     isRequired: { message: "Телефон обязателен для заполнения" },
     isNumTel: { message: "Введите только цифры" },
+    isCapitalLength: {
+      message: "Длинна номера ,должна быть не меньше 8 символов",
+    },
   },
   passwordagain: {
     isRequired: { message: "Пароль ,обязателен для заполнения" },
