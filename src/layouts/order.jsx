@@ -9,15 +9,14 @@ import { useHistory } from "react-router-dom";
 
 const Order = () => {
   const history = useHistory();
-  const [purchased, setPurchased] = useState();
   const [data, setData] = useState({
     numtel: "",
     fio: "",
     sity: "",
     address: "",
     post: "СДЭК",
-    purchasedItem: "",
   });
+  const [pruchased, setPurchased] = useState();
 
   const [errors, setErrors] = useState({});
   useEffect(() => {
@@ -42,9 +41,6 @@ const Order = () => {
       return item;
     }
   });
-  useEffect(() => {
-    setPurchased(purchasedProd);
-  }, []);
 
   const isValid = Object.keys(errors).length === 0;
   const handleSubmit = async (e) => {
@@ -52,7 +48,8 @@ const Order = () => {
     const isValid = validate();
     if (!isValid) return;
     await orderService.create(data);
-    await purchased.map((item) => orderService.createPurchasedProd(item));
+    await orderService.createPurchasedProd(purchasedProd);
+    await orderService.getPurchasedProd();
 
     toast.success(
       "Спасибо за покупку в нашем магазине,ваш заказ оформлен ожидайте обратной связи "
