@@ -6,6 +6,7 @@ import { useAuth } from "../hooks/useAuth";
 import { toast } from "react-toastify";
 import userService from "../services/user.service";
 import axios from "axios";
+import NotBascet from "../ui/notBascet";
 
 const Bascet = () => {
   const { currentUser } = useAuth();
@@ -61,7 +62,7 @@ const Bascet = () => {
   };
 
   return filterData.length <= 0 ? (
-    <h2>Корзина Пуста</h2>
+    <NotBascet />
   ) : (
     <div className={styles.main_div}>
       <h2 className={styles.countAmount}>
