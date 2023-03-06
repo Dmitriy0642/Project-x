@@ -11,11 +11,7 @@ const Profile = () => {
   return (
     <div className={styles.dropdown} onClick={toggleMenu}>
       <div className="btn dropdown-toggle d-flex align-items-center">
-        <img
-          src={icon_login}
-          alt=""
-          className="img-responsive rounded-circle"
-        />
+        <img src={icon_login} alt="" className="img-responsive" />
       </div>
       <div className={" dropdown-menu" + (isOpen ? " show" : "")}>
         <Link to="/logout" className="dropdown-item">
