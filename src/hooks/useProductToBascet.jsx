@@ -1,11 +1,8 @@
 import config from "../config.json";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 const useProductbascet = () => {
-  const [dataWithNullValue, setDataNullValue] = useState(null);
-  const [sizes, setSizes] = useState(null);
-  const [primarySizess, setRemakeSizes] = useState(null);
   useEffect(() => {
     const getAllData = async () => {
       const { data } = await axios.get(`${config.ApiEndPOint}` + `.json`);

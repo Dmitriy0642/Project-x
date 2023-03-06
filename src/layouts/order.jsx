@@ -48,7 +48,7 @@ const Order = () => {
     const isValid = validate();
     if (!isValid) return;
     await orderService.create(data);
-    await orderService.createPurchasedProd(purchasedProd);
+    await purchasedProd.map((item) => orderService.createPurchasedProd(item));
     await orderService.getPurchasedProd();
 
     toast.success(
