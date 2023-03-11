@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
 import { usePurchased } from "../hooks/usePurchasedProduct";
 import { useApi } from "../hooks/useApi";
+import removingQuantity from "../functions/removingItemFromPruchased";
 
 const Order = () => {
   const history = useHistory();
@@ -50,7 +51,7 @@ const Order = () => {
   });
   const product = prod;
   useEffect(() => {
-    const getPurchasedItem = getPurchasedProduct().then((res) => {
+    const getPurchasedItem = getPurchasedProduct().then(async (res) => {
       if (res !== null) {
         Object.keys(res).map((item) => {
           purchasedProd.push(res[item]);
@@ -63,6 +64,7 @@ const Order = () => {
   }, []);
 
   const isValid = Object.keys(errors).length === 0;
+  removingQuantity(product);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const isValid = validate();
@@ -71,24 +73,19 @@ const Order = () => {
       await createOrder(data);
       if (selectedItem === undefined) {
         await createPurchasedProduct(getPurchasedData);
-        await removeQuantityInProdFromPurchasedProduct(
-          product,
-          getPurchasedData
-        );
       } else if (getPurchasedData === undefined) {
         await createPurchasedProduct(selectedItem);
-        await removeQuantityInProdFromPurchasedProduct(product, selectedItem);
       }
     } catch (error) {
       console.log(error);
     }
 
     toast.success(
-      "Спасибо за покупку в нашем магазине,ваш заказ оформлен ожидайте обратной связи "
+      "Спасибо за покупку в нашем магазине,ваш заказ оформлен ожидайте обратной связи"
     );
     const emptyArr = [];
     localStorage.setItem("AllData", emptyArr);
-    history.push("/");
+    // history.push("/");
     // setTimeout(() => {
     //   window.location.reload();
     // }, 1000);
