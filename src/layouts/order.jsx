@@ -6,9 +6,13 @@ import RadioField from "../forms/radioField";
 import orderService from "../services/orders.service";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
+import { usePurchased } from "../hooks/usePurchasedProduct";
 
 const Order = () => {
   const history = useHistory();
+  const { createOrder } = usePurchased();
+  const { getPurchasedProduct } = usePurchased();
+  const { createPurchasedProduct } = usePurchased();
   const [data, setData] = useState({
     numtel: "",
     fio: "",
@@ -16,7 +20,8 @@ const Order = () => {
     address: "",
     post: "СДЭК",
   });
-  const [pruchased, setPurchased] = useState();
+  const [getPurchasedData, setPurchasedData] = useState();
+  const [selectedItem, setSelectedItem] = useState();
 
   const [errors, setErrors] = useState({});
   useEffect(() => {
@@ -42,14 +47,37 @@ const Order = () => {
     }
   });
 
+  useEffect(() => {
+    const getPurchasedItem = getPurchasedProduct().then((res) => {
+      if (res !== null) {
+        Object.keys(res).map((item) => {
+          purchasedProd.push(res[item]);
+        });
+        setPurchasedData(purchasedProd);
+        console.log(purchasedProd);
+      } else {
+        setSelectedItem(purchasedProd);
+        console.log(selectedItem);
+      }
+    });
+  }, []);
+
   const isValid = Object.keys(errors).length === 0;
   const handleSubmit = async (e) => {
     e.preventDefault();
     const isValid = validate();
     if (!isValid) return;
-    await orderService.create(data);
-    await purchasedProd.map((item) => orderService.createPurchasedProd(item));
-    await orderService.getPurchasedProd();
+    try {
+      await createOrder(data);
+      if (selectedItem === undefined) {
+        await createPurchasedProduct(getPurchasedData);
+      }
+      if (getPurchasedData === undefined) {
+        await createPurchasedProduct(selectedItem);
+      }
+    } catch (error) {
+      console.log(error);
+    }
 
     toast.success(
       "Спасибо за покупку в нашем магазине,ваш заказ оформлен ожидайте обратной связи "
@@ -59,7 +87,7 @@ const Order = () => {
     history.push("/");
     // setTimeout(() => {
     //   window.location.reload();
-    // }, 3000);
+    // }, 300);
   };
   const handleChange = ({ target }) => {
     setData((prevState) => ({ ...prevState, [target.name]: target.value }));

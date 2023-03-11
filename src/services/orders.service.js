@@ -19,21 +19,22 @@ const orderService = {
       `${userEndPoint}` +
         localStorageService.getUserId() +
         `/purchasedItem` +
+        `/prod` +
         `.json?auth=${accesToken}`
     );
-    console.log(data);
+
     return data;
   },
-  createPurchasedProd: async (prod) => {
+  createPurchasedProd: async ({ prod }) => {
     const accesToken = localStorageService.getAccesToken();
     const { data } = await httpService.patch(
       `${userEndPoint}` +
         localStorageService.getUserId() +
         `/purchasedItem` +
-        `/${prod._id}` +
         `.json?auth=${accesToken}`,
-      prod
+      { prod }
     );
+
     return data;
   },
 };
