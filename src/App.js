@@ -13,27 +13,30 @@ import Order from "./layouts/order";
 import AuthProvider from "./hooks/useAuth";
 import LogOut from "./layouts/logOut";
 import PersonalArea from "./ui/personalArea";
+import PurchasedProvider from "./hooks/usePurchasedProduct";
 
 function App() {
   useProductbascet();
   return (
     <div>
-      <AuthProvider>
-        <Header />
-        <ApiProvider>
-          <Switch>
-            <Route path="/logout" component={LogOut} />
-            <Route path="/profile" component={PersonalArea} />
-            <Route path="/basket" component={Bascet} />
-            <Route path="/login/:type?" component={Login} />
-            <Route path="/:name/:postId" component={ReviewCardProduct} />
-            <Route path="/order" component={Order} />
-            <Route path="/:name" component={ReviewFormCatalog} />
-            <Route path="/" component={Catalog} />
-          </Switch>
-        </ApiProvider>
-      </AuthProvider>
-      <ToastContainer />
+      <PurchasedProvider>
+        <AuthProvider>
+          <Header />
+          <ApiProvider>
+            <Switch>
+              <Route path="/logout" component={LogOut} />
+              <Route path="/profile" component={PersonalArea} />
+              <Route path="/basket" component={Bascet} />
+              <Route path="/login/:type?" component={Login} />
+              <Route path="/:name/:postId" component={ReviewCardProduct} />
+              <Route path="/order" component={Order} />
+              <Route path="/:name" component={ReviewFormCatalog} />
+              <Route path="/" component={Catalog} />
+            </Switch>
+          </ApiProvider>
+        </AuthProvider>
+        <ToastContainer />
+      </PurchasedProvider>
     </div>
   );
 }

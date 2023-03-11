@@ -5,7 +5,6 @@ import { useHistory } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import { toast } from "react-toastify";
 import userService from "../services/user.service";
-import axios from "axios";
 import NotBascet from "../ui/notBascet";
 
 const Bascet = () => {

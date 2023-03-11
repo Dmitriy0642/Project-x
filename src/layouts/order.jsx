@@ -6,9 +6,13 @@ import RadioField from "../forms/radioField";
 import orderService from "../services/orders.service";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
+import { usePurchased } from "../hooks/usePurchasedProduct";
 
 const Order = () => {
   const history = useHistory();
+  const { createOrder } = usePurchased();
+  const { getPurchasedProduct } = usePurchased();
+  const { createPurchasedProduct } = usePurchased();
   const [data, setData] = useState({
     numtel: "",
     fio: "",
@@ -16,7 +20,7 @@ const Order = () => {
     address: "",
     post: "СДЭК",
   });
-  const [pruchased, setPurchased] = useState();
+  const [getPurchasedData, setPurchasedData] = useState();
 
   const [errors, setErrors] = useState({});
   useEffect(() => {
@@ -41,15 +45,31 @@ const Order = () => {
       return item;
     }
   });
+  const getPurchasedItem = getPurchasedProduct();
+  useEffect(() => {
+    const getPurchasedItem = getPurchasedProduct().then((res) =>
+      setPurchasedData(res)
+    );
+  }, []);
+  console.log(getPurchasedData);
 
   const isValid = Object.keys(errors).length === 0;
   const handleSubmit = async (e) => {
     e.preventDefault();
     const isValid = validate();
     if (!isValid) return;
-    await orderService.create(data);
-    await purchasedProd.map((item) => orderService.createPurchasedProd(item));
-    await orderService.getPurchasedProd();
+    try {
+      await createOrder(data);
+      await purchasedProd.map((item) => createPurchasedProduct(item));
+    } catch (error) {
+      console.log(error);
+    }
+
+    // const selectedProductInDb = await orderService.getPurchasedProd();
+
+    // await purchasedProd.map((item) =>
+    //   orderService.createPurchasedProd(item, selectedProductInDb)
+    // );
 
     toast.success(
       "Спасибо за покупку в нашем магазине,ваш заказ оформлен ожидайте обратной связи "
@@ -59,7 +79,7 @@ const Order = () => {
     history.push("/");
     // setTimeout(() => {
     //   window.location.reload();
-    // }, 3000);
+    // }, 300);
   };
   const handleChange = ({ target }) => {
     setData((prevState) => ({ ...prevState, [target.name]: target.value }));
