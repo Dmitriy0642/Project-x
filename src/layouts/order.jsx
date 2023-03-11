@@ -45,13 +45,19 @@ const Order = () => {
       return item;
     }
   });
-  const getPurchasedItem = getPurchasedProduct();
+
   useEffect(() => {
-    const getPurchasedItem = getPurchasedProduct().then((res) =>
-      setPurchasedData(res)
-    );
+    const getPurchasedItem = getPurchasedProduct().then((res) => {
+      if (res !== null) {
+        Object.keys(res).map((item) => {
+          purchasedProd.push(res[item]);
+        });
+        setPurchasedData(purchasedProd);
+      } else {
+        setPurchasedData(purchasedProd);
+      }
+    });
   }, []);
-  console.log(getPurchasedData);
 
   const isValid = Object.keys(errors).length === 0;
   const handleSubmit = async (e) => {
@@ -60,7 +66,9 @@ const Order = () => {
     if (!isValid) return;
     try {
       await createOrder(data);
-      await purchasedProd.map((item) => createPurchasedProduct(item));
+      if (getPurchasedData !== undefined) {
+        await getPurchasedData.map((item) => createPurchasedProduct(item));
+      }
     } catch (error) {
       console.log(error);
     }

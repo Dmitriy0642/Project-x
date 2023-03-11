@@ -23,7 +23,6 @@ const PurchasedProvider = ({ children }) => {
   async function getPurchasedProduct() {
     try {
       const data = orderService.getPurchasedProd();
-      console.log(data);
       return data;
     } catch (error) {
       console.log(error);
