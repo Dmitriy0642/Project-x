@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import orderService from "../services/orders.service";
 
 const PurchasedContext = React.createContext();
@@ -8,7 +8,6 @@ export const usePurchased = () => {
 };
 
 const PurchasedProvider = ({ children }) => {
-  const [purchasedProd, setPurchasedProduct] = useState();
   async function createOrder(payload) {
     try {
       const { data } = await orderService.create(payload, {

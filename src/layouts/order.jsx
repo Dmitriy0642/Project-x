@@ -21,6 +21,7 @@ const Order = () => {
     post: "СДЭК",
   });
   const [getPurchasedData, setPurchasedData] = useState();
+  const [selectedItem, setSelectedItem] = useState();
 
   const [errors, setErrors] = useState({});
   useEffect(() => {
@@ -53,8 +54,10 @@ const Order = () => {
           purchasedProd.push(res[item]);
         });
         setPurchasedData(purchasedProd);
+        console.log(purchasedProd);
       } else {
-        setPurchasedData(purchasedProd);
+        setSelectedItem(purchasedProd);
+        console.log(selectedItem);
       }
     });
   }, []);
@@ -66,18 +69,15 @@ const Order = () => {
     if (!isValid) return;
     try {
       await createOrder(data);
-      if (getPurchasedData !== undefined) {
-        await getPurchasedData.map((item) => createPurchasedProduct(item));
+      if (selectedItem === undefined) {
+        await createPurchasedProduct(getPurchasedData);
+      }
+      if (getPurchasedData === undefined) {
+        await createPurchasedProduct(selectedItem);
       }
     } catch (error) {
       console.log(error);
     }
-
-    // const selectedProductInDb = await orderService.getPurchasedProd();
-
-    // await purchasedProd.map((item) =>
-    //   orderService.createPurchasedProd(item, selectedProductInDb)
-    // );
 
     toast.success(
       "Спасибо за покупку в нашем магазине,ваш заказ оформлен ожидайте обратной связи "

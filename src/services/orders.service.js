@@ -19,6 +19,7 @@ const orderService = {
       `${userEndPoint}` +
         localStorageService.getUserId() +
         `/purchasedItem` +
+        `/prod` +
         `.json?auth=${accesToken}`
     );
 
@@ -30,9 +31,8 @@ const orderService = {
       `${userEndPoint}` +
         localStorageService.getUserId() +
         `/purchasedItem` +
-        `/${prod._id}` +
         `.json?auth=${accesToken}`,
-      prod
+      { prod }
     );
 
     return data;
