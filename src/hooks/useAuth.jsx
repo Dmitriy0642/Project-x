@@ -27,7 +27,7 @@ const AuthProvider = ({ children }) => {
       setTokens(data);
       await createUser({ _id: data.localId, email, ...rest, balance: 10000 });
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
       const { code, message } = error.response.data.error;
       if (code === 400) {
         if (message === "EMAIL_EXISTS") {

@@ -39,23 +39,12 @@ const PurchasedProvider = ({ children }) => {
     }
   }
 
-  // async function removeQuantityInProdFromPurchasedProduct(
-  //   prod,
-  //   dataFromPurchases
-  // ) {
-  //   try {
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-
   return (
     <PurchasedContext.Provider
       value={{
         createOrder,
         getPurchasedProduct,
         createPurchasedProduct,
-        // removeQuantityInProdFromPurchasedProduct,
       }}
     >
       {children}

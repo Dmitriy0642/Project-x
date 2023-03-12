@@ -3,12 +3,10 @@ import TextField from "../forms/textField";
 import validatorConfig from "../utils/validatorConfig";
 import { validator } from "../utils/validator";
 import RadioField from "../forms/radioField";
-import orderService from "../services/orders.service";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
 import { usePurchased } from "../hooks/usePurchasedProduct";
 import { useApi } from "../hooks/useApi";
-import removingQuantity from "../functions/removingItemFromPruchased";
 
 const Order = () => {
   const history = useHistory();
@@ -64,7 +62,6 @@ const Order = () => {
   }, []);
 
   const isValid = Object.keys(errors).length === 0;
-  removingQuantity(product);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const isValid = validate();

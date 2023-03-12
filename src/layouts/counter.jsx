@@ -39,6 +39,7 @@ const Counter = ({
     if (filteredQuan[0].value > filtradeSelectedQuan[0].value) {
       handleIncrementAmount(data.price);
     }
+    console.log(quantity, data);
     servicesBascet.increment(quantity, e, setCountInc, data);
   };
 
