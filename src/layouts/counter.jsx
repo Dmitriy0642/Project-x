@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./layouts.styles/bascet.module.css";
 import servicesBascet from "../utils/bascetServices";
 import { useApi } from "../hooks/useApi";
+import orderService from "../services/orders.service";
 const Counter = ({
   data,
   quantity,
@@ -10,11 +11,17 @@ const Counter = ({
 }) => {
   const [countDec, setCountInc] = useState();
   const [countInc, setCountDec] = useState();
+  const [initProduct, setInitProduct] = useState();
   const { prod } = useApi();
-  const getDataLocalStorageDb = localStorage.getItem("InitialSizes");
-  const toFormatDataFromLs = JSON.parse(getDataLocalStorageDb);
-  const getDataLocalStorageAllData = localStorage.getItem("AllData");
-  const toForamatDataFromLsProduct = JSON.parse(getDataLocalStorageAllData);
+  const initialDataFromDb = orderService.getInitiProduct();
+
+  useEffect(() => {
+    initialDataFromDb.then((res) => {
+      const dataFormat = Object.keys(res).map((item) => res[item]);
+      setInitProduct(dataFormat);
+    });
+  }, []);
+
   const handleIncrement = (e) => {
     ///filtrade data from quantity
     const filtradeSelectedItem = quantity.filter(
@@ -39,7 +46,7 @@ const Counter = ({
       handleIncrementAmount(data.price);
     }
 
-    servicesBascet.increment(quantity, e, setCountInc, data);
+    servicesBascet.increment(quantity, e, setCountInc, data, initProduct);
   };
 
   const handleDecrement = (e) => {
@@ -54,8 +61,8 @@ const Counter = ({
         filteredProductArr.push(prod[index]);
       }
     });
-
-    const filteredQuan = filteredProductArr[0].filter(
+    const filterProdcut = filteredProductArr[0].quantity;
+    const filteredQuan = filterProdcut.filter(
       (item) => `${item.size}` === `${e.target.id}`
     );
 
@@ -63,7 +70,7 @@ const Counter = ({
       handleDecrementAmount(data.price);
     }
 
-    servicesBascet.decrement(quantity, e, setCountDec, data);
+    servicesBascet.decrement(quantity, e, setCountDec, data, initProduct);
   };
 
   return (

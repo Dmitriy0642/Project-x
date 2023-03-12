@@ -37,9 +37,12 @@ const orderService = {
 
     return data;
   },
-  rewritingInintProduct: async () => {
+  getInitiProduct: async () => {
     const accesToken = localStorageService.getAccesToken();
-    const { data } = await httpService.patch();
+    const { data } = await httpService.get(
+      "product/" + `.json?auth=${accesToken}`
+    );
+    return data;
   },
 };
 export default orderService;
