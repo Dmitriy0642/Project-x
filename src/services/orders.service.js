@@ -37,9 +37,9 @@ const orderService = {
 
     return data;
   },
-  // removeQuantityFormPurchasedProduct: async ({}) =>{
-  //   const accesToken = localStorageService.getAccesToken()
-  //   const data = await httpService.
-  // }
+  rewritingInintProduct: async () => {
+    const accesToken = localStorageService.getAccesToken();
+    const { data } = await httpService.patch();
+  },
 };
 export default orderService;

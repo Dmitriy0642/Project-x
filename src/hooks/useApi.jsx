@@ -22,7 +22,8 @@ export const ApiProvider = ({ children }) => {
         const { category, product } = data;
         setFirmCategory(Object.keys(category).map((item) => category[item]));
         setProd(Object.keys(product).map((item) => product[item]));
-      } catch {
+      } catch (error) {
+        console.log(error);
         toast.error("Включите Впн");
       }
     };
