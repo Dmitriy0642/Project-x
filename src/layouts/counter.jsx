@@ -47,6 +47,7 @@ const Counter = ({
     }
 
     servicesBascet.increment(quantity, e, setCountInc, data, initProduct);
+    servicesBascet.updateQuan(quantity, e, data, initProduct);
   };
 
   const handleDecrement = (e) => {
@@ -71,6 +72,7 @@ const Counter = ({
     }
 
     servicesBascet.decrement(quantity, e, setCountDec, data, initProduct);
+    servicesBascet.updateQuan(quantity, e, data, initProduct);
   };
 
   return (

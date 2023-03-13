@@ -44,5 +44,12 @@ const orderService = {
     );
     return data;
   },
+  changesDataProduct: async () => {
+    const accesToken = localStorageService.getAccesToken();
+    const { data } = await httpService.patch(
+      "product/" + `/${data._id}` + `.json?auth=${accesToken}`
+    );
+    return data;
+  },
 };
 export default orderService;

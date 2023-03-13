@@ -9,7 +9,7 @@ const ReviewCardForm = ({ name, price, _id, quantity, obj }) => {
     setSize(e.target.innerText);
   };
 
-  const handleSelect = (object, initialSize) => {
+  const handleSelect = (object) => {
     if (size === null) {
       toast.error("Размер не выбран");
     } else if (size === size) {
