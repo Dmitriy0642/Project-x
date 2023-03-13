@@ -1,6 +1,5 @@
 import httpService from "./http.service";
 import localStorageService from "./localStorage.service";
-
 const userEndPoint = "order/";
 const orderService = {
   create: async (payload) => {
@@ -45,13 +44,23 @@ const orderService = {
     return data;
   },
   changesDataProduct: async (product) => {
-    console.log(product);
     const accesToken = localStorageService.getAccesToken();
     const { data } = await httpService.patch(
       "/product" + `/${product._id}` + `.json?auth=${accesToken}`,
       product
     );
-
+    return data;
+  },
+  createBascetPurchases: async (obj) => {
+    const accesToken = localStorageService.getAccesToken();
+    console.log(obj);
+    const { data } = await httpService.patch(
+      "/bascet/" +
+        localStorageService.getUserId() +
+        `/${obj._id}` +
+        `.json?auth=${accesToken}`,
+      obj
+    );
     return data;
   },
 };

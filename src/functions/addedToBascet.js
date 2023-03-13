@@ -38,13 +38,14 @@ const addedToBascet = async (object, selectedSize, allProd) => {
     quantity: newQuantity,
   };
 
-  const newStorage = allProd.map((item) => {
+  const changeProductData = allProd.map((item) => {
     if (item._id === object._id) {
       return newObj;
     }
     return item;
   });
-  // console.log(newStorage);
-  await orderService.changesDataProduct(newObj);
+
+  await orderService.createBascetPurchases(newObj);
 };
+
 export default addedToBascet;

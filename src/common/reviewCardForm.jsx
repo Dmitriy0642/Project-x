@@ -14,6 +14,7 @@ const ReviewCardForm = ({ name, price, _id, quantity, obj }) => {
 
   const handleSelect = (object) => {
     if (size === null) {
+      console.log(size);
       toast.error("Размер не выбран");
     } else if (size === size) {
       addedToBascet(object, size, prod);
