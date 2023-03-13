@@ -41,7 +41,11 @@ const PurchasedProvider = ({ children }) => {
 
   return (
     <PurchasedContext.Provider
-      value={{ createOrder, getPurchasedProduct, createPurchasedProduct }}
+      value={{
+        createOrder,
+        getPurchasedProduct,
+        createPurchasedProduct,
+      }}
     >
       {children}
     </PurchasedContext.Provider>

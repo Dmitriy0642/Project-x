@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./layouts.styles/bascet.module.css";
 import servicesBascet from "../utils/bascetServices";
+import { useApi } from "../hooks/useApi";
+import orderService from "../services/orders.service";
 
 const Counter = ({
   data,
@@ -10,36 +12,43 @@ const Counter = ({
 }) => {
   const [countDec, setCountInc] = useState();
   const [countInc, setCountDec] = useState();
+  const [initProduct, setInitProduct] = useState();
+  const { prod } = useApi();
+  const initialDataFromDb = orderService.getInitiProduct();
 
-  const getDataLocalStorageDb = localStorage.getItem("InitialSizes");
-  const toFormatDataFromLs = JSON.parse(getDataLocalStorageDb);
-  const getDataLocalStorageAllData = localStorage.getItem("AllData");
-  const toForamatDataFromLsProduct = JSON.parse(getDataLocalStorageAllData);
+  useEffect(() => {
+    initialDataFromDb.then((res) => {
+      const dataFormat = Object.keys(res).map((item) => res[item]);
+      setInitProduct(dataFormat);
+    });
+  }, []);
 
   const handleIncrement = (e) => {
     ///filtrade data from quantity
-    const filtradeSelectedQuan = quantity.filter(
+    const filtradeSelectedItem = quantity.filter(
       (item) => `${item.size}` === `${e.target.id}`
     );
 
-    ///Filtrade quantity from Db
-    const filteredQuanFromDbArray = [];
-    const filterSelectedProduct = toForamatDataFromLsProduct.map(
-      (item, index) => {
-        if (item._id === data._id) {
-          filteredQuanFromDbArray.push(toFormatDataFromLs[index]);
-        }
+    // new method
+    const filteredProductArr = [];
+    prod.map((item, index) => {
+      if (item._id === data._id) {
+        filteredProductArr.push(prod[index]);
       }
-    );
+    });
 
-    const filteredQuan = filteredQuanFromDbArray[0].filter(
+    const quantitySelectedProd = filteredProductArr[0].quantity;
+
+    const filteredSelectedQuan = quantitySelectedProd.filter(
       (item) => `${item.size}` === `${e.target.id}`
     );
 
-    if (filteredQuan[0].value > filtradeSelectedQuan[0].value) {
+    if (filteredSelectedQuan[0].value > filtradeSelectedItem[0].value) {
       handleIncrementAmount(data.price);
     }
-    servicesBascet.increment(quantity, e, setCountInc, data);
+
+    servicesBascet.increment(quantity, e, setCountInc, data, initProduct);
+    servicesBascet.updateQuan(quantity, e, data, initProduct);
   };
 
   const handleDecrement = (e) => {
@@ -48,16 +57,14 @@ const Counter = ({
     );
 
     ///Filtrade quantity from Db
-    const filteredQuanFromDbArray = [];
-    const filterSelectedProduct = toForamatDataFromLsProduct.map(
-      (item, index) => {
-        if (item._id === data._id) {
-          filteredQuanFromDbArray.push(toFormatDataFromLs[index]);
-        }
+    const filteredProductArr = [];
+    prod.map((item, index) => {
+      if (item._id === data._id) {
+        filteredProductArr.push(prod[index]);
       }
-    );
-
-    const filteredQuan = filteredQuanFromDbArray[0].filter(
+    });
+    const filterProdcut = filteredProductArr[0].quantity;
+    const filteredQuan = filterProdcut.filter(
       (item) => `${item.size}` === `${e.target.id}`
     );
 
@@ -65,7 +72,8 @@ const Counter = ({
       handleDecrementAmount(data.price);
     }
 
-    servicesBascet.decrement(quantity, e, setCountDec, data);
+    servicesBascet.decrement(quantity, e, setCountDec, data, initProduct);
+    servicesBascet.updateQuan(quantity, e, data, initProduct);
   };
 
   return (

@@ -1,12 +1,8 @@
 import { toast } from "react-toastify";
-
-const addedToBascet = (object, selectedSize) => {
-  const storageData = JSON.parse(localStorage.getItem("AllData"));
-
-  ///Filtered data from storage
-  const filtradeSingleData = storageData.filter(
-    (item) => item._id === object._id
-  );
+import orderService from "../services/orders.service";
+const addedToBascet = async (object, selectedSize, allProd) => {
+  ///Filtered data from db
+  const filtradeSingleData = allProd.filter((item) => item._id === object._id);
 
   ///obj data
   const objData = filtradeSingleData[0];
@@ -19,16 +15,19 @@ const addedToBascet = (object, selectedSize) => {
     (item) => `${item.size}` === `${selectedSize}`
   );
 
-  if (secondQuantityFromObj[0].value === initialyQuantityFromObj[0].value) {
-    toast.error("Вы выбрали последний товар в данном размере");
-  } else if (`${selectedSize}` === `${selectedSize}`) {
-    toast.success("Товар добавлен в корзину");
+  // console.log("fromOb", initialyQuantityFromObj);
+  // console.log("fromDb", secondQuantityFromObj);
+
+  if (`${selectedSize}` === `${selectedSize}`) {
+    toast.success("Товар Добавлен в корзину");
   }
 
   const newQuantity = objData.quantity.map((item) => {
     if (`${item.size}` === `${selectedSize}`) {
-      if (secondQuantityFromObj[0].value < initialyQuantityFromObj[0].value) {
-        return { ...item, value: (item.value += 1) };
+      if (secondQuantityFromObj[0].value === initialyQuantityFromObj[0].value) {
+        if (item.value > 0) {
+          return { ...item, value: (item.value -= 1) };
+        }
       }
     }
     return item;
@@ -38,12 +37,15 @@ const addedToBascet = (object, selectedSize) => {
     ...objData,
     quantity: newQuantity,
   };
-  const newStorage = storageData.map((item) => {
+
+  const changeProductData = allProd.map((item) => {
     if (item._id === object._id) {
       return newObj;
     }
     return item;
   });
-  localStorage.setItem("AllData", JSON.stringify(newStorage));
+
+  await orderService.createBascetPurchases(newObj);
 };
+
 export default addedToBascet;

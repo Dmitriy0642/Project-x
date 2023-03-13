@@ -3,16 +3,18 @@ import TextField from "../forms/textField";
 import validatorConfig from "../utils/validatorConfig";
 import { validator } from "../utils/validator";
 import RadioField from "../forms/radioField";
-import orderService from "../services/orders.service";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
 import { usePurchased } from "../hooks/usePurchasedProduct";
+import { useApi } from "../hooks/useApi";
 
 const Order = () => {
   const history = useHistory();
   const { createOrder } = usePurchased();
   const { getPurchasedProduct } = usePurchased();
   const { createPurchasedProduct } = usePurchased();
+  const { removeQuantityInProdFromPurchasedProduct } = usePurchased();
+  const { prod } = useApi();
   const [data, setData] = useState({
     numtel: "",
     fio: "",
@@ -22,7 +24,6 @@ const Order = () => {
   });
   const [getPurchasedData, setPurchasedData] = useState();
   const [selectedItem, setSelectedItem] = useState();
-
   const [errors, setErrors] = useState({});
   useEffect(() => {
     validate();
@@ -46,18 +47,16 @@ const Order = () => {
       return item;
     }
   });
-
+  const product = prod;
   useEffect(() => {
-    const getPurchasedItem = getPurchasedProduct().then((res) => {
+    const getPurchasedItem = getPurchasedProduct().then(async (res) => {
       if (res !== null) {
         Object.keys(res).map((item) => {
           purchasedProd.push(res[item]);
         });
         setPurchasedData(purchasedProd);
-        console.log(purchasedProd);
       } else {
         setSelectedItem(purchasedProd);
-        console.log(selectedItem);
       }
     });
   }, []);
@@ -71,8 +70,7 @@ const Order = () => {
       await createOrder(data);
       if (selectedItem === undefined) {
         await createPurchasedProduct(getPurchasedData);
-      }
-      if (getPurchasedData === undefined) {
+      } else if (getPurchasedData === undefined) {
         await createPurchasedProduct(selectedItem);
       }
     } catch (error) {
@@ -80,14 +78,14 @@ const Order = () => {
     }
 
     toast.success(
-      "Спасибо за покупку в нашем магазине,ваш заказ оформлен ожидайте обратной связи "
+      "Спасибо за покупку в нашем магазине,ваш заказ оформлен ожидайте обратной связи"
     );
     const emptyArr = [];
     localStorage.setItem("AllData", emptyArr);
-    history.push("/");
+    // history.push("/");
     // setTimeout(() => {
     //   window.location.reload();
-    // }, 300);
+    // }, 1000);
   };
   const handleChange = ({ target }) => {
     setData((prevState) => ({ ...prevState, [target.name]: target.value }));
