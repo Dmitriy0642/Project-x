@@ -40,15 +40,18 @@ const orderService = {
   getInitiProduct: async () => {
     const accesToken = localStorageService.getAccesToken();
     const { data } = await httpService.get(
-      "product/" + `.json?auth=${accesToken}`
+      "/product" + `.json?auth=${accesToken}`
     );
     return data;
   },
-  changesDataProduct: async () => {
+  changesDataProduct: async (product) => {
+    console.log(product);
     const accesToken = localStorageService.getAccesToken();
     const { data } = await httpService.patch(
-      "product/" + `/${data._id}` + `.json?auth=${accesToken}`
+      "/product" + `/${product._id}` + `.json?auth=${accesToken}`,
+      product
     );
+
     return data;
   },
 };
