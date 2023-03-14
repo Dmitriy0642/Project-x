@@ -6,32 +6,31 @@ import { useAuth } from "../hooks/useAuth";
 import { toast } from "react-toastify";
 import userService from "../services/user.service";
 import NotBascet from "../ui/notBascet";
-
+import { usePurchased } from "../hooks/usePurchasedProduct";
 const Bascet = () => {
   const { currentUser } = useAuth();
+  const { getItemFromBascet } = usePurchased();
   const history = useHistory();
   const [amount, setAmount] = useState(0);
-  const getDataFromLs = localStorage.getItem("AllData");
-  const parseDataToFormat = JSON.parse(getDataFromLs);
-  const filterData = parseDataToFormat.filter((item) => {
-    let cheked = false;
-    item.quantity.forEach((elem) => {
-      if (elem.value > 0) {
-        cheked = true;
-      }
-    });
-    if (cheked) {
-      return item;
-    }
-  });
+  const [acceptDatafromBascet, setAcceptedData] = useState();
 
   useEffect(() => {
-    filterData.map((item) => {
-      item.quantity.forEach((quan) => {
-        setAmount((prevState) => (prevState += item.price * quan.value));
-      });
+    getItemFromBascet().then((res) => {
+      const toFormat = Object.keys(res).map((item) => res[item]);
+      setAcceptedData(toFormat);
     });
   }, []);
+
+  useEffect(() => {
+    if (acceptDatafromBascet !== undefined) {
+      acceptDatafromBascet.map((item) => {
+        item.quantity.forEach((quan) => {
+          setAmount((prevState) => (prevState += item.price * quan.value));
+        });
+      });
+    }
+  }, []);
+
   const handleIncrementAmount = (price) => {
     setAmount((prevState) => (prevState += price));
   };
@@ -61,7 +60,7 @@ const Bascet = () => {
     }
   };
 
-  return filterData.length <= 0 ? (
+  return acceptDatafromBascet === undefined ? (
     <NotBascet />
   ) : (
     <div className={styles.main_div}>
@@ -71,7 +70,7 @@ const Bascet = () => {
       <h2 className={styles.balance_title}>
         Ваш Баланс : {currentUser.balance}$
       </h2>
-      {filterData.map((item) => (
+      {acceptDatafromBascet.map((item) => (
         <div className={styles.product_div} key={item._id}>
           <img src={item.img[0]} alt="" className={styles.img_product} />
           <div className={styles.first_div}>

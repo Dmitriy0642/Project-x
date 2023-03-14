@@ -38,6 +38,14 @@ const PurchasedProvider = ({ children }) => {
       console.log(error);
     }
   }
+  async function getItemFromBascet() {
+    try {
+      const data = orderService.getBascetPurchases();
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <PurchasedContext.Provider
@@ -45,6 +53,7 @@ const PurchasedProvider = ({ children }) => {
         createOrder,
         getPurchasedProduct,
         createPurchasedProduct,
+        getItemFromBascet,
       }}
     >
       {children}

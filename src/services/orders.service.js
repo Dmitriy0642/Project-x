@@ -53,13 +53,19 @@ const orderService = {
   },
   createBascetPurchases: async (obj) => {
     const accesToken = localStorageService.getAccesToken();
-    console.log(obj);
     const { data } = await httpService.patch(
       "/bascet/" +
         localStorageService.getUserId() +
         `/${obj._id}` +
         `.json?auth=${accesToken}`,
       obj
+    );
+    return data;
+  },
+  getBascetPurchases: async () => {
+    const accesToken = localStorageService.getAccesToken();
+    const { data } = await httpService.get(
+      `/bascet/` + localStorageService.getUserId() + `.json?auth=${accesToken}`
     );
     return data;
   },
