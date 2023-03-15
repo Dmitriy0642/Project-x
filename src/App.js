@@ -13,6 +13,7 @@ import AuthProvider from "./hooks/useAuth";
 import LogOut from "./layouts/logOut";
 import PersonalArea from "./ui/personalArea";
 import PurchasedProvider from "./hooks/usePurchasedProduct";
+import { ProductProvider } from "./hooks/useProduct";
 
 function App() {
   return (
@@ -21,16 +22,18 @@ function App() {
         <AuthProvider>
           <Header />
           <ApiProvider>
-            <Switch>
-              <Route path="/logout" component={LogOut} />
-              <Route path="/profile" component={PersonalArea} />
-              <Route path="/basket" component={Bascet} />
-              <Route path="/login/:type?" component={Login} />
-              <Route path="/:name/:postId" component={ReviewCardProduct} />
-              <Route path="/order" component={Order} />
-              <Route path="/:name" component={ReviewFormCatalog} />
-              <Route path="/" component={Catalog} />
-            </Switch>
+            <ProductProvider>
+              <Switch>
+                <Route path="/logout" component={LogOut} />
+                <Route path="/profile" component={PersonalArea} />
+                <Route path="/basket" component={Bascet} />
+                <Route path="/login/:type?" component={Login} />
+                <Route path="/:name/:postId" component={ReviewCardProduct} />
+                <Route path="/order" component={Order} />
+                <Route path="/:name" component={ReviewFormCatalog} />
+                <Route path="/" component={Catalog} />
+              </Switch>
+            </ProductProvider>
           </ApiProvider>
         </AuthProvider>
         <ToastContainer />
