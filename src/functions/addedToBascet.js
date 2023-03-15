@@ -15,19 +15,17 @@ const addedToBascet = async (object, selectedSize, allProd) => {
     (item) => `${item.size}` === `${selectedSize}`
   );
 
-  if (initialyQuantityFromObj[0].value === secondQuantityFromObj[0].value) {
+  if (secondQuantityFromObj[0].value < initialyQuantityFromObj[0].value) {
     toast.success("Товар добавлен в корзину");
   } else if (
-    initialyQuantityFromObj[0].value < secondQuantityFromObj[0].value
+    secondQuantityFromObj[0].value === initialyQuantityFromObj[0].value
   ) {
-    toast.error("В наличии нет данного размера");
+    toast.error("Выбранный размер уже в корзине");
   }
 
   if (`${selectedSize}` === `${secondQuantityFromObj[0].size}`) {
-    if (secondQuantityFromObj[0].value === initialyQuantityFromObj[0].value) {
-      if (secondQuantityFromObj[0].value > 0) {
-        secondQuantityFromObj[0].value -= 1;
-      }
+    if (secondQuantityFromObj[0].value < initialyQuantityFromObj[0].value) {
+      secondQuantityFromObj[0].value += 1;
     }
   }
 

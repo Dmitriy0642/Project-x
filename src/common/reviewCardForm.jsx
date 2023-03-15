@@ -8,7 +8,6 @@ import { useProduct } from "../hooks/useProduct";
 const ReviewCardForm = ({ name, price, _id, quantity, obj }) => {
   const { prod } = useApi();
   const { pushNullSizesToArr } = useProduct();
-  console.log(pushNullSizesToArr);
   const [size, setSize] = useState(null);
   const handleClick = (e) => {
     setSize(e.target.innerText);
@@ -18,7 +17,7 @@ const ReviewCardForm = ({ name, price, _id, quantity, obj }) => {
     if (size === null) {
       toast.error("Размер не выбран");
     } else if (size === size) {
-      addedToBascet(object, size, prod);
+      addedToBascet(object, size, pushNullSizesToArr);
     }
   };
 
