@@ -12,23 +12,18 @@ const Bascet = () => {
   const { getItemFromBascet } = usePurchased();
   const history = useHistory();
   const [amount, setAmount] = useState(0);
-  const [acceptDatafromBascet, setAcceptedData] = useState(undefined);
+  const [acceptDatafromBascet, setAcceptedData] = useState();
 
   useEffect(() => {
     getItemFromBascet().then((res) => {
       const toFormat = Object.keys(res).map((item) => res[item]);
       setAcceptedData(toFormat);
-    });
-  }, []);
-
-  useEffect(() => {
-    if (acceptDatafromBascet !== undefined) {
-      acceptDatafromBascet.map((item) => {
+      toFormat.map((item) => {
         item.quantity.forEach((quan) => {
           setAmount((prevState) => (prevState += item.price * quan.value));
         });
       });
-    }
+    });
   }, []);
 
   const handleIncrementAmount = (price) => {
