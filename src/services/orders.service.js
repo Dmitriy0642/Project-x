@@ -79,5 +79,12 @@ const orderService = {
     );
     return data;
   },
+  refreshBascetAfterBuying: async () => {
+    const accesToken = localStorageService.getAccesToken();
+    const { data } = await httpService.delete(
+      "/bascet" + `.json?auth=${accesToken}`
+    );
+    return data;
+  },
 };
 export default orderService;
