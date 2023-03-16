@@ -7,14 +7,15 @@ import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
 import { usePurchased } from "../hooks/usePurchasedProduct";
 import { useApi } from "../hooks/useApi";
+import orderService from "../services/orders.service";
 
 const Order = () => {
   const history = useHistory();
+  const [purchasedProduct, setPurchasedProduct] = useState(null);
+  const [dataFromBascet, setDataFromBascet] = useState();
   const { createOrder } = usePurchased();
   const { getPurchasedProduct } = usePurchased();
   const { createPurchasedProduct } = usePurchased();
-  const { removeQuantityInProdFromPurchasedProduct } = usePurchased();
-  const { prod } = useApi();
   const [data, setData] = useState({
     numtel: "",
     fio: "",
@@ -22,57 +23,37 @@ const Order = () => {
     address: "",
     post: "СДЭК",
   });
-  const [getPurchasedData, setPurchasedData] = useState();
-  const [selectedItem, setSelectedItem] = useState();
   const [errors, setErrors] = useState({});
   useEffect(() => {
     validate();
+    const getDataFormBascet = orderService.getBascetPurchases().then((res) => {
+      const toFormat = Object.keys(res).map((item) => res[item]);
+      setDataFromBascet(toFormat);
+    });
+    const getSalesProduct = getPurchasedProduct().then((res) => {
+      setPurchasedProduct(res);
+    });
   }, [data]);
+
   const validate = () => {
     const errors = validator(data, validatorConfig);
     setErrors(errors);
     return Object.keys(errors).length === 0;
   };
-
-  const getDataFromLs = localStorage.getItem("AllData");
-  const parseDataToFormat = JSON.parse(getDataFromLs);
-  const purchasedProd = parseDataToFormat.filter((item) => {
-    let cheked = false;
-    item.quantity.forEach((elem) => {
-      if (elem.value > 0) {
-        cheked = true;
-      }
-    });
-    if (cheked) {
-      return item;
-    }
-  });
-  const product = prod;
-  useEffect(() => {
-    const getPurchasedItem = getPurchasedProduct().then(async (res) => {
-      if (res !== null) {
-        Object.keys(res).map((item) => {
-          purchasedProd.push(res[item]);
-        });
-        setPurchasedData(purchasedProd);
-      } else {
-        setSelectedItem(purchasedProd);
-      }
-    });
-  }, []);
-
   const isValid = Object.keys(errors).length === 0;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const isValid = validate();
     if (!isValid) return;
     try {
       await createOrder(data);
-      if (selectedItem === undefined) {
-        await createPurchasedProduct(getPurchasedData);
-      } else if (getPurchasedData === undefined) {
-        await createPurchasedProduct(selectedItem);
+      if (purchasedProduct !== null) {
+        purchasedProduct.forEach((item) => {
+          dataFromBascet.push(item);
+        });
       }
+      await createPurchasedProduct(dataFromBascet);
     } catch (error) {
       console.log(error);
     }
@@ -80,8 +61,7 @@ const Order = () => {
     toast.success(
       "Спасибо за покупку в нашем магазине,ваш заказ оформлен ожидайте обратной связи"
     );
-    const emptyArr = [];
-    localStorage.setItem("AllData", emptyArr);
+
     // history.push("/");
     // setTimeout(() => {
     //   window.location.reload();
