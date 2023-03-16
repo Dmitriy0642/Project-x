@@ -4,20 +4,27 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import addedToBascet from "../functions/addedToBascet";
 import { useApi } from "../hooks/useApi";
+import { useProduct } from "../hooks/useProduct";
+import { useAuth } from "../hooks/useAuth";
 const ReviewCardForm = ({ name, price, _id, quantity, obj }) => {
-  const { prod } = useApi();
+  const { currentUser } = useAuth();
 
+  const { pushNullSizesToArr } = useProduct();
   const [size, setSize] = useState(null);
   const handleClick = (e) => {
     setSize(e.target.innerText);
   };
-
+  const isValid = currentUser !== undefined;
+  if (!currentUser) {
+    toast.error(
+      "Чтобы добавить товар в корзину ,необходимо зарегестрироваться"
+    );
+  }
   const handleSelect = (object) => {
     if (size === null) {
-      console.log(size);
       toast.error("Размер не выбран");
     } else if (size === size) {
-      addedToBascet(object, size, prod);
+      addedToBascet(object, size, pushNullSizesToArr);
     }
   };
 
@@ -48,6 +55,7 @@ const ReviewCardForm = ({ name, price, _id, quantity, obj }) => {
         onClick={() => {
           handleSelect(obj[0]);
         }}
+        disabled={!isValid}
       >
         Добавить в корзину
       </button>

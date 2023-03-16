@@ -7,7 +7,6 @@ const ReviewCardProduct = ({ match }) => {
   const data = useApi();
   const name = match.params.name;
   const id = match.params.postId;
-
   const arrOfCategory = filterOnCategoryToProduct(data, `${name}`);
   const singleData = filtredSoloData(arrOfCategory, id);
 
