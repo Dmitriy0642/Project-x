@@ -41,6 +41,7 @@ const handleIncrement = async (quantity, e, state, data, initialData) => {
     name: data.name,
     quantity: quantity,
   };
+
   await orderService.createBascetPurchases(newData);
 };
 

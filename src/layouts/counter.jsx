@@ -23,6 +23,11 @@ const Counter = ({
     });
   }, []);
 
+  const handleDelete = async (e) => {
+    await orderService.deleteProductInBascet(e.target.id);
+    window.location.reload();
+  };
+
   const handleIncrement = (e) => {
     ///filtrade data from quantity
     const filterQuantityFromData = quantity.filter(
@@ -84,6 +89,15 @@ const Counter = ({
           </button>
         </div>
       ))}
+      <div className={styles.button_delete_block}>
+        <button
+          className={styles.button_delete}
+          onClick={handleDelete}
+          id={data._id}
+        >
+          Удалить товар
+        </button>
+      </div>
     </>
   );
 };
