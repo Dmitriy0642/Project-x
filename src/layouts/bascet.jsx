@@ -12,7 +12,7 @@ const Bascet = () => {
   const { getItemFromBascet } = usePurchased();
   const history = useHistory();
   const [amount, setAmount] = useState(0);
-  const [acceptDatafromBascet, setAcceptedData] = useState();
+  const [acceptDatafromBascet, setAcceptedData] = useState(undefined);
 
   useEffect(() => {
     getItemFromBascet().then((res) => {
