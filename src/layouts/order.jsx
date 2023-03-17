@@ -6,9 +6,8 @@ import RadioField from "../forms/radioField";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
 import { usePurchased } from "../hooks/usePurchasedProduct";
-import { useApi } from "../hooks/useApi";
 import orderService from "../services/orders.service";
-
+import decrementPurchased from "../functions/decrementPurchased";
 const Order = () => {
   const history = useHistory();
   const [purchasedProduct, setPurchasedProduct] = useState(null);
@@ -48,6 +47,9 @@ const Order = () => {
     if (!isValid) return;
     try {
       await createOrder(data);
+      if (dataFromBascet !== undefined) {
+        dataFromBascet.map((item) => decrementPurchased(item, item.quantity));
+      }
       if (purchasedProduct !== null) {
         purchasedProduct.forEach((item) => {
           dataFromBascet.push(item);

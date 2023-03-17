@@ -66,9 +66,10 @@ const handleDecrement = async (quantity, e, state, data, initialData) => {
 
   const getObjQuan = filtradeQuanFormData[0];
   state(getObjQuan);
-
   if (getObjQuan.value === initialValuesOfItem.value) {
-    getObjQuan.value -= 1;
+    if (initialValuesOfItem.value > 0) {
+      getObjQuan.value -= 1;
+    }
   }
 
   const newData = {

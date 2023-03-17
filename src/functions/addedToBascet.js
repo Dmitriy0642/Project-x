@@ -17,19 +17,17 @@ const addedToBascet = async (object, selectedSize, allProd) => {
 
   if (secondQuantityFromObj[0].value < initialyQuantityFromObj[0].value) {
     toast.success("Товар добавлен в корзину");
+    if (`${selectedSize}` === `${secondQuantityFromObj[0].size}`) {
+      if (secondQuantityFromObj[0].value < initialyQuantityFromObj[0].value) {
+        secondQuantityFromObj[0].value += 1;
+      }
+    }
+    await orderService.createBascetPurchases(objData);
   } else if (
     secondQuantityFromObj[0].value === initialyQuantityFromObj[0].value
   ) {
-    toast.error("Выбранный размер уже в корзине");
+    toast.error("Размера данного товара нет в наличии");
   }
-
-  if (`${selectedSize}` === `${secondQuantityFromObj[0].size}`) {
-    if (secondQuantityFromObj[0].value < initialyQuantityFromObj[0].value) {
-      secondQuantityFromObj[0].value += 1;
-    }
-  }
-
-  await orderService.createBascetPurchases(objData);
 };
 
 export default addedToBascet;
