@@ -13,7 +13,6 @@ const Counter = ({
   const [countDec, setCountInc] = useState();
   const [countInc, setCountDec] = useState();
   const [initProduct, setInitProduct] = useState();
-  const { prod } = useApi();
   const initialDataFromDb = orderService.getInitiProduct();
 
   useEffect(() => {
@@ -58,7 +57,9 @@ const Counter = ({
     );
 
     if (filterQuantityFromData[0].value === getQuantityFromDb[0].value) {
-      handleDecrementAmount(data.price);
+      if (getQuantityFromDb[0].value > 0) {
+        handleDecrementAmount(data.price);
+      }
     }
 
     servicesBascet.decrement(quantity, e, setCountDec, data, initProduct);
