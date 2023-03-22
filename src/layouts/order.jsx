@@ -25,13 +25,18 @@ const Order = () => {
   const [errors, setErrors] = useState({});
   useEffect(() => {
     validate();
-    const getDataFormBascet = orderService.getBascetPurchases().then((res) => {
-      const toFormat = Object.keys(res).map((item) => res[item]);
-      setDataFromBascet(toFormat);
-    });
-    const getSalesProduct = getPurchasedProduct().then((res) => {
-      setPurchasedProduct(res);
-    });
+    const getDataFormBascet = orderService
+      .getBascetPurchases()
+      .then((res) => {
+        const toFormat = Object.keys(res).map((item) => res[item]);
+        setDataFromBascet(toFormat);
+      })
+      .catch((error) => error.message);
+    const getSalesProduct = getPurchasedProduct()
+      .then((res) => {
+        setPurchasedProduct(res);
+      })
+      .catch((error) => error.message);
   }, [data]);
 
   const validate = () => {
@@ -57,7 +62,7 @@ const Order = () => {
       }
       await createPurchasedProduct(dataFromBascet);
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
     }
 
     toast.success(
