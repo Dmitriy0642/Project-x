@@ -56,8 +56,11 @@ const Counter = ({
       (item) => `${item.size}` === `${e.target.id}`
     );
 
-    if (filterQuantityFromData[0].value === getQuantityFromDb[0].value) {
-      if (getQuantityFromDb[0].value > 0) {
+    if (
+      filterQuantityFromData[0].value === getQuantityFromDb[0].value ||
+      filterQuantityFromData[0].value < getQuantityFromDb[0].value
+    ) {
+      if (filterQuantityFromData[0].value > 0) {
         handleDecrementAmount(data.price);
       }
     }
