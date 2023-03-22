@@ -24,7 +24,7 @@ const PurchasedProvider = ({ children }) => {
       const data = orderService.getPurchasedProd();
       return data;
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
     }
   }
 
@@ -35,7 +35,7 @@ const PurchasedProvider = ({ children }) => {
       });
       return data;
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
     }
   }
   async function getItemFromBascet() {
@@ -43,7 +43,7 @@ const PurchasedProvider = ({ children }) => {
       const data = orderService.getBascetPurchases();
       return data;
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
     }
   }
 

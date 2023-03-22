@@ -71,7 +71,7 @@ const AuthProvider = ({ children }) => {
       const { content } = await userService.create(data);
       setUsers(content);
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
     }
   }
 
@@ -80,7 +80,7 @@ const AuthProvider = ({ children }) => {
       const data = await userService.getCurrentUser();
       setUsers(data);
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
     }
   }
 

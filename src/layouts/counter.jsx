@@ -16,10 +16,12 @@ const Counter = ({
   const initialDataFromDb = orderService.getInitiProduct();
 
   useEffect(() => {
-    initialDataFromDb.then((res) => {
-      const dataFormat = Object.keys(res).map((item) => res[item]);
-      setInitProduct(dataFormat);
-    });
+    initialDataFromDb
+      .then((res) => {
+        const dataFormat = Object.keys(res).map((item) => res[item]);
+        setInitProduct(dataFormat);
+      })
+      .catch((error) => error.message);
   }, []);
 
   const handleDelete = async (e) => {
