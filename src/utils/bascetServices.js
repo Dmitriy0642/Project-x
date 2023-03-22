@@ -1,3 +1,4 @@
+import { logDOM } from "@testing-library/react";
 import { toast } from "react-toastify";
 import orderService from "../services/orders.service";
 const handleIncrement = async (quantity, e, state, data, initialData) => {
@@ -63,11 +64,13 @@ const handleDecrement = async (quantity, e, state, data, initialData) => {
     (item) => `${item.size}` === `${e.target.id}`
   );
   const initialValuesOfItem = filtradeQuantityFromDbToSelectedSize[0];
-
   const getObjQuan = filtradeQuanFormData[0];
   state(getObjQuan);
-  if (getObjQuan.value === initialValuesOfItem.value) {
-    if (initialValuesOfItem.value > 0) {
+  if (
+    initialValuesOfItem.value === getObjQuan.value ||
+    getObjQuan.value < initialValuesOfItem.value
+  ) {
+    if (getObjQuan.value > 0) {
       getObjQuan.value -= 1;
     }
   }

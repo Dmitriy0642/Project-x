@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import config from "../config.json";
-import axios from "axios";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { useApi } from "./useApi";
 const ProductContex = React.createContext();
 export const useProduct = () => {

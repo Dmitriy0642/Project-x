@@ -15,15 +15,17 @@ const Bascet = () => {
   const [acceptDatafromBascet, setAcceptedData] = useState();
 
   useEffect(() => {
-    getItemFromBascet().then((res) => {
-      const toFormat = Object.keys(res).map((item) => res[item]);
-      setAcceptedData(toFormat);
-      toFormat.map((item) => {
-        item.quantity.forEach((quan) => {
-          setAmount((prevState) => (prevState += item.price * quan.value));
+    getItemFromBascet()
+      .then((res) => {
+        const toFormat = Object.keys(res).map((item) => res[item]);
+        setAcceptedData(toFormat);
+        toFormat.map((item) => {
+          item.quantity.forEach((quan) => {
+            setAmount((prevState) => (prevState += item.price * quan.value));
+          });
         });
-      });
-    });
+      })
+      .catch((error) => error.message);
   }, []);
 
   const handleIncrementAmount = (price) => {

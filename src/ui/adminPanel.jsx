@@ -1,11 +1,11 @@
 import React from "react";
 import { useAuth } from "../hooks/useAuth";
 import styles from "../ui.styles/personalArea.module.css";
-const PersonalArea = () => {
+const AdminPanel = () => {
   const { currentUser } = useAuth();
   return (
     <div className={styles.container}>
-      <h1 className={styles.logo_personalArea}>Личный кабинет</h1>
+      <h1 className={styles.logo_personalArea}>Панель Администратора</h1>
       <div className={styles.second_block}>
         <div className={styles.third_block}>
           <h1 className={styles.title_name}>Email</h1>
@@ -28,4 +28,4 @@ const PersonalArea = () => {
   );
 };
 
-export default PersonalArea;
+export default AdminPanel;

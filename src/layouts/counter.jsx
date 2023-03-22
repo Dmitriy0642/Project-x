@@ -16,10 +16,12 @@ const Counter = ({
   const initialDataFromDb = orderService.getInitiProduct();
 
   useEffect(() => {
-    initialDataFromDb.then((res) => {
-      const dataFormat = Object.keys(res).map((item) => res[item]);
-      setInitProduct(dataFormat);
-    });
+    initialDataFromDb
+      .then((res) => {
+        const dataFormat = Object.keys(res).map((item) => res[item]);
+        setInitProduct(dataFormat);
+      })
+      .catch((error) => error.message);
   }, []);
 
   const handleDelete = async (e) => {
@@ -56,8 +58,11 @@ const Counter = ({
       (item) => `${item.size}` === `${e.target.id}`
     );
 
-    if (filterQuantityFromData[0].value === getQuantityFromDb[0].value) {
-      if (getQuantityFromDb[0].value > 0) {
+    if (
+      filterQuantityFromData[0].value === getQuantityFromDb[0].value ||
+      filterQuantityFromData[0].value < getQuantityFromDb[0].value
+    ) {
+      if (filterQuantityFromData[0].value > 0) {
         handleDecrementAmount(data.price);
       }
     }
