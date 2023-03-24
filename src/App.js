@@ -17,12 +17,14 @@ import { ProductProvider } from "./hooks/useProduct";
 import { useDispatch } from "react-redux";
 import { loadChangeProductList } from "./store/changeProduct";
 import { loadProductList } from "./store/product";
+import { loadListCategory } from "./store/categoryOfProduct";
 
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loadChangeProductList());
     dispatch(loadProductList());
+    dispatch(loadListCategory());
   }, []);
   return (
     <div>
