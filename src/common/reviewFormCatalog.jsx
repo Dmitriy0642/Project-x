@@ -1,18 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "../common/styles.common/reviewFormCatalog.module.css";
-import { useApi } from "../hooks/useApi";
 import filterOnCategoryToProduct from "../functions/filterOnCategoryToProduct";
+import { useSelector } from "react-redux";
+import { getProduct } from "../store/product";
+import { getCategory } from "../store/categoryOfProduct";
 
 const ReviewFormCatalog = ({ match }) => {
   const url = match.url;
   const getNameCategory = match.params.name;
   const [filtradeData, setFiltradedata] = useState(null);
-  const data = useApi();
-  useEffect(() => {
-    setFiltradedata(filterOnCategoryToProduct(data, `${getNameCategory}`));
-  }, []);
+  const data = useSelector(getProduct());
+  const firm = useSelector(getCategory());
 
+  useEffect(() => {
+    setFiltradedata(
+      filterOnCategoryToProduct(data, `${getNameCategory}`, firm)
+    );
+  }, []);
+  console.log(filtradeData);
   return filtradeData !== null ? (
     <div className={styles.wrapper}>
       {filtradeData.map((item) => (

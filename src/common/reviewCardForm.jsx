@@ -3,7 +3,6 @@ import styles from "../common/styles.common/reviewCardForm.module.css";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import addedToBascet from "../functions/addedToBascet";
-import { useApi } from "../hooks/useApi";
 import { useProduct } from "../hooks/useProduct";
 import { useAuth } from "../hooks/useAuth";
 const ReviewCardForm = ({ name, price, _id, quantity, obj }) => {

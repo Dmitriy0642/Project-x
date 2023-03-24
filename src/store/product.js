@@ -39,5 +39,6 @@ export const loadProductList = () => async (dispatch) => {
     dispatch(productRequestFailed(error.message));
   }
 };
+export const getProduct = () => (state) => state.product.entities;
 
 export default productReducer;

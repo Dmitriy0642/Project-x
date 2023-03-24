@@ -1,8 +1,5 @@
-const filterOnCategoryToProduct = (data, nameOfCategory) => {
-  const product = data.prod;
-  const firm = data.firmCategory;
-
-  const filterOnProduct = product.filter((arr) => {
+const filterOnCategoryToProduct = (data, nameOfCategory, firm) => {
+  const filterOnProduct = data.filter((arr) => {
     const filterOnCategory = firm.find((obj) => obj._id === arr.category);
     if (filterOnCategory !== undefined) {
       const filter_name = filterOnCategory.name;

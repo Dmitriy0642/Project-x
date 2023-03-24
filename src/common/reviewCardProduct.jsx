@@ -1,13 +1,18 @@
-import { useApi } from "../hooks/useApi";
 import filterOnCategoryToProduct from "../functions/filterOnCategoryToProduct";
 import filtredSoloData from "../functions/filterSingleDataForSingleVieving";
 import styles from "../common/styles.common/reviewCardProduct.module.css";
 import ReviewCardForm from "./reviewCardForm";
+import { getProduct } from "../store/product";
+import { useSelector } from "react-redux";
+import { getCategory } from "../store/categoryOfProduct";
+
 const ReviewCardProduct = ({ match }) => {
-  const data = useApi();
+  const product = useSelector(getProduct());
+  const firm = useSelector(getCategory());
+
   const name = match.params.name;
   const id = match.params.postId;
-  const arrOfCategory = filterOnCategoryToProduct(data, `${name}`);
+  const arrOfCategory = filterOnCategoryToProduct(product, `${name}`, firm);
   const singleData = filtredSoloData(arrOfCategory, id);
 
   return singleData === undefined ? (
