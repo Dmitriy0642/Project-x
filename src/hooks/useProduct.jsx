@@ -20,6 +20,7 @@ export const ProductProvider = ({ children }) => {
   const pushNullSizesToArr = arrayObject.map((item, i) => {
     return (item = { ...item, quantity: remakeSizes[i] });
   });
+
   return produ !== null ? (
     <ProductContex.Provider value={{ pushNullSizesToArr }}>
       {children}
