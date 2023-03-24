@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import httpService from "../services/http.service";
 import { getAccesToken } from "../services/localStorage.service";
 
-const productSlice = createSlice({
+const changeProductSlice = createSlice({
   name: "product",
   initialState: {
     entities: null,
@@ -24,9 +24,9 @@ const productSlice = createSlice({
   },
 });
 
-const { reducer: productReducer, actions } = productSlice;
+const { reducer: productReducer, actions } = changeProductSlice;
 const { productRequested, productReceved, productRequestFailed } = actions;
-export const loadProductList = () => async (dispatch) => {
+export const loadChangeProductList = () => async (dispatch) => {
   dispatch(productRequested());
   try {
     const { data } = await httpService.get(

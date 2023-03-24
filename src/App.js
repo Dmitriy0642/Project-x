@@ -15,12 +15,12 @@ import AdminPanel from "./ui/adminPanel";
 import PurchasedProvider from "./hooks/usePurchasedProduct";
 import { ProductProvider } from "./hooks/useProduct";
 import { useDispatch } from "react-redux";
-import { loadProductList } from "./store/product";
+import { loadChangeProductList } from "./store/changeProduct";
 
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(loadProductList());
+    dispatch(loadChangeProductList());
   }, []);
   return (
     <div>
