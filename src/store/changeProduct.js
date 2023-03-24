@@ -10,24 +10,28 @@ const changeProductSlice = createSlice({
     error: null,
   },
   reducers: {
-    productRequested: (state) => {
+    changeProductRequested: (state) => {
       state.isLoading = true;
     },
-    productReceved: (state, action) => {
+    changeProductReceved: (state, action) => {
       state.entities = action.payload;
       state.isLoading = false;
     },
-    productRequestFailed: (state, action) => {
+    changeProductRequestFailed: (state, action) => {
       state.error = action.payload;
       state.isLoading = false;
     },
   },
 });
 
-const { reducer: productReducer, actions } = changeProductSlice;
-const { productRequested, productReceved, productRequestFailed } = actions;
+const { reducer: changeProductReducer, actions } = changeProductSlice;
+const {
+  changeProductRequested,
+  changeProductReceved,
+  changeProductRequestFailed,
+} = actions;
 export const loadChangeProductList = () => async (dispatch) => {
-  dispatch(productRequested());
+  dispatch(changeProductRequested());
   try {
     const { data } = await httpService.get(
       "product" + `.json?auth=${getAccesToken()}`
@@ -44,9 +48,9 @@ export const loadChangeProductList = () => async (dispatch) => {
     const pushNullSizesToArr = arrInitValues.map((item, i) => {
       return (item = { ...item, quantity: remakeSizes[i] });
     });
-    dispatch(productReceved(pushNullSizesToArr));
+    dispatch(changeProductReceved(pushNullSizesToArr));
   } catch (error) {
-    dispatch(productRequestFailed(error.message));
+    dispatch(changeProductRequestFailed(error.message));
   }
 };
-export default productReducer;
+export default changeProductReducer;

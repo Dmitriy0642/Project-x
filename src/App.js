@@ -16,11 +16,13 @@ import PurchasedProvider from "./hooks/usePurchasedProduct";
 import { ProductProvider } from "./hooks/useProduct";
 import { useDispatch } from "react-redux";
 import { loadChangeProductList } from "./store/changeProduct";
+import { loadProductList } from "./store/product";
 
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loadChangeProductList());
+    dispatch(loadProductList());
   }, []);
   return (
     <div>
