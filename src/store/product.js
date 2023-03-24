@@ -23,7 +23,7 @@ const productSlice = createSlice({
   },
 });
 
-const { reducer: reducserProduct, actions } = productSlice;
+const { reducer: productReducer, actions } = productSlice;
 const { productRequested, productReceved, productRequestFailed } = actions;
 
 export const loadProductList = () => async (dispatch) => {
@@ -40,4 +40,4 @@ export const loadProductList = () => async (dispatch) => {
   }
 };
 
-export default reducserProduct;
+export default productReducer;
