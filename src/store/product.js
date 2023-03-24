@@ -32,9 +32,19 @@ export const loadProductList = () => async (dispatch) => {
     const { data } = await httpService.get(
       "product" + `.json?auth=${getAccesToken()}`
     );
-    const arr = [];
-    Object.keys(data).forEach((item) => arr.push(data[item]));
-    dispatch(productReceved(arr));
+    const arrInitValues = [];
+    Object.keys(data).forEach((item) => arrInitValues.push(data[item]));
+    const allSizes = arrInitValues.map((item) => (item = item.quantity));
+    const remakeSizes = allSizes.map((obj) => {
+      const remakeValues = obj.map((item) => {
+        return (item = { size: item.size, value: 0 });
+      });
+      return (obj = remakeValues);
+    });
+    const pushNullSizesToArr = arrInitValues.map((item, i) => {
+      return (item = { ...item, quantity: remakeSizes[i] });
+    });
+    dispatch(productReceved(pushNullSizesToArr));
   } catch (error) {
     dispatch(productRequestFailed(error.message));
   }
