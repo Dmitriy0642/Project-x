@@ -5,10 +5,12 @@ import "react-toastify/dist/ReactToastify.css";
 import addedToBascet from "../functions/addedToBascet";
 import { useProduct } from "../hooks/useProduct";
 import { useAuth } from "../hooks/useAuth";
+import { useSelector } from "react-redux";
+import { getProductNullVal } from "../store/changeProduct";
 const ReviewCardForm = ({ name, price, _id, quantity, obj }) => {
   const { currentUser } = useAuth();
-
-  const { pushNullSizesToArr } = useProduct();
+  const product = useSelector(getProductNullVal());
+  // const { pushNullSizesToArr } = useProduct();
   const [size, setSize] = useState(null);
   const handleClick = (e) => {
     setSize(e.target.innerText);
@@ -23,7 +25,7 @@ const ReviewCardForm = ({ name, price, _id, quantity, obj }) => {
     if (size === null) {
       toast.error("Размер не выбран");
     } else if (size === size) {
-      addedToBascet(object, size, pushNullSizesToArr);
+      addedToBascet(object, size, product);
     }
   };
 

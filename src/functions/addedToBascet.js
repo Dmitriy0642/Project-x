@@ -1,6 +1,7 @@
 import { toast } from "react-toastify";
 import orderService from "../services/orders.service";
 const addedToBascet = async (object, selectedSize, allProd) => {
+  console.log(allProd);
   ///Filtered data from db
   const filtradeSingleData = allProd.filter((item) => item._id === object._id);
 
@@ -14,7 +15,7 @@ const addedToBascet = async (object, selectedSize, allProd) => {
   const secondQuantityFromObj = objData.quantity.filter(
     (item) => `${item.size}` === `${selectedSize}`
   );
-
+  console.log(secondQuantityFromObj[0]);
   if (secondQuantityFromObj[0].value < initialyQuantityFromObj[0].value) {
     toast.success("Товар добавлен в корзину");
     if (`${selectedSize}` === `${secondQuantityFromObj[0].size}`) {

@@ -18,7 +18,7 @@ const ReviewFormCatalog = ({ match }) => {
       filterOnCategoryToProduct(data, `${getNameCategory}`, firm)
     );
   }, []);
-  console.log(filtradeData);
+
   return filtradeData !== null ? (
     <div className={styles.wrapper}>
       {filtradeData.map((item) => (

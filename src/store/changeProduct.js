@@ -3,7 +3,7 @@ import httpService from "../services/http.service";
 import { getAccesToken } from "../services/localStorage.service";
 
 const changeProductSlice = createSlice({
-  name: "product",
+  name: "changeProduct",
   initialState: {
     entities: null,
     isLoading: true,
@@ -53,4 +53,5 @@ export const loadChangeProductList = () => async (dispatch) => {
     dispatch(changeProductRequestFailed(error.message));
   }
 };
+export const getProductNullVal = () => (state) => state.changeProduct.entities;
 export default changeProductReducer;
