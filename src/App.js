@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "./ui/header";
 import Catalog from "./ui/catalog";
 import { ToastContainer } from "react-toastify";
@@ -14,8 +14,18 @@ import LogOut from "./layouts/logOut";
 import AdminPanel from "./ui/adminPanel";
 import PurchasedProvider from "./hooks/usePurchasedProduct";
 import { ProductProvider } from "./hooks/useProduct";
+import { useDispatch } from "react-redux";
+import { loadChangeProductList } from "./store/changeProduct";
+import { loadProductList } from "./store/product";
+import { loadListCategory } from "./store/categoryOfProduct";
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(loadChangeProductList());
+    dispatch(loadProductList());
+    dispatch(loadListCategory());
+  }, []);
   return (
     <div>
       <PurchasedProvider>

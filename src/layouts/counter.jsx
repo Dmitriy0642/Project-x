@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./layouts.styles/bascet.module.css";
 import servicesBascet from "../utils/bascetServices";
-import { useApi } from "../hooks/useApi";
 import orderService from "../services/orders.service";
 
 const Counter = ({

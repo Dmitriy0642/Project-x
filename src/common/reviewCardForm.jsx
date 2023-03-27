@@ -2,15 +2,19 @@ import React, { useState } from "react";
 import styles from "../common/styles.common/reviewCardForm.module.css";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import addedToBascet from "../functions/addedToBascet";
-import { useApi } from "../hooks/useApi";
-import { useProduct } from "../hooks/useProduct";
 import { useAuth } from "../hooks/useAuth";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  changeProductQuantity,
+  getProductNullVal,
+} from "../store/changeProduct";
+
 const ReviewCardForm = ({ name, price, _id, quantity, obj }) => {
   const { currentUser } = useAuth();
-
-  const { pushNullSizesToArr } = useProduct();
+  const changeProduct = useSelector(getProductNullVal());
+  const dispatch = useDispatch();
   const [size, setSize] = useState(null);
+
   const handleClick = (e) => {
     setSize(e.target.innerText);
   };
@@ -20,11 +24,12 @@ const ReviewCardForm = ({ name, price, _id, quantity, obj }) => {
       "Чтобы добавить товар в корзину ,необходимо зарегестрироваться"
     );
   }
-  const handleSelect = (object) => {
+
+  const handleSelect = () => {
     if (size === null) {
       toast.error("Размер не выбран");
-    } else if (size === size) {
-      addedToBascet(object, size, pushNullSizesToArr);
+    } else if (size) {
+      dispatch(changeProductQuantity(changeProduct, obj, size));
     }
   };
 
