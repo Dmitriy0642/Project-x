@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import httpService from "../services/http.service";
 import { getAccesToken } from "../services/localStorage.service";
+import { toast } from "react-toastify";
+import orderService from "../services/orders.service";
 
 const changeProductSlice = createSlice({
   name: "changeProduct",
@@ -53,5 +55,47 @@ export const loadChangeProductList = () => async (dispatch) => {
     dispatch(changeProductRequestFailed(error.message));
   }
 };
+
+export const changeProductQuantity =
+  (changeProduct, selectedProduct, selectedSize) => async (dispatch) => {
+    const filtradeSingleData = changeProduct.filter(
+      (item) => item._id === selectedProduct[0]._id
+    );
+
+    ///obj data
+    const objData = filtradeSingleData[0];
+    ///filterInitialQuantity
+    const initialyQuantityFromObj = selectedProduct[0].quantity.filter(
+      (item) => `${item.size}` === `${selectedSize}`
+    );
+    ///filterQuantityFromZeroValues
+    const secondQuantityFromObj = objData.quantity.filter(
+      (item) => `${item.size}` === `${selectedSize}`
+    );
+
+    if (secondQuantityFromObj[0].value < initialyQuantityFromObj[0].value) {
+      const updatedQuantity = objData.quantity.map((item) => {
+        if (item.size === selectedSize) {
+          return { ...item, value: item.value + 1 };
+        }
+        return item;
+      });
+      const updatedObjData = { ...objData, quantity: updatedQuantity };
+      toast.success("Товар добавлен в корзину");
+      const newData = changeProduct.map((item) => {
+        if (item._id === updatedObjData._id) {
+          return updatedObjData;
+        }
+        return item;
+      });
+      dispatch(changeProductReceved(newData));
+      await orderService.createBascetPurchases(updatedObjData);
+    } else if (
+      secondQuantityFromObj[0].value === initialyQuantityFromObj[0].value
+    ) {
+      toast.error("В наличии нет размера данного товара");
+    }
+  };
+
 export const getProductNullVal = () => (state) => state.changeProduct.entities;
 export default changeProductReducer;

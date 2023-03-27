@@ -14,9 +14,11 @@ const ReviewFormCatalog = ({ match }) => {
   const firm = useSelector(getCategory());
 
   useEffect(() => {
-    setFiltradedata(
-      filterOnCategoryToProduct(data, `${getNameCategory}`, firm)
-    );
+    if (data !== null && firm !== null) {
+      setFiltradedata(
+        filterOnCategoryToProduct(data, `${getNameCategory}`, firm)
+      );
+    }
   }, []);
 
   return filtradeData !== null ? (
