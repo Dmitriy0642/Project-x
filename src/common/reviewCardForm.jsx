@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styles from "../common/styles.common/reviewCardForm.module.css";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import addedToBascet from "../functions/addedToBascet";
 import { useAuth } from "../hooks/useAuth";
 import { useDispatch, useSelector } from "react-redux";
 import {
