@@ -1,8 +1,9 @@
 import React from "react";
-import { useAuth } from "../hooks/useAuth";
+import { useSelector } from "react-redux";
+import { getCurrentUsers } from "../store/users";
 import styles from "../ui.styles/personalArea.module.css";
 const AdminPanel = () => {
-  const { currentUser } = useAuth();
+  const currentUser = useSelector(getCurrentUsers());
   return (
     <div className={styles.container}>
       <h1 className={styles.logo_personalArea}>Панель Администратора</h1>

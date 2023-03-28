@@ -36,3 +36,5 @@ export const loadUsersList = () => async (dispatch) => {
     dispatch(usersRequestFiled(error.message));
   }
 };
+
+export const getCurrentUsers = () => (state) => state.users.entities;
