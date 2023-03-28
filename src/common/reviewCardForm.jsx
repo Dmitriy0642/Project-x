@@ -2,15 +2,15 @@ import React, { useState } from "react";
 import styles from "../common/styles.common/reviewCardForm.module.css";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useAuth } from "../hooks/useAuth";
 import { useDispatch, useSelector } from "react-redux";
 import {
   changeProductQuantity,
   getProductNullVal,
 } from "../store/changeProduct";
+import { getCurrentUsers } from "../store/users";
 
 const ReviewCardForm = ({ name, price, _id, quantity, obj }) => {
-  const { currentUser } = useAuth();
+  const currentUser = useSelector(getCurrentUsers());
   const changeProduct = useSelector(getProductNullVal());
   const dispatch = useDispatch();
   const [size, setSize] = useState(null);

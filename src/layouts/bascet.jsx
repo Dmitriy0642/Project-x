@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import styles from "./layouts.styles/bascet.module.css";
 import Counter from "./counter";
 import { useHistory } from "react-router-dom";
-import { useAuth } from "../hooks/useAuth";
 import { toast } from "react-toastify";
 import userService from "../services/user.service";
 import NotBascet from "../ui/notBascet";
 import { usePurchased } from "../hooks/usePurchasedProduct";
+import { useSelector } from "react-redux";
+import { getCurrentUsers } from "../store/users";
 const Bascet = () => {
-  const { currentUser } = useAuth();
+  const currentUser = useSelector(getCurrentUsers());
   const { getItemFromBascet } = usePurchased();
   const history = useHistory();
   const [amount, setAmount] = useState(0);
