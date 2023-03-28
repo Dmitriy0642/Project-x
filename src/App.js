@@ -18,6 +18,7 @@ import { useDispatch } from "react-redux";
 import { loadChangeProductList } from "./store/changeProduct";
 import { loadProductList } from "./store/product";
 import { loadListCategory } from "./store/categoryOfProduct";
+import { loadUsersList } from "./store/users";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ function App() {
     dispatch(loadChangeProductList());
     dispatch(loadProductList());
     dispatch(loadListCategory());
+    dispatch(loadUsersList());
   }, []);
   return (
     <div>
