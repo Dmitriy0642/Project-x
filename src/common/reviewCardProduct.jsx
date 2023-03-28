@@ -9,7 +9,6 @@ import { getCategory } from "../store/categoryOfProduct";
 const ReviewCardProduct = ({ match }) => {
   const product = useSelector(getProduct());
   const firm = useSelector(getCategory());
-
   const name = match.params.name;
   const id = match.params.postId;
   const arrOfCategory = filterOnCategoryToProduct(product, `${name}`, firm);

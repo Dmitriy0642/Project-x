@@ -1,5 +1,5 @@
 const filtredSoloData = (data, id) => {
-  if (data !== null) {
+  if (data !== undefined) {
     const getSingleData = data.find((obj) => obj._id === id);
     const readyData = [];
     readyData.push(getSingleData);

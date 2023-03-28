@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import styles from "../common/styles.common/reviewFormCatalog.module.css";
 import filterOnCategoryToProduct from "../functions/filterOnCategoryToProduct";
@@ -9,19 +9,16 @@ import { getCategory } from "../store/categoryOfProduct";
 const ReviewFormCatalog = ({ match }) => {
   const url = match.url;
   const getNameCategory = match.params.name;
-  const [filtradeData, setFiltradedata] = useState(null);
   const data = useSelector(getProduct());
   const firm = useSelector(getCategory());
 
-  useEffect(() => {
-    if (data !== null && firm !== null) {
-      setFiltradedata(
-        filterOnCategoryToProduct(data, `${getNameCategory}`, firm)
-      );
-    }
-  }, []);
+  const filtradeData = filterOnCategoryToProduct(
+    data,
+    `${getNameCategory}`,
+    firm
+  );
 
-  return filtradeData !== null ? (
+  return filtradeData !== undefined ? (
     <div className={styles.wrapper}>
       {filtradeData.map((item) => (
         <div className={styles.card_product} key={item._id}>
