@@ -18,11 +18,10 @@ const ReviewCardForm = ({ name, price, _id, quantity, obj }) => {
   const handleClick = (e) => {
     setSize(e.target.innerText);
   };
-  const isValid = currentUser !== undefined;
-  if (!currentUser) {
-    toast.error(
-      "Чтобы добавить товар в корзину ,необходимо зарегестрироваться"
-    );
+  const isValid = currentUser !== null;
+
+  if (isValid === false) {
+    toast.error("Чтобы добавить товар вам необходимо зарегестрироваться");
   }
 
   const handleSelect = () => {
