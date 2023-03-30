@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styles from "./layouts.styles/bascet.module.css";
 import servicesBascet from "../utils/bascetServices";
 import orderService from "../services/orders.service";
+import { useSelector } from "react-redux";
+import { getProduct } from "../store/product";
 
 const Counter = ({
   data,
@@ -11,17 +13,7 @@ const Counter = ({
 }) => {
   const [countDec, setCountInc] = useState();
   const [countInc, setCountDec] = useState();
-  const [initProduct, setInitProduct] = useState();
-  const initialDataFromDb = orderService.getInitiProduct();
-
-  useEffect(() => {
-    initialDataFromDb
-      .then((res) => {
-        const dataFormat = Object.keys(res).map((item) => res[item]);
-        setInitProduct(dataFormat);
-      })
-      .catch((error) => error.message);
-  }, []);
+  const initialDataFromDb = useSelector(getProduct());
 
   const handleDelete = async (e) => {
     await orderService.deleteProductInBascet(e.target.id);
@@ -34,7 +26,9 @@ const Counter = ({
       (item) => `${item.size}` === `${e.target.id}`
     );
     ///getting data from database with db sizes and values
-    const dataFromDb = initProduct.filter((item) => item._id === data._id);
+    const dataFromDb = initialDataFromDb.filter(
+      (item) => item._id === data._id
+    );
     const getQuantityFromDb = dataFromDb[0].quantity.filter(
       (item) => `${item.size}` === `${e.target.id}`
     );
@@ -43,7 +37,7 @@ const Counter = ({
       handleIncrementAmount(data.price);
     }
 
-    servicesBascet.increment(quantity, e, setCountInc, data, initProduct);
+    servicesBascet.increment(quantity, e, setCountInc, data, initialDataFromDb);
   };
 
   const handleDecrement = (e) => {
@@ -52,7 +46,9 @@ const Counter = ({
       (item) => `${item.size}` === `${e.target.id}`
     );
     ///getting data from database with db sizes and values
-    const dataFromDb = initProduct.filter((item) => item._id === data._id);
+    const dataFromDb = initialDataFromDb.filter(
+      (item) => item._id === data._id
+    );
     const getQuantityFromDb = dataFromDb[0].quantity.filter(
       (item) => `${item.size}` === `${e.target.id}`
     );
@@ -66,7 +62,7 @@ const Counter = ({
       }
     }
 
-    servicesBascet.decrement(quantity, e, setCountDec, data, initProduct);
+    servicesBascet.decrement(quantity, e, setCountDec, data, initialDataFromDb);
   };
 
   return (

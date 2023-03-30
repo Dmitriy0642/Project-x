@@ -5,28 +5,24 @@ import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import userService from "../services/user.service";
 import NotBascet from "../ui/notBascet";
-import { usePurchased } from "../hooks/usePurchasedProduct";
 import { useSelector } from "react-redux";
 import { getCurrentUsers } from "../store/users";
+import { getBascetProd } from "../store/bascet";
+
 const Bascet = () => {
   const currentUser = useSelector(getCurrentUsers());
-  const { getItemFromBascet } = usePurchased();
+  const bascetData = useSelector(getBascetProd());
   const history = useHistory();
   const [amount, setAmount] = useState(0);
-  const [acceptDatafromBascet, setAcceptedData] = useState();
 
   useEffect(() => {
-    getItemFromBascet()
-      .then((res) => {
-        const toFormat = Object.keys(res).map((item) => res[item]);
-        setAcceptedData(toFormat);
-        toFormat.map((item) => {
-          item.quantity.forEach((quan) => {
-            setAmount((prevState) => (prevState += item.price * quan.value));
-          });
+    if (bascetData !== null) {
+      bascetData.forEach((item) => {
+        item.quantity.forEach((quan) => {
+          setAmount((prevState) => (prevState += item.price * quan.value));
         });
-      })
-      .catch((error) => error.message);
+      });
+    }
   }, []);
 
   const handleIncrementAmount = (price) => {
@@ -35,7 +31,9 @@ const Bascet = () => {
   const handleDecrementAmount = (price) => {
     setAmount((prevState) => (prevState -= price));
   };
-
+  useEffect(() => {
+    console.log(currentUser);
+  }, [currentUser]);
   async function overWriting(balance) {
     try {
       const data = await userService.getRefreshUser(balance);
@@ -58,7 +56,7 @@ const Bascet = () => {
     }
   };
 
-  return acceptDatafromBascet === undefined ? (
+  return !bascetData ? (
     <NotBascet />
   ) : (
     <div className={styles.main_div}>
@@ -66,9 +64,9 @@ const Bascet = () => {
         Общая стоимость товара в корзине : {amount}$
       </h2>
       <h2 className={styles.balance_title}>
-        Ваш Баланс : {currentUser.balance}$
+        Ваш Баланс : {currentUser?.balance ? currentUser.balance : 0} $
       </h2>
-      {acceptDatafromBascet.map((item) => (
+      {bascetData.map((item) => (
         <div className={styles.product_div} key={item._id}>
           <img src={item.img[0]} alt="" className={styles.img_product} />
           <div className={styles.first_div}>

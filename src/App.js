@@ -16,6 +16,7 @@ import { loadChangeProductList } from "./store/changeProduct";
 import { loadProductList } from "./store/product";
 import { loadListCategory } from "./store/categoryOfProduct";
 import { loadUsersList } from "./store/users";
+import { getBascetProduct } from "./store/bascet";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ function App() {
     dispatch(loadProductList());
     dispatch(loadListCategory());
     dispatch(loadUsersList());
+    dispatch(getBascetProduct());
   }, []);
   return (
     <div>
