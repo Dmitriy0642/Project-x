@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import authService from "../services/auth.service";
 import localStorageService from "../services/localStorage.service";
 import userService from "../services/user.service";
-
+import { toast } from "react-toastify";
 const userSlice = createSlice({
   name: "users",
   initialState: {
@@ -23,6 +23,9 @@ const userSlice = createSlice({
     usersRequestFiled: (state, action) => {
       state.error = action.payload;
       state.isLoading = false;
+    },
+    authRequested: (state) => {
+      state.error = null;
     },
   },
 });
@@ -58,14 +61,8 @@ export const signUp =
       window.location.reload();
     } catch (error) {
       dispatch(usersRequestFiled(error.message));
-      const { code, message } = error.response.data.error;
-      if (code === 400) {
-        if (message === "EMAIL_EXISTS") {
-          const ErrorObject = {
-            email: "Пользователь с таким email уже существует",
-          };
-          throw ErrorObject;
-        }
+      if (error.response.data.error.message === "INVALID_PASSWORD") {
+        return toast.error("Вы вели неверный пароль");
       }
     }
   };
@@ -80,22 +77,26 @@ export const logIn =
       dispatch(usersReceved({ userId: data.localId, balance: 10000 }));
       window.location.reload();
     } catch (error) {
-      const { code, message } = error.response.data.error;
-      if (code === 400) {
-        if (message === "INVALID_PASSWORD") {
-          const errorObject = { password: "Неверный пароль" };
-          throw errorObject;
-        }
-        if (message === "EMAIL_NOT_FOUND") {
-          const errorObject = { email: "Неверный email" };
-          throw errorObject;
-        }
+      if (error.response.data.error.message === "EMAIL_NOT_FOUND") {
+        return toast.error("Такого email нет");
       }
+      if (error.response.data.error.message === "INVALID_PASSWORD") {
+        return toast.error("Вы вели неверный пароль");
+      }
+
+      if (error.response.data.error.message === "TOO_MANY_ATTEMPTS_TRY_LATER") {
+        return toast.error("Вы сделали много попыток ,попробуйте позже");
+      }
+      dispatch(usersRequestFiled(error.message));
     }
   };
 
 export const logOut = () => () => {
   localStorageService.authRemoveData();
+  if (loadUsersList.authRemoveData) {
+    window.location.reload();
+  }
 };
 
 export const getCurrentUsers = () => (state) => state.users.entities;
+export const getErrors = () => (state) => state.users.error;
