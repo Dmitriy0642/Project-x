@@ -1,4 +1,3 @@
-import { logDOM } from "@testing-library/react";
 import { toast } from "react-toastify";
 import orderService from "../services/orders.service";
 const handleIncrement = async (quantity, e, state, data, initialData) => {

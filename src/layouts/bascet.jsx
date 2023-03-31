@@ -12,9 +12,9 @@ import { getBascetProd } from "../store/bascet";
 const Bascet = () => {
   const currentUser = useSelector(getCurrentUsers());
   const bascetData = useSelector(getBascetProd());
+
   const history = useHistory();
   const [amount, setAmount] = useState(0);
-
   useEffect(() => {
     if (bascetData !== null) {
       bascetData.forEach((item) => {
@@ -24,23 +24,19 @@ const Bascet = () => {
       });
     }
   }, []);
-
+  console.log(bascetData);
   const handleIncrementAmount = (price) => {
     setAmount((prevState) => (prevState += price));
   };
   const handleDecrementAmount = (price) => {
     setAmount((prevState) => (prevState -= price));
   };
-  useEffect(() => {
-    console.log(currentUser);
-  }, [currentUser]);
+
   async function overWriting(balance) {
     try {
       const data = await userService.getRefreshUser(balance);
       return data;
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   }
   const handleClick = () => {
     if (currentUser === undefined || currentUser === null) {
@@ -56,7 +52,7 @@ const Bascet = () => {
     }
   };
 
-  return !bascetData ? (
+  return bascetData.length < 1 ? (
     <NotBascet />
   ) : (
     <div className={styles.main_div}>
@@ -64,7 +60,7 @@ const Bascet = () => {
         Общая стоимость товара в корзине : {amount}$
       </h2>
       <h2 className={styles.balance_title}>
-        Ваш Баланс : {currentUser?.balance ? currentUser.balance : 0} $
+        Ваш Баланс : {currentUser?.balance} $
       </h2>
       {bascetData.map((item) => (
         <div className={styles.product_div} key={item._id}>
