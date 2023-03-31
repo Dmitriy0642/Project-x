@@ -1,19 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
-import orderService from "../services/orders.service";
 
 const bascetSlice = createSlice({
   name: "bascet",
-  initialState: {
-    entities: null,
-    error: null,
-    isLoading: true,
-  },
+  initialState: { isLoading: true, error: null, entities: [] },
   reducers: {
     bascetReqested: (state) => {
-      state.isLoading = false;
+      state.isLoading = true;
     },
     bascetReceved: (state, action) => {
-      state.entities = action.payload;
+      state.entities = [...state.entities, action.payload];
       state.isLoading = false;
     },
     bascetReqesteFailed: (state, action) => {
@@ -26,18 +21,15 @@ const bascetSlice = createSlice({
 const { reducer: bascetReducer, actions } = bascetSlice;
 const { bascetReqested, bascetReceved, bascetReqesteFailed } = actions;
 
-export const getBascetProduct = () => async (dispatch) => {
+export const getBascetProduct = (data) => (dispatch) => {
   dispatch(bascetReqested());
   try {
-    const data = await orderService.getBascetPurchases().then((res) => {
-      const fromObjToArr = Object.keys(res).map((item) => res[item]);
-      dispatch(bascetReceved(fromObjToArr));
-    });
+    dispatch(bascetReceved(data));
   } catch (error) {
-    console.log(error.message);
     dispatch(bascetReqesteFailed(error.message));
   }
 };
 
 export const getBascetProd = () => (state) => state.bascet.entities;
+export const getBascetError = () => (state) => state.bascet.isLoading;
 export default bascetReducer;

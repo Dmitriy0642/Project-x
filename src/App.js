@@ -25,7 +25,6 @@ function App() {
     dispatch(loadProductList());
     dispatch(loadListCategory());
     dispatch(loadUsersList());
-    dispatch(getBascetProduct());
   }, []);
   return (
     <div>
