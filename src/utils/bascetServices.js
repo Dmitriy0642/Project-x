@@ -41,8 +41,6 @@ const handleIncrement = async (quantity, e, state, data, initialData) => {
     name: data.name,
     quantity: quantity,
   };
-
-  await orderService.createBascetPurchases(newData);
 };
 
 const handleDecrement = async (quantity, e, state, data, initialData) => {
@@ -83,7 +81,6 @@ const handleDecrement = async (quantity, e, state, data, initialData) => {
     name: data.name,
     quantity: quantity,
   };
-  await orderService.createBascetPurchases(newData);
 };
 
 const servicesBascet = {
