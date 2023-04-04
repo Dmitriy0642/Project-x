@@ -5,12 +5,16 @@ import { validator } from "../utils/validator";
 import RadioField from "../forms/radioField";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
+import { usePurchased } from "../hooks/usePurchasedProduct";
 import orderService from "../services/orders.service";
 import decrementPurchased from "../functions/decrementPurchased";
 const Order = () => {
   const history = useHistory();
   const [purchasedProduct, setPurchasedProduct] = useState(null);
   const [dataFromBascet, setDataFromBascet] = useState();
+  const { createOrder } = usePurchased();
+  const { getPurchasedProduct } = usePurchased();
+  const { createPurchasedProduct } = usePurchased();
   const [data, setData] = useState({
     numtel: "",
     fio: "",
@@ -28,8 +32,7 @@ const Order = () => {
         setDataFromBascet(toFormat);
       })
       .catch((error) => error.message);
-    const getSalesProduct = orderService
-      .getPurchasedProd()
+    const getSalesProduct = getPurchasedProduct()
       .then((res) => {
         setPurchasedProduct(res);
       })
@@ -48,7 +51,7 @@ const Order = () => {
     const isValid = validate();
     if (!isValid) return;
     try {
-      await orderService.create(data);
+      await createOrder(data);
       if (dataFromBascet !== undefined) {
         dataFromBascet.map((item) => decrementPurchased(item, item.quantity));
       }
@@ -57,7 +60,7 @@ const Order = () => {
           dataFromBascet.push(item);
         });
       }
-      await orderService.createPurchasedProd(dataFromBascet);
+      await createPurchasedProduct(dataFromBascet);
     } catch (error) {
       console.log(error.message);
     }
