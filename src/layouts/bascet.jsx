@@ -5,18 +5,18 @@ import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import userService from "../services/user.service";
 import NotBascet from "../ui/notBascet";
-import { usePurchased } from "../hooks/usePurchasedProduct";
 import { useSelector } from "react-redux";
 import { getCurrentUsers } from "../store/users";
+import orderService from "../services/orders.service";
 const Bascet = () => {
   const currentUser = useSelector(getCurrentUsers());
-  const { getItemFromBascet } = usePurchased();
+  const itemFrobBascet = orderService.getBascetPurchases();
   const history = useHistory();
   const [amount, setAmount] = useState(0);
   const [acceptDatafromBascet, setAcceptedData] = useState();
 
   useEffect(() => {
-    getItemFromBascet()
+    itemFrobBascet
       .then((res) => {
         const toFormat = Object.keys(res).map((item) => res[item]);
         setAcceptedData(toFormat);
@@ -66,7 +66,7 @@ const Bascet = () => {
         Общая стоимость товара в корзине : {amount}$
       </h2>
       <h2 className={styles.balance_title}>
-        Ваш Баланс : {currentUser.balance}$
+        Ваш Баланс : {currentUser ? currentUser.balance : 0}$
       </h2>
       {acceptDatafromBascet.map((item) => (
         <div className={styles.product_div} key={item._id}>

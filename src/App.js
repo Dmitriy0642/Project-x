@@ -10,7 +10,7 @@ import Login from "./layouts/login";
 import Order from "./layouts/order";
 import LogOut from "./layouts/logOut";
 import AdminPanel from "./ui/adminPanel";
-import PurchasedProvider from "./hooks/usePurchasedProduct";
+
 import { useDispatch } from "react-redux";
 import { loadChangeProductList } from "./store/changeProduct";
 import { loadProductList } from "./store/product";
@@ -27,20 +27,18 @@ function App() {
   }, []);
   return (
     <div>
-      <PurchasedProvider>
-        <Header />
-        <Switch>
-          <Route path="/logout" component={LogOut} />
-          <Route path="/profile" component={AdminPanel} />
-          <Route path="/basket" component={Bascet} />
-          <Route path="/login/:type?" component={Login} />
-          <Route path="/:name/:postId" component={ReviewCardProduct} />
-          <Route path="/order" component={Order} />
-          <Route path="/:name" component={ReviewFormCatalog} />
-          <Route path="/" component={Catalog} />
-        </Switch>
-        <ToastContainer />
-      </PurchasedProvider>
+      <Header />
+      <Switch>
+        <Route path="/logout" component={LogOut} />
+        <Route path="/profile" component={AdminPanel} />
+        <Route path="/basket" component={Bascet} />
+        <Route path="/login/:type?" component={Login} />
+        <Route path="/:name/:postId" component={ReviewCardProduct} />
+        <Route path="/order" component={Order} />
+        <Route path="/:name" component={ReviewFormCatalog} />
+        <Route path="/" component={Catalog} />
+      </Switch>
+      <ToastContainer />
     </div>
   );
 }
