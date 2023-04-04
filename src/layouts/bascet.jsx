@@ -24,7 +24,7 @@ const Bascet = () => {
       });
     }
   }, []);
-
+  console.log(bascetData);
   const handleIncrementAmount = (price) => {
     setAmount((prevState) => (prevState += price));
   };
