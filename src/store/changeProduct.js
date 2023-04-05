@@ -75,7 +75,7 @@ export const changeProductQuantity =
 
     if (secondQuantityFromObj[0].value < initialyQuantityFromObj[0].value) {
       const updatedQuantity = objData.quantity.map((item) => {
-        if (item.size === selectedSize) {
+        if (`${item.size}` === `${selectedSize}`) {
           return { ...item, value: item.value + 1 };
         }
         return item;
