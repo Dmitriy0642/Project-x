@@ -65,8 +65,11 @@ export const signUp =
       window.location.reload();
     } catch (error) {
       dispatch(usersRequestFiled(error.message));
-      if (error.response.data.error.message === "INVALID_PASSWORD") {
-        return toast.error("Вы вели неверный пароль");
+      if (error.response.data.error.message === "EMAIL_EXISTS") {
+        return toast.error("Даннйы пользователь зарегестрирован");
+      }
+      if (error.response.data.error.message === "TOO_MANY_ATTEMPTS_TRY_LATER") {
+        return toast.error("Вы сделали много попыток ,попробуйте позже");
       }
     }
   };

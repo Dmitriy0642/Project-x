@@ -18,8 +18,15 @@ const authService = {
       setTokens(data);
       return data;
     } catch (error) {
+      console.log(error.response.data.error.message);
       if (error.response.data.error.message === "INVALID_PASSWORD") {
         return toast.error("Вы вели неверный пароль");
+      }
+      if (error.response.data.error.message === "TOO_MANY_ATTEMPTS_TRY_LATER") {
+        return toast.error("Вы сделали много попыток ,попробуйте позже");
+      }
+      if (error.response.data.error.message === "EMAIL_NOT_FOUND") {
+        return toast.error("Такого email нет");
       }
     }
   },
