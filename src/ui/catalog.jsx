@@ -5,7 +5,7 @@ import logoHoodies from "../LogoCatalog/logoHoodies.jpg";
 import logoSocks from "../LogoCatalog/LogoSocks.jpg";
 import logoTshirt from "../LogoCatalog/logoTshirt.jpg";
 import logoShoes from "../LogoCatalog/logoShoes.jpg";
-import styles from "../ui.styles/catalog.module.css";
+import styles from "./ui.styles/catalog.module.css";
 
 const Catalog = () => {
   return (

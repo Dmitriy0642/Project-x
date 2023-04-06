@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../ui.styles/notBascet.module.css";
+import styles from "./ui.styles/notBascet.module.css";
 const NotBascet = () => {
   return (
     <div className={styles.wrapper}>

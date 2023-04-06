@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import icon_login from "../icons/login.png";
 import { Link } from "react-router-dom";
-import styles from "../ui.styles/header.module.css";
+import styles from "./ui.styles/header.module.css";
 import { useSelector } from "react-redux";
 import { getCurrentUsers } from "../store/users";
 const Profile = () => {
@@ -20,8 +20,8 @@ const Profile = () => {
           Log Out
         </Link>
         {currentUser.email === "test@example.ru" ? (
-          <Link to="/profile" className="dropdown-item">
-            Profile
+          <Link to="/adminPage" className="dropdown-item">
+            AdminPanel
           </Link>
         ) : (
           <Link to="/"></Link>

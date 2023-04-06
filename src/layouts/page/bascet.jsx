@@ -1,32 +1,34 @@
 import React, { useEffect, useState } from "react";
-import styles from "./layouts.styles/bascet.module.css";
+import styles from "../layouts.styles/bascet.module.css";
 import Counter from "./counter";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
-import userService from "../services/user.service";
-import NotBascet from "../ui/notBascet";
+import userService from "../../services/user.service";
+import NotBascet from "../../ui/notBascet";
 import { useSelector } from "react-redux";
-import { getCurrentUsers } from "../store/users";
-
-import orderService from "../services/orders.service";
+import { getCurrentUsers } from "../../store/users";
+import orderService from "../../services/orders.service";
 const Bascet = () => {
   const currentUser = useSelector(getCurrentUsers());
   const itemFrobBascet = orderService.getBascetPurchases();
   const history = useHistory();
   const [amount, setAmount] = useState(0);
   const [acceptDatafromBascet, setAcceptedData] = useState();
+
   useEffect(() => {
-    itemFrobBascet.then((res) => {
-      const toFormat = Object.keys(res).map((item) => res[item]);
-      setAcceptedData(toFormat);
-      toFormat.map((item) => {
-        item.quantity.forEach((quan) => {
-          setAmount((prevState) => (prevState += item.price * quan.value));
+    itemFrobBascet
+      .then((res) => {
+        const toFormat = Object.keys(res).map((item) => res[item]);
+        setAcceptedData(toFormat);
+        toFormat.map((item) => {
+          item.quantity.forEach((quan) => {
+            setAmount((prevState) => (prevState += item.price * quan.value));
+          });
         });
-      });
-    });
+      })
+      .catch((error) => error.message);
   }, []);
-  console.log(bascetData);
+
   const handleIncrementAmount = (price) => {
     setAmount((prevState) => (prevState += price));
   };
@@ -38,7 +40,9 @@ const Bascet = () => {
     try {
       const data = await userService.getRefreshUser(balance);
       return data;
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   }
   const handleClick = () => {
     if (currentUser === undefined || currentUser === null) {

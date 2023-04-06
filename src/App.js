@@ -5,11 +5,11 @@ import { ToastContainer } from "react-toastify";
 import { Switch, Route } from "react-router-dom";
 import ReviewFormCatalog from "./common/reviewFormCatalog";
 import ReviewCardProduct from "./common/reviewCardProduct";
-import Bascet from "./layouts/bascet";
-import Login from "./layouts/login";
-import Order from "./layouts/order";
-import LogOut from "./layouts/logOut";
-import AdminPanel from "./ui/adminPanel";
+import Bascet from "./layouts/page/bascet";
+import Login from "./layouts/page/login";
+import Order from "./layouts/page/order";
+import LogOut from "./ui/logOut";
+import AdminPanel from "./layouts/page/adminPanel";
 
 import { useDispatch } from "react-redux";
 import { loadChangeProductList } from "./store/changeProduct";
@@ -30,7 +30,7 @@ function App() {
       <Header />
       <Switch>
         <Route path="/logout" component={LogOut} />
-        <Route path="/profile" component={AdminPanel} />
+        <Route path="/adminPage/:other?" component={AdminPanel} />
         <Route path="/basket" component={Bascet} />
         <Route path="/login/:type?" component={Login} />
         <Route path="/:name/:postId" component={ReviewCardProduct} />
