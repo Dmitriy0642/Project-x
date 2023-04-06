@@ -10,7 +10,6 @@ const userSlice = createSlice({
     isLoading: true,
     error: null,
     auth: null,
-    isLoggedIn: false,
   },
   reducers: {
     usersRequested: (state) => {
@@ -19,6 +18,7 @@ const userSlice = createSlice({
     usersReceved: (state, action) => {
       state.entities = action.payload;
       state.isLoading = false;
+      state.auth = true;
     },
     usersRequestFiled: (state, action) => {
       state.error = action.payload;
@@ -27,11 +27,15 @@ const userSlice = createSlice({
     authRequested: (state) => {
       state.error = null;
     },
+    userLogOut: (state) => {
+      state.entities = null;
+      state.auth = null;
+    },
   },
 });
 
 const { reducer: usersReducer, actions } = userSlice;
-const { usersRequested, usersReceved, usersRequestFiled } = actions;
+const { usersRequested, usersReceved, usersRequestFiled, userLogOut } = actions;
 export default usersReducer;
 
 export const loadUsersList = () => async (dispatch) => {
@@ -94,11 +98,9 @@ export const logIn =
     }
   };
 
-export const logOut = () => () => {
+export const logOut = () => (dispatch) => {
   localStorageService.authRemoveData();
-  if (loadUsersList.authRemoveData) {
-    window.location.reload();
-  }
+  dispatch(userLogOut());
 };
 
 export const getCurrentUsers = () => (state) => state.users.entities;
