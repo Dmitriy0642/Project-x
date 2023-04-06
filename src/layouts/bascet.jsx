@@ -7,22 +7,24 @@ import userService from "../services/user.service";
 import NotBascet from "../ui/notBascet";
 import { useSelector } from "react-redux";
 import { getCurrentUsers } from "../store/users";
-import { getBascetProd } from "../store/bascet";
 
+import orderService from "../services/orders.service";
 const Bascet = () => {
   const currentUser = useSelector(getCurrentUsers());
-  const bascetData = useSelector(getBascetProd());
-
+  const itemFrobBascet = orderService.getBascetPurchases();
   const history = useHistory();
   const [amount, setAmount] = useState(0);
+  const [acceptDatafromBascet, setAcceptedData] = useState();
   useEffect(() => {
-    if (bascetData !== null) {
-      bascetData.forEach((item) => {
+    itemFrobBascet.then((res) => {
+      const toFormat = Object.keys(res).map((item) => res[item]);
+      setAcceptedData(toFormat);
+      toFormat.map((item) => {
         item.quantity.forEach((quan) => {
           setAmount((prevState) => (prevState += item.price * quan.value));
         });
       });
-    }
+    });
   }, []);
   console.log(bascetData);
   const handleIncrementAmount = (price) => {
@@ -52,7 +54,7 @@ const Bascet = () => {
     }
   };
 
-  return bascetData.length < 1 ? (
+  return acceptDatafromBascet === undefined ? (
     <NotBascet />
   ) : (
     <div className={styles.main_div}>
@@ -60,9 +62,9 @@ const Bascet = () => {
         Общая стоимость товара в корзине : {amount}$
       </h2>
       <h2 className={styles.balance_title}>
-        Ваш Баланс : {currentUser?.balance} $
+        Ваш Баланс : {currentUser ? currentUser.balance : 0}$
       </h2>
-      {bascetData.map((item) => (
+      {acceptDatafromBascet.map((item) => (
         <div className={styles.product_div} key={item._id}>
           <img src={item.img[0]} alt="" className={styles.img_product} />
           <div className={styles.first_div}>

@@ -24,7 +24,7 @@ const orderService = {
 
     return data;
   },
-  createPurchasedProd: async ({ prod }) => {
+  createPurchasedProd: async (prod) => {
     const accesToken = localStorageService.getAccesToken();
     const { data } = await httpService.patch(
       `${userEndPoint}` +

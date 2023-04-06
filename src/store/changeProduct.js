@@ -3,7 +3,7 @@ import httpService from "../services/http.service";
 import { getAccesToken } from "../services/localStorage.service";
 import { toast } from "react-toastify";
 import orderService from "../services/orders.service";
-import { getBascetProduct } from "./bascet";
+
 const changeProductSlice = createSlice({
   name: "changeProduct",
   initialState: {
@@ -75,7 +75,7 @@ export const changeProductQuantity =
 
     if (secondQuantityFromObj[0].value < initialyQuantityFromObj[0].value) {
       const updatedQuantity = objData.quantity.map((item) => {
-        if (item.size === selectedSize) {
+        if (`${item.size}` === `${selectedSize}`) {
           return { ...item, value: item.value + 1 };
         }
         return item;
@@ -88,38 +88,12 @@ export const changeProductQuantity =
         }
         return item;
       });
-
       dispatch(changeProductReceved(newData));
-      dispatch(getBascetProduct(updatedObjData));
+      await orderService.createBascetPurchases(updatedObjData);
     } else if (
       secondQuantityFromObj[0].value === initialyQuantityFromObj[0].value
     ) {
       toast.error("В наличии нет размера данного товара");
-    }
-  };
-
-export const changeInitialData =
-  (selected, quant, allData) => async (dispatch) => {
-    dispatch(changeProductRequested());
-    try {
-      const filteredOrders = allData.filter(
-        (item) => item._id === selected._id
-      );
-      if (filteredOrders.length > 0) {
-        const item = filteredOrders[0];
-        const updatedQuantity = item.quantity.map((sizeQty, index) => {
-          if (sizeQty.size === quant[index].size) {
-            return { ...sizeQty, value: sizeQty.value - quant[index].value };
-          }
-          return sizeQty;
-        });
-        const updatedItem = { ...item, quantity: updatedQuantity };
-        dispatch(changeProductReceved(updatedItem));
-        await orderService.changesDataProduct(updatedItem);
-      }
-    } catch (error) {
-      dispatch(changeProductRequestFailed(error.message));
-      console.log(error);
     }
   };
 
