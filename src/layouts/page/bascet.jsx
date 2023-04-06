@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import styles from "./layouts.styles/bascet.module.css";
+import styles from "../layouts.styles/bascet.module.css";
 import Counter from "./counter";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
-import userService from "../services/user.service";
-import NotBascet from "../ui/notBascet";
+import userService from "../../services/user.service";
+import NotBascet from "../../ui/notBascet";
 import { useSelector } from "react-redux";
-import { getCurrentUsers } from "../store/users";
-import orderService from "../services/orders.service";
+import { getCurrentUsers } from "../../store/users";
+import orderService from "../../services/orders.service";
 const Bascet = () => {
   const currentUser = useSelector(getCurrentUsers());
   const itemFrobBascet = orderService.getBascetPurchases();

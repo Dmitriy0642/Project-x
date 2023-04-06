@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import TextField from "../forms/textField";
-import validatorConfig from "../utils/validatorConfig";
-import { validator } from "../utils/validator";
-import RadioField from "../forms/radioField";
+import TextField from "../../forms/textField";
+import validatorConfig from "../../utils/validatorConfig";
+import { validator } from "../../utils/validator";
+import RadioField from "../../forms/radioField";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
-import orderService from "../services/orders.service";
-import decrementPurchased from "../functions/decrementPurchased";
+import orderService from "../../services/orders.service";
+import decrementPurchased from "../../functions/decrementPurchased";
 const Order = () => {
   const history = useHistory();
   const [purchasedProduct, setPurchasedProduct] = useState(null);
