@@ -20,8 +20,8 @@ const Profile = () => {
           Log Out
         </Link>
         {currentUser.email === "test@example.ru" ? (
-          <Link to="/profile" className="dropdown-item">
-            Profile
+          <Link to="/adminPage" className="dropdown-item">
+            AdminPanel
           </Link>
         ) : (
           <Link to="/"></Link>

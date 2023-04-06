@@ -30,7 +30,7 @@ function App() {
       <Header />
       <Switch>
         <Route path="/logout" component={LogOut} />
-        <Route path="/profile" component={AdminPanel} />
+        <Route path="/adminPage" component={AdminPanel} />
         <Route path="/basket" component={Bascet} />
         <Route path="/login/:type?" component={Login} />
         <Route path="/:name/:postId" component={ReviewCardProduct} />
