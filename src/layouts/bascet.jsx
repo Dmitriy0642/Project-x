@@ -7,6 +7,7 @@ import userService from "../services/user.service";
 import NotBascet from "../ui/notBascet";
 import { useSelector } from "react-redux";
 import { getCurrentUsers } from "../store/users";
+
 import orderService from "../services/orders.service";
 const Bascet = () => {
   const currentUser = useSelector(getCurrentUsers());
@@ -14,19 +15,16 @@ const Bascet = () => {
   const history = useHistory();
   const [amount, setAmount] = useState(0);
   const [acceptDatafromBascet, setAcceptedData] = useState();
-
   useEffect(() => {
-    itemFrobBascet
-      .then((res) => {
-        const toFormat = Object.keys(res).map((item) => res[item]);
-        setAcceptedData(toFormat);
-        toFormat.map((item) => {
-          item.quantity.forEach((quan) => {
-            setAmount((prevState) => (prevState += item.price * quan.value));
-          });
+    itemFrobBascet.then((res) => {
+      const toFormat = Object.keys(res).map((item) => res[item]);
+      setAcceptedData(toFormat);
+      toFormat.map((item) => {
+        item.quantity.forEach((quan) => {
+          setAmount((prevState) => (prevState += item.price * quan.value));
         });
-      })
-      .catch((error) => error.message);
+      });
+    });
   }, []);
 
   const handleIncrementAmount = (price) => {
@@ -40,9 +38,7 @@ const Bascet = () => {
     try {
       const data = await userService.getRefreshUser(balance);
       return data;
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   }
   const handleClick = () => {
     if (currentUser === undefined || currentUser === null) {
@@ -57,7 +53,7 @@ const Bascet = () => {
       history.push("/order");
     }
   };
-  console.log(acceptDatafromBascet);
+
   return acceptDatafromBascet === undefined ? (
     <NotBascet />
   ) : (
