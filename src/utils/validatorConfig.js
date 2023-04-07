@@ -36,5 +36,35 @@ const validatorConfig = {
       message: "Адресс обязателен для заполнения",
     },
   },
+  firm: {
+    isRequired: {
+      message: "Фирма обязательна для заполнения",
+    },
+  },
+  price: {
+    isRequired: {
+      message: "Цена обязательна для заполнения",
+    },
+  },
+  category: {
+    isRequired: {
+      message: "Вам обязательно нужно выбрать категорию товара",
+    },
+  },
+  img: {
+    isRequired: {
+      message: "Необходимо добавить фото в формате ссылки",
+    },
+  },
+  name: {
+    isRequired: {
+      message: "Имя товара обязательно для заполнения",
+    },
+  },
+  quantity: {
+    isRequired: {
+      message: "kkk",
+    },
+  },
 };
 export default validatorConfig;

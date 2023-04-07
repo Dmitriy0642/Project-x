@@ -10,7 +10,6 @@ import Login from "./layouts/page/login";
 import Order from "./layouts/page/order";
 import LogOut from "./ui/logOut";
 import AdminPanel from "./layouts/page/adminPanel";
-
 import { useDispatch } from "react-redux";
 import { loadChangeProductList } from "./store/changeProduct";
 import { loadProductList } from "./store/product";
@@ -25,12 +24,13 @@ function App() {
     dispatch(loadListCategory());
     dispatch(loadUsersList());
   }, []);
+
   return (
     <div>
       <Header />
       <Switch>
         <Route path="/logout" component={LogOut} />
-        <Route path="/adminPage/:other?" component={AdminPanel} />
+        <Route exact path="/adminPage/:other?" component={AdminPanel} />
         <Route path="/basket" component={Bascet} />
         <Route path="/login/:type?" component={Login} />
         <Route path="/:name/:postId" component={ReviewCardProduct} />
