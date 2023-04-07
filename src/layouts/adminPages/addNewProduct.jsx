@@ -4,6 +4,7 @@ import { validator } from "../../utils/validator";
 import validatorConfig from "../../utils/validatorConfig";
 import { useSelector } from "react-redux";
 import { getCategory } from "../../store/categoryOfProduct";
+import SelectedForm from "../../forms/selectedField";
 const AddNewProduct = () => {
   const [data, setData] = useState({
     name: "",
@@ -69,29 +70,11 @@ const AddNewProduct = () => {
               value={data.img}
               error={errors.img}
             />
-            <div className="mb-4">
-              <label htmlFor="validationCustom04" className="form-label">
-                State
-              </label>
-              <select className="form-select" id="validationCustom04" required>
-                <option selected={data.firm === ""} disabled value="">
-                  Choose...
-                </option>
-                {category &&
-                  category.map((item) => (
-                    <option
-                      key={item._id}
-                      value={item._id}
-                      selected={item._id === data.firm}
-                    >
-                      {item.name}
-                    </option>
-                  ))}
-              </select>
-              <div className="invalid-feedback">
-                Please select a valid state.
-              </div>
-            </div>
+            <SelectedForm
+              state={data.firm}
+              arr={category}
+              label="Выберите категорию товара"
+            />
             <button
               disabled={!isValid}
               className="btn btn-primary w-100 mx-auto"
