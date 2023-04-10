@@ -48,7 +48,7 @@ const validatorConfig = {
   },
   category: {
     isRequired: {
-      message: "Вам обязательно нужно выбрать категорию товара",
+      message: "Выберите категорию товара",
     },
   },
   img: {
@@ -58,12 +58,7 @@ const validatorConfig = {
   },
   name: {
     isRequired: {
-      message: "Имя товара обязательно для заполнения",
-    },
-  },
-  quantity: {
-    isRequired: {
-      message: "kkk",
+      message: "Название товара обязателен для заполнения",
     },
   },
 };

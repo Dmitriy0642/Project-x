@@ -6,24 +6,29 @@ import { useSelector } from "react-redux";
 import { getCategory } from "../../store/categoryOfProduct";
 import SelectedForm from "../../forms/selectedField";
 const AddNewProduct = () => {
+  const categoryState = useSelector(getCategory());
+  const [categ, setCategory] = useState();
+  const [errors, setErrors] = useState({});
   const [data, setData] = useState({
     name: "",
-    category: "",
     firm: "",
-    img: "",
     price: "",
-    quantity: "",
+    img: "",
+    category: "",
   });
-  const categoryState = useSelector(getCategory());
-  const [errors, setErrors] = useState({});
-  const [category] = useState(categoryState);
 
-  const handleChange = ({ target }) => {
-    setData((prevState) => ({ ...prevState, [target.name]: target.value }));
+  const handleChange = (e) => {
+    setData((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
   };
+
   useEffect(() => {
+    setCategory(categoryState);
     validate();
   }, [data]);
+
   const validate = () => {
     const errors = validator(data, validatorConfig);
     setErrors(errors);
@@ -48,6 +53,7 @@ const AddNewProduct = () => {
               onChange={handleChange}
               value={data.name}
               error={errors.name}
+              name="name"
             />
             <TextField
               type="text"
@@ -55,6 +61,7 @@ const AddNewProduct = () => {
               onChange={handleChange}
               value={data.firm}
               error={errors.firm}
+              name="firm"
             />
             <TextField
               type="text"
@@ -62,6 +69,7 @@ const AddNewProduct = () => {
               onChange={handleChange}
               value={data.price}
               error={errors.price}
+              name="price"
             />
             <TextField
               type="text"
@@ -69,12 +77,18 @@ const AddNewProduct = () => {
               onChange={handleChange}
               value={data.img}
               error={errors.img}
+              name="img"
             />
+
             <SelectedForm
-              state={data.firm}
-              arr={category}
+              value={data.category}
+              data={categ}
               label="Выберите категорию товара"
+              onChange={handleChange}
+              defaultOption="Выберите вариант"
+              error={errors.category}
             />
+
             <button
               disabled={!isValid}
               className="btn btn-primary w-100 mx-auto"

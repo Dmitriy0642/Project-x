@@ -1,23 +1,41 @@
 import React from "react";
+const SelectedForm = ({
+  label,
+  data,
+  onChange,
+  defaultOption,
+  error,
+  value,
+}) => {
+  const getClasses = () => {
+    return "form-select" + (error ? " is-invalid" : "");
+  };
 
-const SelectedForm = ({ label, arr, state }) => {
-  return (
+  return data !== null ? (
     <div className="mb-4">
       <label htmlFor="validationCustom04" className="form-label">
         {label}
       </label>
-      <select className="form-select" id="validationCustom04" required>
-        <option selected={state === ""} disabled value="">
-          Выбор...
+      <select
+        value={value}
+        name="category"
+        onChange={onChange}
+        className={getClasses()}
+      >
+        <option disabled value="">
+          {defaultOption}
         </option>
-        {arr.map((item) => (
-          <option key={item._id} value={item._id} selected={item._id === state}>
-            {item.name}
-          </option>
-        ))}
+        {data &&
+          data.map((categ) => (
+            <option key={categ._id} value={categ._id}>
+              {categ.name}
+            </option>
+          ))}
       </select>
-      <div className="invalid-feedback">Please select a valid state.</div>
+      {error && <div className="invalid-feedback">{error}</div>}
     </div>
+  ) : (
+    <h1>Loading</h1>
   );
 };
 
