@@ -5,6 +5,7 @@ import validatorConfig from "../../utils/validatorConfig";
 import { useSelector } from "react-redux";
 import { getCategory } from "../../store/categoryOfProduct";
 import SelectedForm from "../../forms/selectedField";
+import productSerivce from "../../services/product.service";
 const AddNewProduct = () => {
   const categoryState = useSelector(getCategory());
   const [categ, setCategory] = useState();
@@ -14,6 +15,7 @@ const AddNewProduct = () => {
     firm: "",
     price: "",
     img: "",
+    _id: "",
     category: "",
   });
 
@@ -39,6 +41,7 @@ const AddNewProduct = () => {
     e.preventDefault();
     const isValid = validate();
     if (!isValid) return;
+    productSerivce.createProduct(data);
   };
 
   return (
@@ -79,7 +82,14 @@ const AddNewProduct = () => {
               error={errors.img}
               name="img"
             />
-
+            <TextField
+              type="text"
+              label="Id товара"
+              onChange={handleChange}
+              value={data._id}
+              error={errors._id}
+              name="_id"
+            />
             <SelectedForm
               value={data.category}
               data={categ}

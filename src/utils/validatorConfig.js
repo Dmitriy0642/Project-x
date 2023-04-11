@@ -61,5 +61,10 @@ const validatorConfig = {
       message: "Название товара обязателен для заполнения",
     },
   },
+  _id: {
+    isRequired: {
+      message: "Идентификатор товара обязателен для заполнения",
+    },
+  },
 };
 export default validatorConfig;
