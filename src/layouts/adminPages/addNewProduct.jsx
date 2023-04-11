@@ -6,7 +6,9 @@ import { useSelector } from "react-redux";
 import { getCategory } from "../../store/categoryOfProduct";
 import SelectedForm from "../../forms/selectedField";
 import productSerivce from "../../services/product.service";
+import { useHistory } from "react-router-dom";
 const AddNewProduct = () => {
+  const history = useHistory();
   const categoryState = useSelector(getCategory());
   const [categ, setCategory] = useState();
   const [errors, setErrors] = useState({});
@@ -42,6 +44,10 @@ const AddNewProduct = () => {
     const isValid = validate();
     if (!isValid) return;
     productSerivce.createProduct(data);
+    history.push("/");
+    setTimeout(() => {
+      window.location.reload();
+    }, 3000);
   };
 
   return (
@@ -97,6 +103,7 @@ const AddNewProduct = () => {
               onChange={handleChange}
               defaultOption="Выберите вариант"
               error={errors.category}
+              name="category"
             />
 
             <button

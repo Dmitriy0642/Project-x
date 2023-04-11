@@ -14,5 +14,12 @@ const productSerivce = {
     );
     return data;
   },
+  deleteProduct: async (payload) => {
+    const accesToken = localStorageService.getAccesToken();
+    const { data } = await httpService.delete(
+      `${productEndPoint}` + `${payload.product}` + `.json?auth=${accesToken}`
+    );
+    return data;
+  },
 };
 export default productSerivce;
