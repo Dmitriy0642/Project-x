@@ -19,6 +19,12 @@ const AddNewProduct = () => {
     img: "",
     _id: "",
     category: "",
+    quantity: [
+      { size: "XL", value: 0 },
+      { size: "XXL", value: 0 },
+      { size: "XS", value: 0 },
+      { size: "M", value: 0 },
+    ],
   });
 
   const handleChange = (e) => {
