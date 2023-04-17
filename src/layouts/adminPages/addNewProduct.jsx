@@ -5,7 +5,10 @@ import validatorConfig from "../../utils/validatorConfig";
 import { useSelector } from "react-redux";
 import { getCategory } from "../../store/categoryOfProduct";
 import SelectedForm from "../../forms/selectedField";
+import productSerivce from "../../services/product.service";
+import { useHistory } from "react-router-dom";
 const AddNewProduct = () => {
+  const history = useHistory();
   const categoryState = useSelector(getCategory());
   const [categ, setCategory] = useState();
   const [errors, setErrors] = useState({});
@@ -14,7 +17,14 @@ const AddNewProduct = () => {
     firm: "",
     price: "",
     img: "",
+    _id: "",
     category: "",
+    quantity: [
+      { size: "XL", value: 0 },
+      { size: "XXL", value: 0 },
+      { size: "XS", value: 0 },
+      { size: "M", value: 0 },
+    ],
   });
 
   const handleChange = (e) => {
@@ -39,6 +49,11 @@ const AddNewProduct = () => {
     e.preventDefault();
     const isValid = validate();
     if (!isValid) return;
+    productSerivce.createProduct(data);
+    history.push("/");
+    setTimeout(() => {
+      window.location.reload();
+    }, 3000);
   };
 
   return (
@@ -79,7 +94,14 @@ const AddNewProduct = () => {
               error={errors.img}
               name="img"
             />
-
+            <TextField
+              type="text"
+              label="Id товара"
+              onChange={handleChange}
+              value={data._id}
+              error={errors._id}
+              name="_id"
+            />
             <SelectedForm
               value={data.category}
               data={categ}
@@ -87,6 +109,7 @@ const AddNewProduct = () => {
               onChange={handleChange}
               defaultOption="Выберите вариант"
               error={errors.category}
+              name="category"
             />
 
             <button

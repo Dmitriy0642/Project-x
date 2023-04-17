@@ -6,6 +6,7 @@ const SelectedForm = ({
   defaultOption,
   error,
   value,
+  name,
 }) => {
   const getClasses = () => {
     return "form-select" + (error ? " is-invalid" : "");
@@ -18,7 +19,7 @@ const SelectedForm = ({
       </label>
       <select
         value={value}
-        name="category"
+        name={name}
         onChange={onChange}
         className={getClasses()}
       >
@@ -26,9 +27,9 @@ const SelectedForm = ({
           {defaultOption}
         </option>
         {data &&
-          data.map((categ) => (
-            <option key={categ._id} value={categ._id}>
-              {categ.name}
+          data.map((item) => (
+            <option key={item._id} value={item._id}>
+              {item.name}
             </option>
           ))}
       </select>
