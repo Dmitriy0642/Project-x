@@ -21,5 +21,20 @@ const productSerivce = {
     );
     return data;
   },
+  addSalesProduct: async (payload) => {
+    const accesToken = localStorageService.getAccesToken();
+    const { data } = await httpService.put(
+      "salesProduct/" + `.json?auth=${accesToken}`,
+      payload
+    );
+    return data;
+  },
+  getSalesProduct: async () => {
+    const accesToken = localStorageService.getAccesToken();
+    const { data } = await httpService.get(
+      "salesProduct/" + `.json?auth=${accesToken}`
+    );
+    return data;
+  },
 };
 export default productSerivce;

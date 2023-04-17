@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
 import orderService from "../../services/orders.service";
 import decrementPurchased from "../../functions/decrementPurchased";
+import productSerivce from "../../services/product.service";
 const Order = () => {
   const history = useHistory();
   const [purchasedProduct, setPurchasedProduct] = useState(null);
@@ -58,6 +59,7 @@ const Order = () => {
         });
       }
       await orderService.createPurchasedProd(dataFromBascet);
+      await productSerivce.addSalesProduct(dataFromBascet);
     } catch (error) {
       console.log(error.message);
     }
