@@ -5,7 +5,7 @@ import { getPurchased } from "../../store/purchasedProduct";
 const PurchasedProduct = () => {
   const [amount, setAmount] = useState(0);
   const data = useSelector(getPurchased());
-
+  console.log(data);
   useEffect(() => {
     if (data !== null) {
       data.map((item) => {

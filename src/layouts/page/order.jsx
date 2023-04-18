@@ -10,7 +10,6 @@ import decrementPurchased from "../../functions/decrementPurchased";
 import productSerivce from "../../services/product.service";
 const Order = () => {
   const history = useHistory();
-  const [purchasedProduct, setPurchasedProduct] = useState(null);
   const [dataFromBascet, setDataFromBascet] = useState();
   const [data, setData] = useState({
     numtel: "",
@@ -20,19 +19,14 @@ const Order = () => {
     post: "СДЭК",
   });
   const [errors, setErrors] = useState({});
+
   useEffect(() => {
     validate();
-    const getDataFormBascet = orderService
+    orderService
       .getBascetPurchases()
       .then((res) => {
         const toFormat = Object.keys(res).map((item) => res[item]);
         setDataFromBascet(toFormat);
-      })
-      .catch((error) => error.message);
-    const getSalesProduct = orderService
-      .getPurchasedProd()
-      .then((res) => {
-        setPurchasedProduct(res);
       })
       .catch((error) => error.message);
   }, [data]);
@@ -53,13 +47,13 @@ const Order = () => {
       if (dataFromBascet !== undefined) {
         dataFromBascet.map((item) => decrementPurchased(item, item.quantity));
       }
-      if (purchasedProduct !== null) {
-        purchasedProduct.forEach((item) => {
-          dataFromBascet.push(item);
-        });
-      }
-      await orderService.createPurchasedProd(dataFromBascet);
-      await productSerivce.addSalesProduct(dataFromBascet);
+
+      await dataFromBascet.forEach((item) =>
+        orderService.createPurchasedProd(item)
+      );
+      await dataFromBascet.forEach((item) =>
+        productSerivce.addSalesProduct(item)
+      );
     } catch (error) {
       console.log(error.message);
     }
@@ -68,9 +62,9 @@ const Order = () => {
       "Спасибо за покупку в нашем магазине,ваш заказ оформлен ожидайте обратной связи"
     );
 
-    history.push("/");
+    // history.push("/");
     await orderService.refreshBascetAfterBuying();
-    window.location.reload();
+    // window.location.reload();
   };
   const handleChange = ({ target }) => {
     setData((prevState) => ({ ...prevState, [target.name]: target.value }));

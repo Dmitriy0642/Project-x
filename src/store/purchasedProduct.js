@@ -32,7 +32,7 @@ export const loadListPurchased = () => async (dispatch) => {
   dispatch(purchasedRequested());
   try {
     const { data } = await httpService.get(
-      "salesProduct/" + `.json?auth=${getAccesToken()}`
+      "salesProduct/" + `/payload` + `.json?auth=${getAccesToken()}`
     );
     dispatch(purchasedReceved(data));
   } catch (error) {

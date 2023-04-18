@@ -57,7 +57,6 @@ const Bascet = () => {
       history.push("/order");
     }
   };
-
   return acceptDatafromBascet === undefined ? (
     <NotBascet />
   ) : (
