@@ -20,11 +20,19 @@ const productSlice = createSlice({
       state.error = action.payload;
       state.isLoading = false;
     },
+    addedNewProduct: (state, action) => {
+      state.entities.push(action.payload);
+    },
   },
 });
 
 const { reducer: productReducer, actions } = productSlice;
-const { productRequested, productReceved, productRequestFailed } = actions;
+const {
+  productRequested,
+  productReceved,
+  productRequestFailed,
+  addedNewProduct,
+} = actions;
 
 export const loadProductList = () => async (dispatch) => {
   dispatch(productRequested());
@@ -35,6 +43,15 @@ export const loadProductList = () => async (dispatch) => {
     );
     Object.keys(data).forEach((item) => initiArr.push(data[item]));
     dispatch(productReceved(initiArr));
+  } catch (error) {
+    dispatch(productRequestFailed(error.message));
+  }
+};
+
+export const loadNewProduct = (product) => (dispatch) => {
+  dispatch(productRequested());
+  try {
+    dispatch(addedNewProduct(product));
   } catch (error) {
     dispatch(productRequestFailed(error.message));
   }
