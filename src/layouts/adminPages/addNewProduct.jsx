@@ -2,13 +2,16 @@ import React, { useState, useEffect } from "react";
 import TextField from "../../forms/textField";
 import { validator } from "../../utils/validator";
 import validatorConfig from "../../utils/validatorConfig";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getCategory } from "../../store/categoryOfProduct";
 import SelectedForm from "../../forms/selectedField";
 import productSerivce from "../../services/product.service";
 import { useHistory } from "react-router-dom";
+import { loadNewProduct } from "../../store/product";
+
 const AddNewProduct = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
   const categoryState = useSelector(getCategory());
   const [categ, setCategory] = useState();
   const [errors, setErrors] = useState({});
@@ -50,10 +53,11 @@ const AddNewProduct = () => {
     const isValid = validate();
     if (!isValid) return;
     productSerivce.createProduct(data);
+    dispatch(loadNewProduct(data));
     history.push("/");
     setTimeout(() => {
       window.location.reload();
-    }, 3000);
+    }, 1000);
   };
 
   return (
