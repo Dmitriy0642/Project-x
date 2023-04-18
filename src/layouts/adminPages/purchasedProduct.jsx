@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import productSerivce from "../../services/product.service";
 import styles from "../layouts.styles/purchase.module.css";
+import { useSelector } from "react-redux";
+import { getPurchased } from "../../store/purchasedProduct";
 const PurchasedProduct = () => {
   const [salesProduct, setSalesProduct] = useState();
   const [amount, setAmount] = useState(0);
