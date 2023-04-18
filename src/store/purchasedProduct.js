@@ -40,4 +40,4 @@ export const loadListPurchased = () => async (dispatch) => {
   }
 };
 
-export const getPurchased = () => (state) => state.product.entities;
+export const getPurchased = () => (state) => state.purchasedProduct.entities;
