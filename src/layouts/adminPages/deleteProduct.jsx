@@ -4,11 +4,12 @@ import { validator } from "../../utils/validator";
 import validatorConfig from "../../utils/validatorConfig";
 import productSerivce from "../../services/product.service";
 import SelectedForm from "../../forms/selectedField";
-import { useSelector } from "react-redux";
-import { getProduct } from "../../store/product";
+import { useDispatch, useSelector } from "react-redux";
+import { getProduct, removingProduct } from "../../store/product";
 import { useHistory } from "react-router-dom";
 const DeleteProduct = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
   const prod = useSelector(getProduct());
   const [product, setProduct] = useState();
   const [errors, setErrors] = useState({});
@@ -39,10 +40,11 @@ const DeleteProduct = () => {
     const isValid = validate();
     if (!isValid) return;
     productSerivce.deleteProduct(data);
+    dispatch(removingProduct(data));
     history.push("/");
     setTimeout(() => {
       window.location.reload();
-    }, 3000);
+    }, 1000);
   };
 
   return product !== null ? (

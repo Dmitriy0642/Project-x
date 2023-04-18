@@ -23,6 +23,14 @@ const productSlice = createSlice({
     addedNewProduct: (state, action) => {
       state.entities.push(action.payload);
     },
+    removeProduct: (state, aciton) => {
+      const index = state.entities.findIndex(
+        (el) => el._id === aciton.payload.product
+      );
+      if (index !== -1) {
+        state.entities.splice(index, 1);
+      }
+    },
   },
 });
 
@@ -32,6 +40,7 @@ const {
   productReceved,
   productRequestFailed,
   addedNewProduct,
+  removeProduct,
 } = actions;
 
 export const loadProductList = () => async (dispatch) => {
@@ -56,6 +65,16 @@ export const loadNewProduct = (product) => (dispatch) => {
     dispatch(productRequestFailed(error.message));
   }
 };
+
+export const removingProduct = (product) => (dispatch) => {
+  dispatch(productRequested());
+  try {
+    dispatch(removeProduct(product));
+  } catch (error) {
+    dispatch(productRequestFailed(error.message));
+  }
+};
+
 export const getProduct = () => (state) => state.product.entities;
 
 export default productReducer;
