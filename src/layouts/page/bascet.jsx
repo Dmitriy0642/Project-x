@@ -22,7 +22,9 @@ const Bascet = () => {
         setAcceptedData(toFormat);
         toFormat.map((item) => {
           item.quantity.forEach((quan) => {
-            setAmount((prevState) => (prevState += item.price * quan.value));
+            setAmount(
+              (prevState) => (prevState += Number(item.price) * quan.value)
+            );
           });
         });
       })
@@ -30,10 +32,10 @@ const Bascet = () => {
   }, []);
 
   const handleIncrementAmount = (price) => {
-    setAmount((prevState) => (prevState += price));
+    setAmount((prevState) => (prevState += Number(price)));
   };
   const handleDecrementAmount = (price) => {
-    setAmount((prevState) => (prevState -= price));
+    setAmount((prevState) => (prevState -= Number(price)));
   };
 
   async function overWriting(balance) {

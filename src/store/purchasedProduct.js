@@ -7,14 +7,14 @@ const purchasedSlice = createSlice({
   initialState: {
     isLoading: true,
     error: null,
-    entities: null,
+    entities: [],
   },
   reducers: {
     purchasedRequested: (state) => {
       state.isLoading = true;
     },
     purchasedReceved: (state, action) => {
-      state.entities = action.payload;
+      state.entities.push(action.payload);
       state.isLoading = false;
     },
     purchasedRequestFailed: (state, action) => {
@@ -32,7 +32,7 @@ export const loadListPurchased = () => async (dispatch) => {
   dispatch(purchasedRequested());
   try {
     const { data } = await httpService.get(
-      "salesProduct/" + `/payload` + `.json?auth=${getAccesToken()}`
+      "/salesProduct" + `.json?auth=${getAccesToken()}`
     );
     dispatch(purchasedReceved(data));
   } catch (error) {
