@@ -62,9 +62,9 @@ const Order = () => {
       "Спасибо за покупку в нашем магазине,ваш заказ оформлен ожидайте обратной связи"
     );
 
-    // history.push("/");
+    history.push("/");
     await orderService.refreshBascetAfterBuying();
-    // window.location.reload();
+    window.location.reload();
   };
   const handleChange = ({ target }) => {
     setData((prevState) => ({ ...prevState, [target.name]: target.value }));

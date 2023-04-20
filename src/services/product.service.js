@@ -1,7 +1,7 @@
 import httpService from "./http.service";
 import localStorageService from "./localStorage.service";
 
-const productEndPoint = "product/";
+const productEndPoint = "product";
 
 const productSerivce = {
   createProduct: async (payload) => {
@@ -33,6 +33,19 @@ const productSerivce = {
     const accesToken = localStorageService.getAccesToken();
     const { data } = await httpService.get(
       "/salesProduct" + `.json?auth=${accesToken}`
+    );
+    return data;
+  },
+  changeQuantity: async (id, quan) => {
+    console.log(id);
+    console.log(quan);
+    const accesToken = localStorageService.getAccesToken();
+    const { data } = await httpService.put(
+      `${productEndPoint}` +
+        `/${id}` +
+        `/quantity/` +
+        `.json?auth=${accesToken}`,
+      quan
     );
     return data;
   },

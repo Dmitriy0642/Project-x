@@ -28,7 +28,7 @@ const AdminPanel = () => {
     if (other === "delete") {
       return <DeleteProduct />;
     }
-    if (other === "changeProduct") {
+    if (other === "changeQuantity") {
       return <ChangeProduct />;
     }
 
@@ -52,9 +52,9 @@ const AdminPanel = () => {
               <h2 className={styles.title}>Удаление товара</h2>
             </div>
           </Link>
-          <Link to="/adminPage/changeProduct">
+          <Link to="/adminPage/changeQuantity">
             <div className={styles.chage_product}>
-              <h2 className={styles.title}>Редактировать товар</h2>
+              <h2 className={styles.title}>Добавить размер</h2>
             </div>
           </Link>
         </div>
