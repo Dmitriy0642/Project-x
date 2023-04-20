@@ -5,18 +5,22 @@ import { getPurchased } from "../../store/purchasedProduct";
 const PurchasedProduct = () => {
   const [amount, setAmount] = useState(0);
   const data = useSelector(getPurchased());
-  console.log(data);
+
   useEffect(() => {
-    if (data !== null) {
+    if (data[0] !== null) {
       data.map((item) => {
         item.quantity.forEach((quan) => {
-          setAmount((prevState) => (prevState += item.price * quan.value));
+          setAmount(
+            (prevState) => (prevState += Number(item.price) * quan.value)
+          );
         });
       });
     }
   }, [data]);
 
-  return data !== null ? (
+  return data[0] === null ? (
+    <h2>Пользователи не покупали товары сегодня</h2>
+  ) : (
     <div className={styles.container}>
       <h2 className={styles.countAmount}>
         Общая сумма проданых товаров : {amount}$
@@ -44,8 +48,6 @@ const PurchasedProduct = () => {
         ))}
       </div>
     </div>
-  ) : (
-    <h1>Loading...</h1>
   );
 };
 
