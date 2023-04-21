@@ -7,14 +7,14 @@ const purchasedSlice = createSlice({
   initialState: {
     isLoading: true,
     error: null,
-    entities: [],
+    entities: null,
   },
   reducers: {
     purchasedRequested: (state) => {
       state.isLoading = true;
     },
     purchasedReceved: (state, action) => {
-      state.entities.push(action.payload);
+      state.entities = action.payload;
       state.isLoading = false;
     },
     purchasedRequestFailed: (state, action) => {
@@ -34,7 +34,9 @@ export const loadListPurchased = () => async (dispatch) => {
     const { data } = await httpService.get(
       "/salesProduct" + `.json?auth=${getAccesToken()}`
     );
-    dispatch(purchasedReceved(data));
+    const foramtDataToArr = Object.keys(data).map((item) => data[item]);
+
+    dispatch(purchasedReceved(foramtDataToArr));
   } catch (error) {
     dispatch(purchasedRequestFailed(error.message));
   }

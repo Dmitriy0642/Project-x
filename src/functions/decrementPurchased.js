@@ -31,6 +31,7 @@ const decrementPurchased = async (data, quan) => {
       price: data.price,
       quantity: decrementQuan,
     };
+
     orderService.changesDataProduct(newData);
   });
 };

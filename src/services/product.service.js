@@ -23,7 +23,7 @@ const productSerivce = {
   },
   addSalesProduct: async (payload) => {
     const accesToken = localStorageService.getAccesToken();
-    const { data } = await httpService.patch(
+    const { data } = await httpService.put(
       "/salesProduct" + `/${payload._id}` + `.json?auth=${accesToken}`,
       payload
     );
@@ -36,9 +36,18 @@ const productSerivce = {
     );
     return data;
   },
+  getSalesProductQuantity: async (item) => {
+    const accesToken = localStorageService.getAccesToken();
+    const { data } = await httpService.get(
+      "/salesProduct" +
+        `/${item._id}` +
+        "/quantity" +
+        `.json?auth=${accesToken}`
+    );
+    console.log(data);
+    return data;
+  },
   changeQuantity: async (id, quan) => {
-    console.log(id);
-    console.log(quan);
     const accesToken = localStorageService.getAccesToken();
     const { data } = await httpService.put(
       `${productEndPoint}` +

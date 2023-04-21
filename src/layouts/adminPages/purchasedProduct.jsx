@@ -18,9 +18,7 @@ const PurchasedProduct = () => {
     }
   }, [data]);
 
-  return data[0] === null ? (
-    <h2>Пользователи не покупали товары сегодня</h2>
-  ) : (
+  return data !== null ? (
     <div className={styles.container}>
       <h2 className={styles.countAmount}>
         Общая сумма проданых товаров : {amount}$
@@ -48,6 +46,8 @@ const PurchasedProduct = () => {
         ))}
       </div>
     </div>
+  ) : (
+    <h2>Loading</h2>
   );
 };
 

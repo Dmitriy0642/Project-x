@@ -47,7 +47,6 @@ const Order = () => {
       if (dataFromBascet !== undefined) {
         dataFromBascet.map((item) => decrementPurchased(item, item.quantity));
       }
-
       await dataFromBascet.forEach((item) =>
         orderService.createPurchasedProd(item)
       );
@@ -57,14 +56,15 @@ const Order = () => {
     } catch (error) {
       console.log(error.message);
     }
-
     toast.success(
       "Спасибо за покупку в нашем магазине,ваш заказ оформлен ожидайте обратной связи"
     );
 
     history.push("/");
     await orderService.refreshBascetAfterBuying();
-    window.location.reload();
+    // setTimeout(() => {
+    //   window.location.reload();
+    // }, 3000);
   };
   const handleChange = ({ target }) => {
     setData((prevState) => ({ ...prevState, [target.name]: target.value }));

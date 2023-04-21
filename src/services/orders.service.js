@@ -24,10 +24,22 @@ const orderService = {
 
     return data;
   },
-  createPurchasedProd: async (prod) => {
-    console.log(prod);
+  getPurchasedProdQuantity: async (item) => {
     const accesToken = localStorageService.getAccesToken();
-    const { data } = await httpService.patch(
+    const { data } = await httpService.get(
+      `${userEndPoint}` +
+        localStorageService.getUserId() +
+        `/purchasedItem` +
+        `/${item._id}` +
+        "/quantity" +
+        `.json?auth=${accesToken}`
+    );
+    console.log(data);
+    return data;
+  },
+  createPurchasedProd: async (prod) => {
+    const accesToken = localStorageService.getAccesToken();
+    const { data } = await httpService.put(
       `${userEndPoint}` +
         localStorageService.getUserId() +
         `/purchasedItem` +
