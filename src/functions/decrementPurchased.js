@@ -10,18 +10,18 @@ const decrementPurchased = async (data, quan) => {
         }
       });
     }
+
     const quantityFromDb = filtradeDataByBascet[0].quantity;
     const decrementQuan = quantityFromDb.map((item, index) => {
-      if (`${item.size}` === `${quan[index].size}`) {
-        if (quan[index].value > 0) {
-          return {
-            ...item,
-            value: (item.value -= quan[index].value),
-          };
-        }
+      if (quan[index].value > 0) {
+        return {
+          ...item,
+          value: (item.value -= quan[index].value),
+        };
       }
       return item;
     });
+
     const newData = {
       _id: data._id,
       category: data.category,

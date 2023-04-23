@@ -44,7 +44,6 @@ const productSerivce = {
         "/quantity" +
         `.json?auth=${accesToken}`
     );
-    console.log(data);
     return data;
   },
   changeQuantity: async (id, quan) => {

@@ -6,8 +6,8 @@ import RadioField from "../../forms/radioField";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
 import orderService from "../../services/orders.service";
-import decrementPurchased from "../../functions/decrementPurchased";
-import productSerivce from "../../services/product.service";
+import writingDataToDb from "../../functions/writingDataToDb";
+
 const Order = () => {
   const history = useHistory();
   const [dataFromBascet, setDataFromBascet] = useState();
@@ -43,16 +43,7 @@ const Order = () => {
     const isValid = validate();
     if (!isValid) return;
     try {
-      await orderService.create(data);
-      if (dataFromBascet !== undefined) {
-        dataFromBascet.map((item) => decrementPurchased(item, item.quantity));
-      }
-      await dataFromBascet.forEach((item) =>
-        orderService.createPurchasedProd(item)
-      );
-      await dataFromBascet.forEach((item) =>
-        productSerivce.addSalesProduct(item)
-      );
+      await writingDataToDb(data, dataFromBascet);
     } catch (error) {
       console.log(error.message);
     }
@@ -62,9 +53,9 @@ const Order = () => {
 
     history.push("/");
     await orderService.refreshBascetAfterBuying();
-    // setTimeout(() => {
-    //   window.location.reload();
-    // }, 3000);
+    setTimeout(() => {
+      window.location.reload();
+    }, 3000);
   };
   const handleChange = ({ target }) => {
     setData((prevState) => ({ ...prevState, [target.name]: target.value }));

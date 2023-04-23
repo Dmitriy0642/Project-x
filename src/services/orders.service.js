@@ -18,7 +18,6 @@ const orderService = {
       `${userEndPoint}` +
         localStorageService.getUserId() +
         `/purchasedItem` +
-        `/prod` +
         `.json?auth=${accesToken}`
     );
 
@@ -34,7 +33,6 @@ const orderService = {
         "/quantity" +
         `.json?auth=${accesToken}`
     );
-    console.log(data);
     return data;
   },
   createPurchasedProd: async (prod) => {
@@ -57,9 +55,16 @@ const orderService = {
     );
     return data;
   },
+  getInitiProdById: async (product) => {
+    const accesToken = localStorageService.getAccesToken();
+    const { data } = await httpService.get(
+      "/product" + `/${product._id}` + `.json?auth=${accesToken}`
+    );
+    return data;
+  },
   changesDataProduct: async (product) => {
     const accesToken = localStorageService.getAccesToken();
-    const { data } = await httpService.patch(
+    const { data } = await httpService.put(
       "/product" + `/${product._id}` + `.json?auth=${accesToken}`,
       product
     );
