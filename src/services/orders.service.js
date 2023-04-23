@@ -18,20 +18,32 @@ const orderService = {
       `${userEndPoint}` +
         localStorageService.getUserId() +
         `/purchasedItem` +
-        `/prod` +
         `.json?auth=${accesToken}`
     );
 
     return data;
   },
-  createPurchasedProd: async (prod) => {
+  getPurchasedProdQuantity: async (item) => {
     const accesToken = localStorageService.getAccesToken();
-    const { data } = await httpService.patch(
+    const { data } = await httpService.get(
       `${userEndPoint}` +
         localStorageService.getUserId() +
         `/purchasedItem` +
+        `/${item._id}` +
+        "/quantity" +
+        `.json?auth=${accesToken}`
+    );
+    return data;
+  },
+  createPurchasedProd: async (prod) => {
+    const accesToken = localStorageService.getAccesToken();
+    const { data } = await httpService.put(
+      `${userEndPoint}` +
+        localStorageService.getUserId() +
+        `/purchasedItem` +
+        `/${prod._id}` +
         `.json?auth=${accesToken}`,
-      { prod }
+      prod
     );
 
     return data;
@@ -43,9 +55,16 @@ const orderService = {
     );
     return data;
   },
+  getInitiProdById: async (product) => {
+    const accesToken = localStorageService.getAccesToken();
+    const { data } = await httpService.get(
+      "/product" + `/${product._id}` + `.json?auth=${accesToken}`
+    );
+    return data;
+  },
   changesDataProduct: async (product) => {
     const accesToken = localStorageService.getAccesToken();
-    const { data } = await httpService.patch(
+    const { data } = await httpService.put(
       "/product" + `/${product._id}` + `.json?auth=${accesToken}`,
       product
     );

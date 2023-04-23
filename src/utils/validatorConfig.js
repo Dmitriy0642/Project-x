@@ -71,5 +71,45 @@ const validatorConfig = {
       message: "Продукт обязателен для заполнения",
     },
   },
+  size: {
+    isRequired: {
+      message: "Размер обязателен к заполнению",
+    },
+  },
+  size1: {
+    isRequired: {
+      message: "Размер обязателен к заполнению",
+    },
+  },
+  size2: {
+    isRequired: {
+      message: "Размер обязателен к заполнению",
+    },
+  },
+  size3: {
+    isRequired: {
+      message: "Размер обязателен к заполнению",
+    },
+  },
+  value: {
+    isRequired: {
+      message: "Количество товара обязательно к заполнению",
+    },
+  },
+  value1: {
+    isRequired: {
+      message: "Количество товара обязательно к заполнению",
+    },
+  },
+  value2: {
+    isRequired: {
+      message: "Количество товара обязательно к заполнению",
+    },
+  },
+  value3: {
+    isRequired: {
+      message: "Количество товара обязательно к заполнению",
+    },
+  },
 };
 export default validatorConfig;

@@ -6,11 +6,10 @@ import RadioField from "../../forms/radioField";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
 import orderService from "../../services/orders.service";
-import decrementPurchased from "../../functions/decrementPurchased";
-import productSerivce from "../../services/product.service";
+import writingDataToDb from "../../functions/writingDataToDb";
+
 const Order = () => {
   const history = useHistory();
-  const [purchasedProduct, setPurchasedProduct] = useState(null);
   const [dataFromBascet, setDataFromBascet] = useState();
   const [data, setData] = useState({
     numtel: "",
@@ -20,19 +19,14 @@ const Order = () => {
     post: "СДЭК",
   });
   const [errors, setErrors] = useState({});
+
   useEffect(() => {
     validate();
-    const getDataFormBascet = orderService
+    orderService
       .getBascetPurchases()
       .then((res) => {
         const toFormat = Object.keys(res).map((item) => res[item]);
         setDataFromBascet(toFormat);
-      })
-      .catch((error) => error.message);
-    const getSalesProduct = orderService
-      .getPurchasedProd()
-      .then((res) => {
-        setPurchasedProduct(res);
       })
       .catch((error) => error.message);
   }, [data]);
@@ -49,28 +43,19 @@ const Order = () => {
     const isValid = validate();
     if (!isValid) return;
     try {
-      await orderService.create(data);
-      if (dataFromBascet !== undefined) {
-        dataFromBascet.map((item) => decrementPurchased(item, item.quantity));
-      }
-      if (purchasedProduct !== null) {
-        purchasedProduct.forEach((item) => {
-          dataFromBascet.push(item);
-        });
-      }
-      await orderService.createPurchasedProd(dataFromBascet);
-      await productSerivce.addSalesProduct(dataFromBascet);
+      await writingDataToDb(data, dataFromBascet);
     } catch (error) {
       console.log(error.message);
     }
-
     toast.success(
       "Спасибо за покупку в нашем магазине,ваш заказ оформлен ожидайте обратной связи"
     );
 
     history.push("/");
     await orderService.refreshBascetAfterBuying();
-    window.location.reload();
+    setTimeout(() => {
+      window.location.reload();
+    }, 3000);
   };
   const handleChange = ({ target }) => {
     setData((prevState) => ({ ...prevState, [target.name]: target.value }));

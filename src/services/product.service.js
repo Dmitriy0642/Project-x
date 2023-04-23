@@ -1,7 +1,7 @@
 import httpService from "./http.service";
 import localStorageService from "./localStorage.service";
 
-const productEndPoint = "product/";
+const productEndPoint = "product";
 
 const productSerivce = {
   createProduct: async (payload) => {
@@ -24,7 +24,7 @@ const productSerivce = {
   addSalesProduct: async (payload) => {
     const accesToken = localStorageService.getAccesToken();
     const { data } = await httpService.put(
-      "salesProduct/" + `.json?auth=${accesToken}`,
+      "/salesProduct" + `/${payload._id}` + `.json?auth=${accesToken}`,
       payload
     );
     return data;
@@ -32,7 +32,28 @@ const productSerivce = {
   getSalesProduct: async () => {
     const accesToken = localStorageService.getAccesToken();
     const { data } = await httpService.get(
-      "salesProduct/" + `.json?auth=${accesToken}`
+      "/salesProduct" + `.json?auth=${accesToken}`
+    );
+    return data;
+  },
+  getSalesProductQuantity: async (item) => {
+    const accesToken = localStorageService.getAccesToken();
+    const { data } = await httpService.get(
+      "/salesProduct" +
+        `/${item._id}` +
+        "/quantity" +
+        `.json?auth=${accesToken}`
+    );
+    return data;
+  },
+  changeQuantity: async (id, quan) => {
+    const accesToken = localStorageService.getAccesToken();
+    const { data } = await httpService.put(
+      `${productEndPoint}` +
+        `/${id}` +
+        `/quantity/` +
+        `.json?auth=${accesToken}`,
+      quan
     );
     return data;
   },

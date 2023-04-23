@@ -1,32 +1,31 @@
 import React, { useEffect, useState } from "react";
-import productSerivce from "../../services/product.service";
 import styles from "../layouts.styles/purchase.module.css";
+import { useSelector } from "react-redux";
+import { getPurchased } from "../../store/purchasedProduct";
 const PurchasedProduct = () => {
-  const [salesProduct, setSalesProduct] = useState();
   const [amount, setAmount] = useState(0);
+  const data = useSelector(getPurchased());
 
   useEffect(() => {
-    productSerivce
-      .getSalesProduct()
-      .then((res) => {
-        setSalesProduct(res);
-        res.map((item) => {
-          item.quantity.forEach((quan) => {
-            setAmount((prevState) => (prevState += item.price * quan.value));
-          });
+    if (data[0] !== null) {
+      data.map((item) => {
+        item.quantity.forEach((quan) => {
+          setAmount(
+            (prevState) => (prevState += Number(item.price) * quan.value)
+          );
         });
-      })
-      .catch((error) => error.message);
-  }, []);
-  console.log(amount);
-  return salesProduct !== undefined ? (
+      });
+    }
+  }, [data]);
+
+  return data !== null ? (
     <div className={styles.container}>
       <h2 className={styles.countAmount}>
         Общая сумма проданых товаров : {amount}$
       </h2>
       <h2 className={styles.title}>Проданные товары</h2>
       <div className={styles.block}>
-        {salesProduct.map((item) => (
+        {data.map((item) => (
           <div key={item._id} className={styles.item_block}>
             <img src={item.img[0]} className={styles.img} />
             <div className={styles.info_about_product}>
@@ -48,7 +47,7 @@ const PurchasedProduct = () => {
       </div>
     </div>
   ) : (
-    <h1>Loading...</h1>
+    <h2>Loading</h2>
   );
 };
 
