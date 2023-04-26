@@ -55,13 +55,6 @@ const orderService = {
     );
     return data;
   },
-  getInitiProdById: async (product) => {
-    const accesToken = localStorageService.getAccesToken();
-    const { data } = await httpService.get(
-      "/product" + `/${product._id}` + `.json?auth=${accesToken}`
-    );
-    return data;
-  },
   changesDataProduct: async (product) => {
     const accesToken = localStorageService.getAccesToken();
     const { data } = await httpService.put(
