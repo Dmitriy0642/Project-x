@@ -29,23 +29,6 @@ const productSerivce = {
     );
     return data;
   },
-  getSalesProduct: async () => {
-    const accesToken = localStorageService.getAccesToken();
-    const { data } = await httpService.get(
-      "/salesProduct" + `.json?auth=${accesToken}`
-    );
-    return data;
-  },
-  getSalesProductQuantity: async (item) => {
-    const accesToken = localStorageService.getAccesToken();
-    const { data } = await httpService.get(
-      "/salesProduct" +
-        `/${item._id}` +
-        "/quantity" +
-        `.json?auth=${accesToken}`
-    );
-    return data;
-  },
   changeQuantity: async (id, quan) => {
     const accesToken = localStorageService.getAccesToken();
     const { data } = await httpService.put(

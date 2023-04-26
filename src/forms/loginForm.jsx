@@ -4,12 +4,13 @@ import { validator } from "../utils/validator";
 import validatorConfig from "../utils/validatorConfig";
 import { useDispatch } from "react-redux";
 import { logIn } from "../store/users";
+import { useHistory } from "react-router-dom";
 
 const LoginForm = () => {
   const [data, setData] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
   const dispatch = useDispatch();
-
+  const history = useHistory();
   const handleChange = ({ target }) => {
     setData((prevState) => ({ ...prevState, [target.name]: target.value }));
   };
@@ -27,7 +28,9 @@ const LoginForm = () => {
     const isValid = validate();
     if (!isValid) return;
     dispatch(logIn(data));
+    history.push("/");
   };
+
   return (
     <form onSubmit={handleSubmit}>
       <TextField
