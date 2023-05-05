@@ -14,6 +14,16 @@ app.use(express.urlencoded({ extended: false }));
 //   console.log("development");
 // }
 
-app.listen(PORT, () => {
-  console.log(`Server started on port ${PORT}`);
-});
+async function start() {
+  try {
+    await mongoose.connect(config.get("mongoUri"));
+    app.listen(PORT, () => {
+      console.log(`Server started on port ${PORT}`);
+    });
+  } catch (e) {
+    console.log(e.message);
+    process.exit(1);
+  }
+}
+
+start();
