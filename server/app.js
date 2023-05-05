@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const config = require("config");
+const initDataBase = require("./startUp/initDataBase.js");
 
 const app = express();
 const PORT = config.get("port") ?? 8080;
@@ -16,6 +17,9 @@ app.use(express.urlencoded({ extended: false }));
 
 async function start() {
   try {
+    mongoose.connection.once("open", () => {
+      initDataBase();
+    });
     await mongoose.connect(config.get("mongoUri"));
     app.listen(PORT, () => {
       console.log(`Server started on port ${PORT}`);
