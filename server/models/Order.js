@@ -11,6 +11,7 @@ const schema = new Schema(
       required: true,
     },
     sity: { type: String, required: true },
+    purchasedItem: { type: Array, required: true },
   },
   {
     timestamps: true,
