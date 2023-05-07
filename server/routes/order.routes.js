@@ -13,4 +13,14 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.post("/order", async (req, res) => {
+  try {
+    const { order } = req.body;
+  } catch (e) {
+    res.status(500).json({
+      message: "На сервере произошла ошибка. Попробуйте позже",
+    });
+  }
+});
+
 module.exports = router;

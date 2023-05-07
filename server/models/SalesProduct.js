@@ -2,12 +2,11 @@ const { Schema, model } = require("mongoose");
 
 const schema = new Schema(
   {
-    id: { type: Schema.Types.ObjectId, ref: "Product", required: true },
     category: { type: String, required: true },
     firm: { type: String, required: true },
     img: { type: Array, required: true },
     name: { type: String, required: true },
-    price: { type: String, required: true },
+    price: { type: Number, required: true },
     quantity: { type: Array, required: true },
   },
   {
@@ -15,4 +14,4 @@ const schema = new Schema(
   }
 );
 
-module.exports = model("Token", schema);
+module.exports = model("SalesProduct", schema);
