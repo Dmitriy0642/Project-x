@@ -13,9 +13,39 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post("/order", async (req, res) => {
+///create order
+router.post("/", async (req, res) => {
   try {
-    const { order } = req.body;
+    const data = req.body;
+    const createOrder = await Order.create(data);
+    res.status(200).send(createOrder);
+  } catch (e) {
+    res.status(500).json({
+      message: "На сервере произошла ошибка. Попробуйте позже",
+    });
+  }
+});
+///get orderById
+
+router.get("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const createOrder = await Order.findById(id);
+    res.status(200).send(createOrder);
+  } catch (e) {
+    res.status(500).json({
+      message: "На сервере произошла ошибка. Попробуйте позже",
+    });
+  }
+});
+///changeById
+router.patch("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const createOrder = await Order.findByIdAndUpdate(id, req.body, {
+      new: true,
+    });
+    res.status(200).send(createOrder);
   } catch (e) {
     res.status(500).json({
       message: "На сервере произошла ошибка. Попробуйте позже",

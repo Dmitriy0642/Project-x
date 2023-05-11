@@ -2,6 +2,7 @@ const express = require("express");
 const Product = require("../models/Product");
 const router = express.Router({ mergeParams: true });
 
+///get all product
 router.get("/", async (req, res) => {
   try {
     const list = await Product.find();
