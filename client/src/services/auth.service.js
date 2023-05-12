@@ -4,11 +4,11 @@ import localStorageService, {
   getRefrestTokent,
   setTokens,
 } from "./localStorage.service";
-const key = "AIzaSyCFKm-NzKP4yGvPnz2hgVWOjk0zxb4d_to";
+import config from "../config.json";
 
 const authService = {
   signUp: async ({ email, password }) => {
-    const url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${key}`;
+    const url = config.ApiEndPOint + "/auth/" + "signUp";
     try {
       const data = axios.post(url, {
         email,
@@ -31,7 +31,7 @@ const authService = {
     }
   },
   logIn: async ({ email, password }) => {
-    const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${key}`;
+    const url = config.ApiEndPOint + "/auth/" + "signInWithPassword";
     try {
       const data = axios.post(url, {
         email,
@@ -54,7 +54,7 @@ const authService = {
   },
 
   refreshToken: async () => {
-    const url = `https://securetoken.googleapis.com/v1/token?key=${key}`;
+    const url = config.ApiEndPOint + "/auth/" + "token";
     const refreshToken = getRefrestTokent();
     const { data } = await axios.post(url, {
       grant_type: "refresh_token",
