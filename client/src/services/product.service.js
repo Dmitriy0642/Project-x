@@ -1,4 +1,4 @@
-import httpService from "./http.service";
+import http from "./http.service";
 import localStorageService from "./localStorage.service";
 
 const productEndPoint = "product";
@@ -8,7 +8,7 @@ const productSerivce = {
     const accesToken = localStorageService.getAccesToken();
     const changeImg = payload.img.split(",");
     payload.img = changeImg;
-    const { data } = await httpService.put(
+    const { data } = await http.put(
       `${productEndPoint}` + `${payload._id}` + `.json?auth=${accesToken}`,
       payload
     );
@@ -16,14 +16,14 @@ const productSerivce = {
   },
   deleteProduct: async (payload) => {
     const accesToken = localStorageService.getAccesToken();
-    const { data } = await httpService.delete(
+    const { data } = await http.delete(
       `${productEndPoint}` + `${payload.product}` + `.json?auth=${accesToken}`
     );
     return data;
   },
   addSalesProduct: async (payload) => {
     const accesToken = localStorageService.getAccesToken();
-    const { data } = await httpService.put(
+    const { data } = await http.put(
       "/salesProduct" + `/${payload._id}` + `.json?auth=${accesToken}`,
       payload
     );
@@ -31,7 +31,7 @@ const productSerivce = {
   },
   changeQuantity: async (id, quan) => {
     const accesToken = localStorageService.getAccesToken();
-    const { data } = await httpService.put(
+    const { data } = await http.put(
       `${productEndPoint}` +
         `/${id}` +
         `/quantity/` +

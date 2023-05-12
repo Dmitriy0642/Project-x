@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import httpService from "../services/http.service";
-import { getAccesToken } from "../services/localStorage.service";
+import http from "../services/http.service";
 const productSlice = createSlice({
   name: "product",
   initialState: {
@@ -47,9 +46,8 @@ export const loadProductList = () => async (dispatch) => {
   dispatch(productRequested());
   try {
     const initiArr = [];
-    const { data } = await httpService.get(
-      "product" + `.json?auth=${getAccesToken()}`
-    );
+    const { data } = await http.get("product");
+    console.log(data);
     Object.keys(data).forEach((item) => initiArr.push(data[item]));
     dispatch(productReceved(initiArr));
   } catch (error) {

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import httpService from "../services/http.service";
+import http from "../services/http.service";
 import { getAccesToken } from "../services/localStorage.service";
 const categorySlice = createSlice({
   name: "category",
@@ -28,7 +28,7 @@ export const loadListCategory = () => async (dispatch) => {
   dispatch(categoryRequested());
   try {
     const initiArr = [];
-    const { data } = await httpService.get(
+    const { data } = await http.get(
       "category" + `.json?auth=${getAccesToken()}`
     );
     Object.keys(data).forEach((item) => initiArr.push(data[item]));

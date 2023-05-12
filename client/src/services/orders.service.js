@@ -1,10 +1,11 @@
-import httpService from "./http.service";
+import http from "./http.service";
 import localStorageService from "./localStorage.service";
+
 const userEndPoint = "order/";
 const orderService = {
   create: async (payload) => {
     const accesToken = localStorageService.getAccesToken();
-    const { data } = await httpService.patch(
+    const { data } = await http.patch(
       `${userEndPoint}` +
         localStorageService.getUserId() +
         `.json?auth=${accesToken}`,
@@ -14,7 +15,7 @@ const orderService = {
   },
   getPurchasedProd: async () => {
     const accesToken = localStorageService.getAccesToken();
-    const { data } = await httpService.get(
+    const { data } = await http.get(
       `${userEndPoint}` +
         localStorageService.getUserId() +
         `/purchasedItem` +
@@ -25,7 +26,7 @@ const orderService = {
   },
   getPurchasedProdQuantity: async (item) => {
     const accesToken = localStorageService.getAccesToken();
-    const { data } = await httpService.get(
+    const { data } = await http.get(
       `${userEndPoint}` +
         localStorageService.getUserId() +
         `/purchasedItem` +
@@ -37,7 +38,7 @@ const orderService = {
   },
   createPurchasedProd: async (prod) => {
     const accesToken = localStorageService.getAccesToken();
-    const { data } = await httpService.put(
+    const { data } = await http.put(
       `${userEndPoint}` +
         localStorageService.getUserId() +
         `/purchasedItem` +
@@ -50,14 +51,12 @@ const orderService = {
   },
   getInitiProduct: async () => {
     const accesToken = localStorageService.getAccesToken();
-    const { data } = await httpService.get(
-      "/product" + `.json?auth=${accesToken}`
-    );
+    const { data } = await http.get("/product" + `.json?auth=${accesToken}`);
     return data;
   },
   changesDataProduct: async (product) => {
     const accesToken = localStorageService.getAccesToken();
-    const { data } = await httpService.put(
+    const { data } = await http.put(
       "/product" + `/${product._id}` + `.json?auth=${accesToken}`,
       product
     );
@@ -65,7 +64,7 @@ const orderService = {
   },
   createBascetPurchases: async (obj) => {
     const accesToken = localStorageService.getAccesToken();
-    const { data } = await httpService.patch(
+    const { data } = await http.patch(
       "/bascet/" +
         localStorageService.getUserId() +
         `/${obj._id}` +
@@ -76,14 +75,14 @@ const orderService = {
   },
   getBascetPurchases: async () => {
     const accesToken = localStorageService.getAccesToken();
-    const { data } = await httpService.get(
+    const { data } = await http.get(
       `/bascet/` + localStorageService.getUserId() + `.json?auth=${accesToken}`
     );
     return data;
   },
   deleteProductInBascet: async (id) => {
     const accesToken = localStorageService.getAccesToken();
-    const { data } = await httpService.delete(
+    const { data } = await http.delete(
       "/bascet/" +
         localStorageService.getUserId() +
         `/${id}` +
@@ -93,9 +92,7 @@ const orderService = {
   },
   refreshBascetAfterBuying: async () => {
     const accesToken = localStorageService.getAccesToken();
-    const { data } = await httpService.delete(
-      "/bascet" + `.json?auth=${accesToken}`
-    );
+    const { data } = await http.delete("/bascet" + `.json?auth=${accesToken}`);
     return data;
   },
 };
