@@ -4,13 +4,15 @@ import localStorageService, {
   getRefrestTokent,
   setTokens,
 } from "./localStorage.service";
-const key = "AIzaSyCFKm-NzKP4yGvPnz2hgVWOjk0zxb4d_to";
+import config from "../config.json";
 
+const httpAuth = axios.create({
+  baseURL: config.ApiEndPOint + "/auth/",
+});
 const authService = {
   signUp: async ({ email, password }) => {
-    const url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${key}`;
     try {
-      const data = axios.post(url, {
+      const data = await httpAuth.post("signUp", {
         email,
         password,
         returnSecureToken: true,
@@ -31,9 +33,8 @@ const authService = {
     }
   },
   logIn: async ({ email, password }) => {
-    const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${key}`;
     try {
-      const data = axios.post(url, {
+      const data = await httpAuth.post("signInWithPassword", {
         email,
         password,
         returnSecureToken: true,
@@ -54,18 +55,12 @@ const authService = {
   },
 
   refreshToken: async () => {
-    const url = `https://securetoken.googleapis.com/v1/token?key=${key}`;
     const refreshToken = getRefrestTokent();
-    const { data } = await axios.post(url, {
+    const { data } = await httpAuth.post("token", {
       grant_type: "refresh_token",
       refresh_token: refreshToken,
     });
-    localStorageService.setTokens({
-      refreshToken: data.refresh_token,
-      idToken: data.id_token,
-      localId: data.user_id,
-      expiresIn: data.expires_in,
-    });
+    localStorageService.setTokens(data);
     return data;
   },
 };

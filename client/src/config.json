@@ -1,3 +1,4 @@
 {
-    "ApiEndPOint":"https://my-project-b2b2a-default-rtdb.europe-west1.firebasedatabase.app/"
+    "ApiEndPOint":"http://localhost:8080/api",
+    "isFireBase":false
 }

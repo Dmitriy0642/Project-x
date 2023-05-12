@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import httpService from "../services/http.service";
-import { getAccesToken } from "../services/localStorage.service";
+import http from "../services/http.service";
 
 const purchasedSlice = createSlice({
   name: "purchasedProduct",
@@ -31,9 +30,7 @@ export default purchasedReducer;
 export const loadListPurchased = () => async (dispatch) => {
   dispatch(purchasedRequested());
   try {
-    const { data } = await httpService.get(
-      "/salesProduct" + `.json?auth=${getAccesToken()}`
-    );
+    const { data } = await http.get("salesProduct");
     const foramtDataToArr = Object.keys(data).map((item) => data[item]);
 
     dispatch(purchasedReceved(foramtDataToArr));

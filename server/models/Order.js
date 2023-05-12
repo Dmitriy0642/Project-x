@@ -2,24 +2,18 @@ const { Schema, model } = require("mongoose");
 
 const schema = new Schema(
   {
-    address: { type: String, required: true },
-    fio: { type: String, required: true },
-    numtel: { type: String, required: true },
+    user: { type: Schema.Types.ObjectId, ref: "User" },
+    addres: { type: String },
+    fio: { type: String },
+    numtel: { type: String },
     post: {
       type: String,
       enum: ["ПочтаРоссии", "СДЭК", "DHL"],
-      required: true,
     },
-    sity: { type: String, required: true },
+    sity: { type: String },
     purchasedItem: {
       type: Array,
       _id: { type: Schema.Types.ObjectId, ref: "Product" },
-      category: { type: String, required: true },
-      firm: { type: String, required: true },
-      img: { type: Array, required: true },
-      name: { type: String, required: true },
-      price: { type: String, required: true },
-      quantity: { type: Array, required: true },
     },
   },
   {

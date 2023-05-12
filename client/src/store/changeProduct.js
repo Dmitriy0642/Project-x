@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import httpService from "../services/http.service";
 import { getAccesToken } from "../services/localStorage.service";
 import { toast } from "react-toastify";
 import orderService from "../services/orders.service";
+import http from "../services/http.service";
 
 const changeProductSlice = createSlice({
   name: "changeProduct",
@@ -35,7 +35,7 @@ const {
 export const loadChangeProductList = () => async (dispatch) => {
   dispatch(changeProductRequested());
   try {
-    const { data } = await httpService.get(
+    const { data } = await http.get(
       "product" + `.json?auth=${getAccesToken()}`
     );
     const arrInitValues = [];
