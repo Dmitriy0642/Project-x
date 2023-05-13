@@ -8,9 +8,10 @@ const app = express();
 const PORT = config.get("port") ?? 8080;
 
 app.use(express.json());
+app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use("/api", routes);
-app.use(cors());
+
 // if (process.env.NODE_ENV === "production") {
 //   console.log("Prodcution");
 // } else {

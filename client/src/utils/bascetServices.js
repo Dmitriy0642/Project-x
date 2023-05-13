@@ -35,7 +35,7 @@ const handleIncrement = async (quantity, e, state, data, initialData) => {
 
   const newData = {
     _id: data._id,
-    firm: data.category,
+    firm: data.firm,
     img: [...data.img],
     price: data.price,
     category: data.category,
@@ -77,7 +77,7 @@ const handleDecrement = async (quantity, e, state, data, initialData) => {
 
   const newData = {
     _id: data._id,
-    firm: data.category,
+    firm: data.firm,
     img: [data.img[0], data.img[1]],
     price: data.price,
     category: data.category,
