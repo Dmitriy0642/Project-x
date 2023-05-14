@@ -50,8 +50,7 @@ const orderService = {
     return data;
   },
   getInitiProduct: async () => {
-    const accesToken = localStorageService.getAccesToken();
-    const { data } = await http.get("/product" + `.json?auth=${accesToken}`);
+    const { data } = await http.get("/product");
     return data;
   },
   changesDataProduct: async (product) => {
@@ -63,30 +62,21 @@ const orderService = {
     return data;
   },
   createBascetPurchases: async (obj) => {
-    const accesToken = localStorageService.getAccesToken();
     const { data } = await http.patch(
-      "/bascet/" +
-        localStorageService.getUserId() +
-        `/${obj._id}` +
-        `.json?auth=${accesToken}`,
+      `/bascet/${localStorageService.getUserId()}`,
       obj
     );
     return data;
   },
   getBascetPurchases: async () => {
-    const accesToken = localStorageService.getAccesToken();
     const { data } = await http.get(
-      `/bascet/` + localStorageService.getUserId() + `.json?auth=${accesToken}`
+      `/bascet/${localStorageService.getUserId()}`
     );
     return data;
   },
   deleteProductInBascet: async (id) => {
-    const accesToken = localStorageService.getAccesToken();
     const { data } = await http.delete(
-      "/bascet/" +
-        localStorageService.getUserId() +
-        `/${id}` +
-        `.json?auth=${accesToken}`
+      `/bascet/${localStorageService.getUserId()}`
     );
     return data;
   },

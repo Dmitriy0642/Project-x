@@ -28,7 +28,9 @@ const ReviewCardForm = ({ name, price, _id, quantity, obj }) => {
     if (size === null) {
       toast.error("Размер не выбран");
     } else if (size) {
-      dispatch(changeProductQuantity(changeProduct, obj, size));
+      dispatch(
+        changeProductQuantity(changeProduct, obj, size, currentUser._id)
+      );
     }
   };
 

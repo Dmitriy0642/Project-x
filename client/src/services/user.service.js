@@ -5,9 +5,8 @@ const userEndPoint = "/user/";
 
 const userService = {
   create: async (payload) => {
-    const accesToken = localStorageService.getAccesToken();
     const { data } = await http.put(
-      `${userEndPoint}` + `${payload._id}` + `.json?auth=${accesToken}`,
+      `${userEndPoint}` + `${payload._id}`,
       payload
     );
     return data;

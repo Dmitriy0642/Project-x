@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getAccesToken } from "../services/localStorage.service";
 import { toast } from "react-toastify";
 import orderService from "../services/orders.service";
 import http from "../services/http.service";
@@ -55,7 +54,8 @@ export const loadChangeProductList = () => async (dispatch) => {
 };
 
 export const changeProductQuantity =
-  (changeProduct, selectedProduct, selectedSize) => async (dispatch) => {
+  (changeProduct, selectedProduct, selectedSize, userid) =>
+  async (dispatch) => {
     const filtradeSingleData = changeProduct.filter(
       (item) => item._id === selectedProduct[0]._id
     );
@@ -86,8 +86,9 @@ export const changeProductQuantity =
         }
         return item;
       });
+
       dispatch(changeProductReceved(newData));
-      await orderService.createBascetPurchases(updatedObjData);
+      await orderService.createBascetPurchases(updatedObjData, userid);
     } else if (
       secondQuantityFromObj[0].value === initialyQuantityFromObj[0].value
     ) {

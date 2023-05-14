@@ -54,6 +54,7 @@ export const signUp = (payload) => async (dispatch) => {
     const { data } = await authService.signUp(payload);
     localStorageService.setTokens(data);
     dispatch(usersReceved({ userId: data.localId }));
+    window.location.reload();
   } catch (error) {
     dispatch(usersRequestFiled(error.message));
     if (error.response.data.error.message === "EMAIL_EXISTS") {

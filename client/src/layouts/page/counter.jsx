@@ -13,7 +13,6 @@ const Counter = ({
   const [countInc, setCountDec] = useState();
   const [initProduct, setInitProduct] = useState();
   const initialDataFromDb = orderService.getInitiProduct();
-
   useEffect(() => {
     initialDataFromDb
       .then((res) => {

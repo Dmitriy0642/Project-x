@@ -8,13 +8,13 @@ import NotBascet from "../../ui/notBascet";
 import { useSelector } from "react-redux";
 import { getCurrentUsers } from "../../store/users";
 import orderService from "../../services/orders.service";
+
 const Bascet = () => {
   const currentUser = useSelector(getCurrentUsers());
   const itemFrobBascet = orderService.getBascetPurchases();
   const history = useHistory();
   const [amount, setAmount] = useState(0);
   const [acceptDatafromBascet, setAcceptedData] = useState();
-
   useEffect(() => {
     itemFrobBascet
       .then((res) => {
