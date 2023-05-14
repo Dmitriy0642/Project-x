@@ -12,12 +12,25 @@ router.get("/", async (req, res) => {
     });
   }
 });
-///crete Bascet
-router.post("/", async (req, res) => {
+///crete Bascet and Update
+router.patch("/:id", async (req, res) => {
   try {
-    const data = req.body;
-    const createdBascet = await Bascet.create(data);
-    res.status(200).send(createdBascet);
+    const { id } = req.params;
+    const list = await Bascet.find();
+    const findUserBascet = list.filter(
+      (item) => JSON.stringify(item.user) === JSON.stringify(id)
+    );
+    if (findUserBascet.length === 0) {
+      const newData = { user: id, bascet: req.body };
+      await Bascet.create(newData);
+      res.status(200).send(newData);
+    } else {
+      const bascetId = findUserBascet[0]._id;
+      const findBascetById = await Bascet.findById(bascetId);
+      const newData = { user: findBascetById.user, bascet: req.body };
+      await findBascetById.updateOne(newData);
+      res.status(200).send(newData);
+    }
   } catch (e) {
     res.status(500).json({
       message: "На сервере произошла ошибка. Попробуйте позже",
