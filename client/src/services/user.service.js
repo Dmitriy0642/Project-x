@@ -12,15 +12,17 @@ const userService = {
     return data;
   },
   getCurrentUser: async () => {
-    const { data } = await http.get(
-      `${userEndPoint}` + localStorageService.getUserId()
-    );
-    return data;
+    if (localStorageService.getUserId() !== null) {
+      const { data } = await http.get(
+        `${userEndPoint}` + localStorageService.getUserId()
+      );
+      return data;
+    }
   },
   getRefreshUser: async (balance) => {
-    const { data } = await http.put(
-      `${userEndPoint}` + localStorageService.getUserId() + `/balance`,
-      balance
+    const { data } = await http.patch(
+      `${userEndPoint}${localStorageService.getUserId()}`,
+      { balance: balance }
     );
     return data;
   },

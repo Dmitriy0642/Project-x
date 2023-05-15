@@ -53,9 +53,9 @@ const Order = () => {
 
     history.push("/");
     await orderService.refreshBascetAfterBuying();
-    setTimeout(() => {
-      window.location.reload();
-    }, 3000);
+    // setTimeout(() => {
+    //   window.location.reload();
+    // }, 3000);
   };
   const handleChange = ({ target }) => {
     setData((prevState) => ({ ...prevState, [target.name]: target.value }));

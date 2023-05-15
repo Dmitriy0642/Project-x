@@ -23,7 +23,7 @@ const Counter = ({
   }, []);
 
   const handleDelete = async (e) => {
-    await orderService.deleteProductInBascet(e.target.id);
+    await orderService.deleteProductInBascet(e.target.id, data);
     window.location.reload();
   };
 

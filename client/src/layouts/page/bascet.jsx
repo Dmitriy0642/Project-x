@@ -37,7 +37,6 @@ const Bascet = () => {
   const handleDecrementAmount = (price) => {
     setAmount((prevState) => (prevState -= Number(price)));
   };
-
   async function overWriting(balance) {
     try {
       const data = await userService.getRefreshUser(balance);
@@ -59,7 +58,8 @@ const Bascet = () => {
       history.push("/order");
     }
   };
-  return acceptDatafromBascet === undefined ? (
+  return acceptDatafromBascet === undefined ||
+    acceptDatafromBascet.length === 0 ? (
     <NotBascet />
   ) : (
     <div className={styles.main_div}>

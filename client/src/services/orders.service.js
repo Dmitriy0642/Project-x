@@ -74,15 +74,11 @@ const orderService = {
     );
     return data;
   },
-  deleteProductInBascet: async (id) => {
+  deleteProductInBascet: async (id, selectedItem) => {},
+  refreshBascetAfterBuying: async () => {
     const { data } = await http.delete(
       `/bascet/${localStorageService.getUserId()}`
     );
-    return data;
-  },
-  refreshBascetAfterBuying: async () => {
-    const accesToken = localStorageService.getAccesToken();
-    const { data } = await http.delete("/bascet" + `.json?auth=${accesToken}`);
     return data;
   },
 };

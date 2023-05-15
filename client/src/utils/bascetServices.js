@@ -74,6 +74,7 @@ const handleDecrement = async (quantity, e, state, data, initialData) => {
   }
 
   const newData = {
+    _id: data._id,
     firm: data.firm,
     img: [data.img[0], data.img[1]],
     price: data.price,
