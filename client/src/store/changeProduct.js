@@ -54,8 +54,7 @@ export const loadChangeProductList = () => async (dispatch) => {
 };
 
 export const changeProductQuantity =
-  (changeProduct, selectedProduct, selectedSize, userid) =>
-  async (dispatch) => {
+  (changeProduct, selectedProduct, selectedSize) => async (dispatch) => {
     const filtradeSingleData = changeProduct.filter(
       (item) => item._id === selectedProduct[0]._id
     );
@@ -86,9 +85,8 @@ export const changeProductQuantity =
         }
         return item;
       });
-
       dispatch(changeProductReceved(newData));
-      await orderService.createBascetPurchases(updatedObjData, userid);
+      await orderService.createBascetPurchases(updatedObjData);
     } else if (
       secondQuantityFromObj[0].value === initialyQuantityFromObj[0].value
     ) {

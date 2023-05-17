@@ -68,13 +68,25 @@ const orderService = {
     );
     return data;
   },
+  updateProductInBascet: async (obj) => {
+    const { data } = await http.patch(
+      `/bascet/${localStorageService.getUserId()}/bascet/${obj._id}`,
+      obj
+    );
+    return data;
+  },
   getBascetPurchases: async () => {
     const { data } = await http.get(
       `/bascet/${localStorageService.getUserId()}`
     );
     return data;
   },
-  deleteProductInBascet: async (id, selectedItem) => {},
+  deleteProductInBascet: async (id) => {
+    const { data } = await http.delete(
+      `/bascet/${localStorageService.getUserId()}/bascet/${id}`
+    );
+    return data;
+  },
   refreshBascetAfterBuying: async () => {
     const { data } = await http.delete(
       `/bascet/${localStorageService.getUserId()}`

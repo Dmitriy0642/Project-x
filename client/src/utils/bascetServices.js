@@ -41,7 +41,8 @@ const handleIncrement = async (quantity, e, state, data, initialData) => {
     name: data.name,
     quantity: quantity,
   };
-  await orderService.createBascetPurchases(newData);
+  console.log(newData);
+  await orderService.updateProductInBascet(newData);
 };
 
 const handleDecrement = async (quantity, e, state, data, initialData) => {
@@ -76,13 +77,14 @@ const handleDecrement = async (quantity, e, state, data, initialData) => {
   const newData = {
     _id: data._id,
     firm: data.firm,
-    img: [data.img[0], data.img[1]],
+    img: [...data.img],
     price: data.price,
     category: data.category,
     name: data.name,
     quantity: quantity,
   };
-  await orderService.createBascetPurchases(newData);
+
+  await orderService.updateProductInBascet(newData);
 };
 
 const servicesBascet = {
