@@ -16,25 +16,46 @@ router.get("/", async (req, res) => {
 router.patch("/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const list = await Bascet.find();
-    const findUserBascet = list.filter(
-      (item) => JSON.stringify(item.user) === JSON.stringify(id)
-    );
-    if (findUserBascet.length === 0) {
-      const newData = { user: id, bascet: req.body };
+    const findUserBasket = await Bascet.findOne({ user: id });
+    if (!findUserBasket) {
+      const newData = { user: id, bascet: [req.body] };
       await Bascet.create(newData);
       res.status(200).send(newData);
     } else {
-      const bascetId = findUserBascet[0]._id;
-      const findBascetById = await Bascet.findById(bascetId);
-      const newData = { user: findBascetById.user, bascet: req.body };
-      await findBascetById.updateOne(newData);
-      res.status(200).send(newData);
+      const newItem = { ...req.body };
+      findUserBasket.bascet.push(newItem);
+      await findUserBasket.save();
+      res.status(200).send(findUserBasket);
     }
   } catch (e) {
     res.status(500).json({
       message: "На сервере произошла ошибка. Попробуйте позже",
     });
+  }
+});
+
+router.patch("/:id/bascet/:prodId", async (req, res) => {
+  try {
+    const { id, prodId } = req.params;
+    const { quantity } = req.body;
+
+    const updatedBasket = await Bascet.findOneAndUpdate(
+      { user: id, "bascet._id": prodId },
+      { $set: { "bascet.$.quantity": quantity } },
+      { new: true }
+    );
+
+    if (!updatedBasket) {
+      return res.status(404).json({ message: "Basket or Product not found" });
+    }
+
+    const updatedProduct = updatedBasket.bascet.find(
+      (item) => item._id.toString() === prodId
+    );
+
+    res.status(200).send(updatedProduct);
+  } catch (error) {
+    res.status(500).json({ message: "На сервере произошла ошибка" });
   }
 });
 
@@ -73,24 +94,26 @@ router.patch("/:id", async (req, res) => {
   }
 });
 
-router.put("/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
-    const list = await Bascet.find();
-    const findIdBascet = list.filter(
-      (item) => JSON.stringify(item.user) === JSON.stringify(id)
-    );
-    const bascet = findIdBascet[0]._id;
-    const findBascetById = await Bascet.findById(bascet);
-    const newData = { user: id, bascet: res.body };
-    await findBascetById.updateOne(newData);
-    res.status(200).send(newData);
-  } catch (e) {
-    res.status(500).json({
-      message: "На сервере произошла ошибка. Попробуйте позже",
-    });
-  }
-});
+// router.put("/:id", async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const list = await Bascet.find();
+//     const findIdBascet = list.filter(
+//       (item) => JSON.stringify(item.user) === JSON.stringify(id)
+//     );
+//     const bascet = findIdBascet[0]._id;
+//     const findBascetById = await Bascet.findById(bascet);
+//     const newData = { user: id, bascet: req.body };
+//     console.log(newData);
+//     // const newData = { user: id, bascet: res.body };
+
+//     // res.status(200).send(newData);
+//   } catch (e) {
+//     res.status(500).json({
+//       message: "На сервере произошла ошибка. Попробуйте позже",
+//     });
+//   }
+// });
 
 router.delete("/:id", async (req, res) => {
   try {
