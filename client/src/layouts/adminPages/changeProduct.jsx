@@ -34,7 +34,6 @@ const ChangeProduct = () => {
     setProduct(prod);
     validate();
   }, [data]);
-
   const handleChange = ({ target }) => {
     setData((prevState) => ({ ...prevState, [target.name]: target.value }));
   };
@@ -56,10 +55,10 @@ const ChangeProduct = () => {
     } catch (error) {
       console.log(error.message);
     }
-    history.push("/");
-    setTimeout(() => {
-      window.location.reload();
-    }, 1000);
+    // history.push("/");
+    // setTimeout(() => {
+    //   window.location.reload();
+    // }, 1000);
   };
 
   return product !== null || product !== undefined ? (

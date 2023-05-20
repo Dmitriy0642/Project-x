@@ -1,7 +1,7 @@
 import http from "./http.service";
 import localStorageService from "./localStorage.service";
 
-const productEndPoint = "product";
+const productEndPoint = "/product";
 
 const productSerivce = {
   createProduct: async (payload) => {
@@ -23,12 +23,8 @@ const productSerivce = {
     return data;
   },
   changeQuantity: async (id, quan) => {
-    const accesToken = localStorageService.getAccesToken();
-    const { data } = await http.put(
-      `${productEndPoint}` +
-        `/${id}` +
-        `/quantity/` +
-        `.json?auth=${accesToken}`,
+    const { data } = await http.patch(
+      `${productEndPoint}/${id}/quantity`,
       quan
     );
     return data;
