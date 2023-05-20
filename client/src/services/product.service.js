@@ -5,13 +5,9 @@ const productEndPoint = "product";
 
 const productSerivce = {
   createProduct: async (payload) => {
-    const accesToken = localStorageService.getAccesToken();
     const changeImg = payload.img.split(",");
     payload.img = changeImg;
-    const { data } = await http.put(
-      `${productEndPoint}` + `${payload._id}` + `.json?auth=${accesToken}`,
-      payload
-    );
+    const { data } = await http.post(`${productEndPoint}`, payload);
     return data;
   },
   deleteProduct: async (payload) => {

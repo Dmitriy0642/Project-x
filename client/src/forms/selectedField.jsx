@@ -28,7 +28,7 @@ const SelectedForm = ({
         </option>
         {data &&
           data.map((item) => (
-            <option key={item._id} value={item._id}>
+            <option key={item.id} value={item.id}>
               {item.name}
             </option>
           ))}
