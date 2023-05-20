@@ -11,10 +11,7 @@ const productSerivce = {
     return data;
   },
   deleteProduct: async (payload) => {
-    const accesToken = localStorageService.getAccesToken();
-    const { data } = await http.delete(
-      `${productEndPoint}` + `${payload.product}` + `.json?auth=${accesToken}`
-    );
+    const { data } = await http.delete(`${productEndPoint}/${payload}`);
     return data;
   },
   addSalesProduct: async (payload) => {
