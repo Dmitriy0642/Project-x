@@ -12,10 +12,9 @@ router.get("/", async (req, res) => {
     });
   }
 });
-///crete Bascet and Update
+///crete Bascet and AddedToBascet
 router.patch("/:id", async (req, res) => {
   try {
-    const { id } = req.params;
     const findUserBasket = await Bascet.findOne({ user: id });
     if (!findUserBasket) {
       const newData = { user: id, bascet: [req.body] };
@@ -33,27 +32,68 @@ router.patch("/:id", async (req, res) => {
     });
   }
 });
-
-router.patch("/:id/bascet/:prodId", async (req, res) => {
+///PushedToBascet
+router.patch("/:id/:prodId", async (req, res) => {
   try {
     const { id, prodId } = req.params;
     const { quantity } = req.body;
 
-    const updatedBasket = await Bascet.findOneAndUpdate(
+    const findeCurrentBascet = await Bascet.findOne({ user: id });
+    if (findeCurrentBascet === null) {
+      const newData = { user: id, bascet: [req.body] };
+      await Bascet.create(newData);
+    }
+
+    const productExists = findeCurrentBascet.bascet.some(
+      (item) => item._id === prodId
+    );
+    if (productExists) {
+      await Bascet.findOneAndUpdate(
+        { user: id, "bascet._id": prodId },
+        { $set: { "bascet.$.quantity": quantity } },
+        { new: true }
+      );
+    } else {
+      const newItem = { ...req.body };
+      findeCurrentBascet.bascet.push(newItem);
+      await findeCurrentBascet.save();
+    }
+  } catch (error) {
+    res.status(500).json({ message: "На сервере произошла ошибка" });
+  }
+});
+///counter
+router.patch("/:id/bascet/:prodId", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { prodId } = req.params;
+    const { quantity } = req.body;
+
+    const basket = await Bascet.findOne({ user: id });
+
+    if (!basket) {
+      return res.status(500).json({ message: "The user does not exist." });
+    }
+
+    if (basket.isUpdating) {
+      return res
+        .status(429)
+        .json({
+          message: "Basket is currently being updated. Please try again later.",
+        });
+    }
+
+    basket.isUpdating = true;
+    await basket.save();
+
+    await Bascet.findOneAndUpdate(
       { user: id, "bascet._id": prodId },
       { $set: { "bascet.$.quantity": quantity } },
       { new: true }
     );
 
-    if (!updatedBasket) {
-      return res.status(404).json({ message: "Basket or Product not found" });
-    }
-
-    const updatedProduct = updatedBasket.bascet.find(
-      (item) => item._id.toString() === prodId
-    );
-
-    res.status(200).send(updatedProduct);
+    basket.isUpdating = false;
+    await basket.save();
   } catch (error) {
     res.status(500).json({ message: "На сервере произошла ошибка" });
   }
@@ -79,42 +119,8 @@ router.get("/:id", async (req, res) => {
     });
   }
 });
-///change By Id
-router.patch("/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
-    const findById = await Bascet.findByIdAndUpdate(id, req.body, {
-      new: true,
-    });
-    res.status(200).send(findById);
-  } catch (e) {
-    res.status(500).json({
-      message: "На сервере произошла ошибка. Попробуйте позже",
-    });
-  }
-});
 
-// router.put("/:id", async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     const list = await Bascet.find();
-//     const findIdBascet = list.filter(
-//       (item) => JSON.stringify(item.user) === JSON.stringify(id)
-//     );
-//     const bascet = findIdBascet[0]._id;
-//     const findBascetById = await Bascet.findById(bascet);
-//     const newData = { user: id, bascet: req.body };
-//     console.log(newData);
-//     // const newData = { user: id, bascet: res.body };
-
-//     // res.status(200).send(newData);
-//   } catch (e) {
-//     res.status(500).json({
-//       message: "На сервере произошла ошибка. Попробуйте позже",
-//     });
-//   }
-// });
-
+///delete bascet after buing
 router.delete("/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -131,6 +137,26 @@ router.delete("/:id", async (req, res) => {
     res.status(500).json({
       message: "На сервере произошла ошибка",
     });
+  }
+});
+
+router.delete("/:id/bascet/:prodId", async (req, res) => {
+  try {
+    const { id, prodId } = req.params;
+
+    const updatedBasket = await Bascet.findOneAndUpdate(
+      { user: id },
+      { $pull: { bascet: { _id: prodId } } },
+      { new: true }
+    );
+
+    if (!updatedBasket) {
+      return res.status(404).json({ message: "Basket or Product not found" });
+    }
+
+    res.status(200).json({ message: "Product removed successfully" });
+  } catch (error) {
+    res.status(500).json({ message: "An error occurred on the server" });
   }
 });
 
