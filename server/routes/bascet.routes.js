@@ -76,11 +76,9 @@ router.patch("/:id/bascet/:prodId", async (req, res) => {
     }
 
     if (basket.isUpdating) {
-      return res
-        .status(429)
-        .json({
-          message: "Basket is currently being updated. Please try again later.",
-        });
+      return res.status(429).json({
+        message: "Basket is currently being updated. Please try again later.",
+      });
     }
 
     basket.isUpdating = true;
