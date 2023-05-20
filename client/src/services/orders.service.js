@@ -61,20 +61,28 @@ const orderService = {
     );
     return data;
   },
-  createBascetPurchases: async (obj) => {
+
+  updateProductAddedToBascet: async (obj) => {
     const { data } = await http.patch(
-      `/bascet/${localStorageService.getUserId()}`,
+      `/bascet/${localStorageService.getUserId()}/${obj._id}`,
       obj
     );
     return data;
   },
-  updateProductInBascet: async (obj) => {
+
+  decrementInCounter: async (obj) => {
     const { data } = await http.patch(
       `/bascet/${localStorageService.getUserId()}/bascet/${obj._id}`,
-      obj
+      { quantity: obj.quantity }
     );
     return data;
   },
+  // incremantInCounter: async (obj) => {
+  //   const { data } = await http.patch(
+  //     `/bascet/${localStorageService.getUserId()}/bascet/${obj._id}`
+  //   );
+  //   return data;
+  // },
   getBascetPurchases: async () => {
     const { data } = await http.get(
       `/bascet/${localStorageService.getUserId()}`

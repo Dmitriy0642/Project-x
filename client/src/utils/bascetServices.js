@@ -41,8 +41,8 @@ const handleIncrement = async (quantity, e, state, data, initialData) => {
     name: data.name,
     quantity: quantity,
   };
-  console.log(newData);
-  await orderService.updateProductInBascet(newData);
+
+  await orderService.decrementInCounter(newData);
 };
 
 const handleDecrement = async (quantity, e, state, data, initialData) => {
@@ -84,7 +84,7 @@ const handleDecrement = async (quantity, e, state, data, initialData) => {
     quantity: quantity,
   };
 
-  await orderService.updateProductInBascet(newData);
+  await orderService.decrementInCounter(newData);
 };
 
 const servicesBascet = {
