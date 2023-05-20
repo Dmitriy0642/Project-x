@@ -8,7 +8,7 @@ import {
   getProductNullVal,
 } from "../store/changeProduct";
 import { getCurrentUsers } from "../store/users";
-import orderService from "../services/orders.service";
+import bascetService from "../services/bascet.service";
 
 const ReviewCardForm = ({ name, price, _id, quantity, obj }) => {
   const currentUser = useSelector(getCurrentUsers());
@@ -16,7 +16,7 @@ const ReviewCardForm = ({ name, price, _id, quantity, obj }) => {
   const dispatch = useDispatch();
   const [size, setSize] = useState(null);
   const [dataInBascet, setDataBascet] = useState();
-  const dataFromBascet = orderService.getBascetPurchases();
+  const dataFromBascet = bascetService.getBascetData();
 
   useEffect(() => {
     dataFromBascet

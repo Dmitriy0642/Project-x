@@ -1,5 +1,5 @@
 import { toast } from "react-toastify";
-import orderService from "../services/orders.service";
+import bascetService from "../services/bascet.service";
 const handleIncrement = async (quantity, e, state, data, initialData) => {
   ///filtrade quan form data
   const filtradeQuantityFromData = quantity.filter(
@@ -42,7 +42,7 @@ const handleIncrement = async (quantity, e, state, data, initialData) => {
     quantity: quantity,
   };
 
-  await orderService.decrementInCounter(newData);
+  await bascetService.updatedProductInCounter(newData);
 };
 
 const handleDecrement = async (quantity, e, state, data, initialData) => {
@@ -84,7 +84,7 @@ const handleDecrement = async (quantity, e, state, data, initialData) => {
     quantity: quantity,
   };
 
-  await orderService.decrementInCounter(newData);
+  await bascetService.updatedProductInCounter(newData);
 };
 
 const servicesBascet = {

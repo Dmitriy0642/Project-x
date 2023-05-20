@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "../layouts.styles/bascet.module.css";
 import servicesBascet from "../../utils/bascetServices";
 import orderService from "../../services/orders.service";
+import bascetService from "../../services/bascet.service";
 
 const Counter = ({
   data,
@@ -22,7 +23,7 @@ const Counter = ({
       .catch((error) => error.message);
   }, []);
   const handleDelete = async (e) => {
-    await orderService.deleteProductInBascet(e.target.id);
+    await bascetService.deleteProductInBascet(e.target.id);
     window.location.reload();
   };
   const handleIncrement = (e) => {

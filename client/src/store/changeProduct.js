@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
-import orderService from "../services/orders.service";
+import bascetService from "../services/bascet.service";
 import http from "../services/http.service";
 
 const changeProductSlice = createSlice({
@@ -86,7 +86,7 @@ export const changeProductQuantity =
         return item;
       });
       dispatch(changeProductReceved(newData));
-      await orderService.updateProductAddedToBascet(updatedObjData);
+      await bascetService.updateProductAddedToBascet(updatedObjData);
     } else if (
       secondQuantityFromObj[0].value === initialyQuantityFromObj[0].value
     ) {
