@@ -1,34 +1,28 @@
 import http from "./http.service";
 import localStorageService from "./localStorage.service";
 
-const userEndPoint = "user/";
+const userEndPoint = "/user/";
 
 const userService = {
   create: async (payload) => {
-    const accesToken = localStorageService.getAccesToken();
     const { data } = await http.put(
-      `${userEndPoint}` + `${payload._id}` + `.json?auth=${accesToken}`,
+      `${userEndPoint}` + `${payload._id}`,
       payload
     );
     return data;
   },
   getCurrentUser: async () => {
-    const accesToken = localStorageService.getAccesToken();
-    const { data } = await http.get(
-      `${userEndPoint}` +
-        localStorageService.getUserId() +
-        `.json?auth=${accesToken}`
-    );
-    return data;
+    if (localStorageService.getUserId() !== null) {
+      const { data } = await http.get(
+        `${userEndPoint}` + localStorageService.getUserId()
+      );
+      return data;
+    }
   },
   getRefreshUser: async (balance) => {
-    const accesToken = localStorageService.getAccesToken();
-    const { data } = await http.put(
-      `${userEndPoint}` +
-        localStorageService.getUserId() +
-        `/balance` +
-        `.json?auth=${accesToken}`,
-      balance
+    const { data } = await http.patch(
+      `${userEndPoint}${localStorageService.getUserId()}`,
+      { balance: balance }
     );
     return data;
   },

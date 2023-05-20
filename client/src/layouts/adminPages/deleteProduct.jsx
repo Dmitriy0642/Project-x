@@ -16,7 +16,6 @@ const DeleteProduct = () => {
   const [data, setData] = useState({
     product: "",
   });
-
   const handleChange = (e) => {
     setData((prevState) => ({
       ...prevState,
@@ -39,7 +38,7 @@ const DeleteProduct = () => {
     e.preventDefault();
     const isValid = validate();
     if (!isValid) return;
-    productSerivce.deleteProduct(data);
+    productSerivce.deleteProduct(data.product);
     dispatch(removingProduct(data));
     history.push("/");
     setTimeout(() => {

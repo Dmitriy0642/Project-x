@@ -10,13 +10,9 @@ const httpAuth = axios.create({
   baseURL: config.ApiEndPOint + "/auth/",
 });
 const authService = {
-  signUp: async ({ email, password }) => {
+  signUp: async (payload) => {
     try {
-      const data = await httpAuth.post("signUp", {
-        email,
-        password,
-        returnSecureToken: true,
-      });
+      const data = await httpAuth.post("signUp", payload);
       setTokens(data);
       return data;
     } catch (error) {
@@ -32,13 +28,9 @@ const authService = {
       }
     }
   },
-  logIn: async ({ email, password }) => {
+  logIn: async (payload) => {
     try {
-      const data = await httpAuth.post("signInWithPassword", {
-        email,
-        password,
-        returnSecureToken: true,
-      });
+      const data = await httpAuth.post("signInWithPassword", payload);
       setTokens(data);
       return data;
     } catch (e) {

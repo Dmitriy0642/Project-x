@@ -47,7 +47,6 @@ export const loadProductList = () => async (dispatch) => {
   try {
     const initiArr = [];
     const { data } = await http.get("product");
-    console.log(data);
     Object.keys(data).forEach((item) => initiArr.push(data[item]));
     dispatch(productReceved(initiArr));
   } catch (error) {

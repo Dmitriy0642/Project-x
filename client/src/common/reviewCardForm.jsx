@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../common/styles.common/reviewCardForm.module.css";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -8,13 +8,24 @@ import {
   getProductNullVal,
 } from "../store/changeProduct";
 import { getCurrentUsers } from "../store/users";
+import bascetService from "../services/bascet.service";
 
 const ReviewCardForm = ({ name, price, _id, quantity, obj }) => {
   const currentUser = useSelector(getCurrentUsers());
   const changeProduct = useSelector(getProductNullVal());
   const dispatch = useDispatch();
   const [size, setSize] = useState(null);
+  const [dataInBascet, setDataBascet] = useState();
+  const dataFromBascet = bascetService.getBascetData();
 
+  useEffect(() => {
+    dataFromBascet
+      .then((res) => {
+        const toFormat = Object.keys(res).map((item) => res[item]);
+        setDataBascet(toFormat);
+      })
+      .catch((error) => error.message);
+  }, []);
   const handleClick = (e) => {
     setSize(e.target.innerText);
   };

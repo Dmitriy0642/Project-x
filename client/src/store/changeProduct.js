@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getAccesToken } from "../services/localStorage.service";
 import { toast } from "react-toastify";
-import orderService from "../services/orders.service";
+import bascetService from "../services/bascet.service";
 import http from "../services/http.service";
 
 const changeProductSlice = createSlice({
@@ -35,9 +34,7 @@ const {
 export const loadChangeProductList = () => async (dispatch) => {
   dispatch(changeProductRequested());
   try {
-    const { data } = await http.get(
-      "product" + `.json?auth=${getAccesToken()}`
-    );
+    const { data } = await http.get("product");
     const arrInitValues = [];
     Object.keys(data).forEach((item) => arrInitValues.push(data[item]));
     const allSizes = arrInitValues.map((item) => (item = item.quantity));
@@ -89,7 +86,7 @@ export const changeProductQuantity =
         return item;
       });
       dispatch(changeProductReceved(newData));
-      await orderService.createBascetPurchases(updatedObjData);
+      await bascetService.updateProductAddedToBascet(updatedObjData);
     } else if (
       secondQuantityFromObj[0].value === initialyQuantityFromObj[0].value
     ) {

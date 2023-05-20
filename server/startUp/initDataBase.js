@@ -37,8 +37,7 @@ async function createInitialEntityCategory(Model, data) {
   return Promise.all(
     Object.keys(data).map(async (item) => {
       try {
-        const id = data[item]._id;
-        const newData = { id, name: data[item].name };
+        const newData = { _id: data[item]._id, name: data[item].name };
         const newItem = Model(newData);
         await newItem.save();
         return newData;

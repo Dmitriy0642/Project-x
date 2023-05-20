@@ -1,6 +1,5 @@
-import { logDOM } from "@testing-library/react";
 import { toast } from "react-toastify";
-import orderService from "../services/orders.service";
+import bascetService from "../services/bascet.service";
 const handleIncrement = async (quantity, e, state, data, initialData) => {
   ///filtrade quan form data
   const filtradeQuantityFromData = quantity.filter(
@@ -35,7 +34,7 @@ const handleIncrement = async (quantity, e, state, data, initialData) => {
 
   const newData = {
     _id: data._id,
-    firm: data.category,
+    firm: data.firm,
     img: [...data.img],
     price: data.price,
     category: data.category,
@@ -43,7 +42,7 @@ const handleIncrement = async (quantity, e, state, data, initialData) => {
     quantity: quantity,
   };
 
-  await orderService.createBascetPurchases(newData);
+  await bascetService.updatedProductInCounter(newData);
 };
 
 const handleDecrement = async (quantity, e, state, data, initialData) => {
@@ -77,14 +76,15 @@ const handleDecrement = async (quantity, e, state, data, initialData) => {
 
   const newData = {
     _id: data._id,
-    firm: data.category,
-    img: [data.img[0], data.img[1]],
+    firm: data.firm,
+    img: [...data.img],
     price: data.price,
     category: data.category,
     name: data.name,
     quantity: quantity,
   };
-  await orderService.createBascetPurchases(newData);
+
+  await bascetService.updatedProductInCounter(newData);
 };
 
 const servicesBascet = {

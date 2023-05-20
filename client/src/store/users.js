@@ -42,61 +42,52 @@ export const loadUsersList = () => async (dispatch) => {
   dispatch(usersRequested());
   try {
     const data = await userService.getCurrentUser();
+
     dispatch(usersReceved(data));
   } catch (error) {
     dispatch(usersRequestFiled(error.message));
   }
 };
 
-export const signUp =
-  ({ email, password, fio }) =>
-  async (dispatch) => {
-    dispatch(usersRequested());
-    try {
-      const { data } = await authService.signUp({ email, password });
-      localStorageService.setTokens(data);
-      dispatch(usersReceved({ userId: data.localId }));
-      await userService.create({
-        _id: data.localId,
-        email,
-        fio,
-        balance: 10000,
-      });
-      window.location.reload();
-    } catch (error) {
-      dispatch(usersRequestFiled(error.message));
-      if (error.response.data.error.message === "EMAIL_EXISTS") {
-        return toast.error("Даннйы пользователь зарегестрирован");
-      }
-      if (error.response.data.error.message === "TOO_MANY_ATTEMPTS_TRY_LATER") {
-        return toast.error("Вы сделали много попыток ,попробуйте позже");
-      }
+export const signUp = (payload) => async (dispatch) => {
+  dispatch(usersRequested());
+  try {
+    const { data } = await authService.signUp(payload);
+    localStorageService.setTokens(data);
+    dispatch(usersReceved({ userId: data.localId }));
+    window.location.reload();
+  } catch (error) {
+    dispatch(usersRequestFiled(error.message));
+    if (error.response.data.error.message === "EMAIL_EXISTS") {
+      return toast.error("Даннйы пользователь зарегестрирован");
     }
-  };
-
-export const logIn =
-  ({ email, password }) =>
-  async (dispatch) => {
-    dispatch(usersRequested());
-    try {
-      const { data } = await authService.logIn({ email, password });
-      localStorageService.setTokens(data);
-      dispatch(usersReceved({ userId: data.localId, balance: 10000 }));
-      window.location.reload();
-    } catch (error) {
-      if (error.response.data.error.message === "EMAIL_NOT_FOUND") {
-        return toast.error("Такого email нет");
-      }
-      if (error.response.data.error.message === "INVALID_PASSWORD") {
-        return toast.error("Вы вели неверный пароль");
-      }
-
-      if (error.response.data.error.message === "TOO_MANY_ATTEMPTS_TRY_LATER") {
-        return toast.error("Вы сделали много попыток ,попробуйте позже");
-      }
-      dispatch(usersRequestFiled(error.message));
+    if (error.response.data.error.message === "TOO_MANY_ATTEMPTS_TRY_LATER") {
+      return toast.error("Вы сделали много попыток ,попробуйте позже");
     }
-  };
+  }
+};
+
+export const logIn = (payload) => async (dispatch) => {
+  dispatch(usersRequested());
+  try {
+    const { data } = await authService.logIn(payload);
+    localStorageService.setTokens(data);
+    dispatch(usersReceved({ userId: data.localId }));
+    window.location.reload();
+  } catch (error) {
+    if (error.response.data.error.message === "EMAIL_NOT_FOUND") {
+      return toast.error("Такого email нет");
+    }
+    if (error.response.data.error.message === "INVALID_PASSWORD") {
+      return toast.error("Вы вели неверный пароль");
+    }
+
+    if (error.response.data.error.message === "TOO_MANY_ATTEMPTS_TRY_LATER") {
+      return toast.error("Вы сделали много попыток ,попробуйте позже");
+    }
+    dispatch(usersRequestFiled(error.message));
+  }
+};
 
 export const logOut = () => (dispatch) => {
   localStorageService.authRemoveData();

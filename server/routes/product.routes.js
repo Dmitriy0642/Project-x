@@ -83,20 +83,18 @@ router.get("/:id/quantity", async (req, res) => {
 router.patch("/:id/quantity", async (req, res) => {
   try {
     const { id } = req.params;
-    const list = Product.findById(id);
-    const newProduct = {
-      category: list.category,
-      firm: list.firm,
-      img: list.img,
-      name: list.name,
-      price: list.price,
-      quantity: req.body,
-    };
-    await Product.findById(id).updateOne(newProduct);
-    res.status(200).send(req.body);
+    const { quantity } = req.body;
+
+    const findProduct = await Product.findByIdAndUpdate(
+      id,
+      { quantity: quantity },
+      { new: true }
+    );
+
+    res.status(200).send(findProduct);
   } catch (e) {
     res.status(500).json({
-      message: "На сервере произошла ошибка. Попробуйте позже",
+      message: "An error occurred on the server. Please try again later.",
     });
   }
 });

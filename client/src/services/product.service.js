@@ -1,24 +1,17 @@
 import http from "./http.service";
 import localStorageService from "./localStorage.service";
 
-const productEndPoint = "product";
+const productEndPoint = "/product";
 
 const productSerivce = {
   createProduct: async (payload) => {
-    const accesToken = localStorageService.getAccesToken();
     const changeImg = payload.img.split(",");
     payload.img = changeImg;
-    const { data } = await http.put(
-      `${productEndPoint}` + `${payload._id}` + `.json?auth=${accesToken}`,
-      payload
-    );
+    const { data } = await http.post(`${productEndPoint}`, payload);
     return data;
   },
   deleteProduct: async (payload) => {
-    const accesToken = localStorageService.getAccesToken();
-    const { data } = await http.delete(
-      `${productEndPoint}` + `${payload.product}` + `.json?auth=${accesToken}`
-    );
+    const { data } = await http.delete(`${productEndPoint}/${payload}`);
     return data;
   },
   addSalesProduct: async (payload) => {
@@ -30,12 +23,8 @@ const productSerivce = {
     return data;
   },
   changeQuantity: async (id, quan) => {
-    const accesToken = localStorageService.getAccesToken();
-    const { data } = await http.put(
-      `${productEndPoint}` +
-        `/${id}` +
-        `/quantity/` +
-        `.json?auth=${accesToken}`,
+    const { data } = await http.patch(
+      `${productEndPoint}/${id}/quantity`,
       quan
     );
     return data;

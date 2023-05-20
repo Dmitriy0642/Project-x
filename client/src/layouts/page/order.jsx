@@ -5,7 +5,7 @@ import { validator } from "../../utils/validator";
 import RadioField from "../../forms/radioField";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
-import orderService from "../../services/orders.service";
+import bascetService from "../../services/bascet.service";
 import writingDataToDb from "../../functions/writingDataToDb";
 
 const Order = () => {
@@ -22,8 +22,8 @@ const Order = () => {
 
   useEffect(() => {
     validate();
-    orderService
-      .getBascetPurchases()
+    bascetService
+      .getBascetData()
       .then((res) => {
         const toFormat = Object.keys(res).map((item) => res[item]);
         setDataFromBascet(toFormat);
@@ -52,7 +52,7 @@ const Order = () => {
     );
 
     history.push("/");
-    await orderService.refreshBascetAfterBuying();
+    await bascetService.refreshBascetAfterBuying();
     setTimeout(() => {
       window.location.reload();
     }, 3000);

@@ -20,7 +20,6 @@ const AddNewProduct = () => {
     firm: "",
     price: "",
     img: "",
-    _id: "",
     category: "",
     quantity: [
       { size: "XL", value: 0 },
@@ -59,7 +58,6 @@ const AddNewProduct = () => {
       window.location.reload();
     }, 1000);
   };
-
   return (
     <div className="container mt-5">
       <div className="row">
@@ -97,14 +95,6 @@ const AddNewProduct = () => {
               value={data.img}
               error={errors.img}
               name="img"
-            />
-            <TextField
-              type="text"
-              label="Id товара"
-              onChange={handleChange}
-              value={data._id}
-              error={errors._id}
-              name="_id"
             />
             <SelectedForm
               value={data.category}

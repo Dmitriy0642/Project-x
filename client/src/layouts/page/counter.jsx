@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "../layouts.styles/bascet.module.css";
 import servicesBascet from "../../utils/bascetServices";
 import orderService from "../../services/orders.service";
+import bascetService from "../../services/bascet.service";
 
 const Counter = ({
   data,
@@ -13,7 +14,6 @@ const Counter = ({
   const [countInc, setCountDec] = useState();
   const [initProduct, setInitProduct] = useState();
   const initialDataFromDb = orderService.getInitiProduct();
-
   useEffect(() => {
     initialDataFromDb
       .then((res) => {
@@ -22,12 +22,10 @@ const Counter = ({
       })
       .catch((error) => error.message);
   }, []);
-
   const handleDelete = async (e) => {
-    await orderService.deleteProductInBascet(e.target.id);
+    await bascetService.deleteProductInBascet(e.target.id);
     window.location.reload();
   };
-
   const handleIncrement = (e) => {
     ///filtrade data from quantity
     const filterQuantityFromData = quantity.filter(
@@ -35,10 +33,10 @@ const Counter = ({
     );
     ///getting data from database with db sizes and values
     const dataFromDb = initProduct.filter((item) => item._id === data._id);
+
     const getQuantityFromDb = dataFromDb[0].quantity.filter(
       (item) => `${item.size}` === `${e.target.id}`
     );
-
     if (filterQuantityFromData[0].value < getQuantityFromDb[0].value) {
       handleIncrementAmount(data.price);
     }

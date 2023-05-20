@@ -7,14 +7,14 @@ import userService from "../../services/user.service";
 import NotBascet from "../../ui/notBascet";
 import { useSelector } from "react-redux";
 import { getCurrentUsers } from "../../store/users";
-import orderService from "../../services/orders.service";
+import bascetService from "../../services/bascet.service";
+
 const Bascet = () => {
   const currentUser = useSelector(getCurrentUsers());
-  const itemFrobBascet = orderService.getBascetPurchases();
+  const itemFrobBascet = bascetService.getBascetData();
   const history = useHistory();
   const [amount, setAmount] = useState(0);
   const [acceptDatafromBascet, setAcceptedData] = useState();
-
   useEffect(() => {
     itemFrobBascet
       .then((res) => {
@@ -37,7 +37,6 @@ const Bascet = () => {
   const handleDecrementAmount = (price) => {
     setAmount((prevState) => (prevState -= Number(price)));
   };
-
   async function overWriting(balance) {
     try {
       const data = await userService.getRefreshUser(balance);
@@ -59,7 +58,8 @@ const Bascet = () => {
       history.push("/order");
     }
   };
-  return acceptDatafromBascet === undefined ? (
+  return acceptDatafromBascet === undefined ||
+    acceptDatafromBascet.length === 0 ? (
     <NotBascet />
   ) : (
     <div className={styles.main_div}>
