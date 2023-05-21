@@ -16,15 +16,27 @@ router.get("/", async (req, res) => {
 });
 
 ///create order
-router.post("/", [
+router.post("/:id", [
   check("numtel", "Номер телефона должен содержать 10 цифр").isLength({
     min: 10,
   }),
   async (req, res) => {
     try {
-      const data = req.body;
-      const createOrder = await Order.create(data);
-      res.status(200).send(createOrder);
+      const { id } = req.params;
+      const create = await Order.findOne({ user: id });
+      if (!create) {
+        const newData = {
+          user: id,
+          addres: req.body.addres,
+          fio: req.body.fio,
+          numtel: req.body.numtel,
+          post: req.body.post,
+          sity: req.body.sity,
+          purchasedItem: req.body.purchasedItem,
+        };
+        await Order.create(newData);
+        res.status(200).send(newData);
+      }
     } catch (e) {
       res.status(500).json({
         message: "На сервере произошла ошибка. Попробуйте позже",
@@ -44,14 +56,51 @@ router.get("/:id", async (req, res) => {
     });
   }
 });
-///changeById
-router.patch("/:id", async (req, res) => {
+
+router.get("/:id/purchasedItem/:prodId/quantity", async (req, res) => {
   try {
     const { id } = req.params;
-    const createOrder = await Order.findByIdAndUpdate(id, req.body, {
-      new: true,
+    const { prodId } = req.params;
+    const findSelectedItem = await Order.findById(id);
+    if (!findSelectedItem) {
+      return null;
+    }
+    const findProductInPurchasedItem = findSelectedItem.purchasedItem.find(
+      (item) => item._id.toString() === prodId
+    );
+    if (!findProductInPurchasedItem) {
+      return null;
+    }
+    res.status(200).send(findProductInPurchasedItem.quantity);
+  } catch (e) {
+    res.status(500).json({
+      message: "На сервере произошла ошибка. Попробуйте позже",
     });
-    res.status(200).send(createOrder);
+  }
+});
+///if user not find ,created data ,else user find push item to purchaseditem
+router.patch(":/id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const create = await Order.findOne({ user: id });
+    if (!create) {
+      const newData = {
+        user: id,
+        addres: req.body.addres,
+        fio: req.body.fio,
+        numtel: req.body.numtel,
+        post: req.body.post,
+        sity: req.body.sity,
+        purchasedItem: [req.body.purchasedItem],
+      };
+      await Order.create(newData);
+      res.status(200).send(newData);
+    } else {
+      const newItem = { ...req.body };
+      create.purchasedItem.push(newItem);
+      await create.save();
+      res.status(200).send(create);
+    }
   } catch (e) {
     res.status(500).json({
       message: "На сервере произошла ошибка. Попробуйте позже",

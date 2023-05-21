@@ -30,10 +30,10 @@ router.get("/:id", async (req, res) => {
 router.patch("/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const findByIdAndChange = await Product.findByIdAndUpdate(id, req.body, {
+    const findAndUpdate = await Product.findOneAndUpdate(id, req.body, {
       new: true,
     });
-    res.status(200).send(findByIdAndChange);
+    res.status(200).send(findAndUpdate);
   } catch (e) {
     res.status(500).json({
       message: "На сервере произошла ошибка. Попробуйте позже",
@@ -84,7 +84,6 @@ router.patch("/:id/quantity", async (req, res) => {
   try {
     const { id } = req.params;
     const { quantity } = req.body;
-
     const findProduct = await Product.findByIdAndUpdate(
       id,
       { quantity: quantity },

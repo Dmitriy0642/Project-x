@@ -69,4 +69,19 @@ router.patch("/", async (req, res) => {
   }
 });
 
+router.put("/", async (req, res) => {
+  try {
+    const list = await SalesProduct.findOne();
+    if (!list) {
+      const newData = req.body;
+      await SalesProduct.create(newData);
+      res.status(200).send(newData);
+    }
+  } catch (e) {
+    res.status(500).json({
+      message: "На сервере произошла ошибка. Попробуйте позже",
+    });
+  }
+});
+
 module.exports = router;

@@ -13,7 +13,6 @@ const schema = new Schema(
     sity: { type: String },
     purchasedItem: {
       type: Array,
-      _id: { type: Schema.Types.ObjectId, ref: "Product" },
     },
   },
   {
