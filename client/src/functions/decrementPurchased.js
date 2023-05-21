@@ -1,6 +1,6 @@
-import orderService from "../services/orders.service";
+import productSerivce from "../services/product.service";
 const decrementPurchased = async (data, quan) => {
-  const initData = await orderService.getInitiProduct().then((res) => {
+  const initData = await productSerivce.getAllProduct().then((res) => {
     const toFormat = Object.keys(res).map((item) => res[item]);
     const filtradeDataByBascet = [];
     if (data) {
@@ -32,7 +32,7 @@ const decrementPurchased = async (data, quan) => {
       quantity: decrementQuan,
     };
 
-    orderService.changesDataProduct(newData);
+    productSerivce.changeProduct(newData);
   });
 };
 
