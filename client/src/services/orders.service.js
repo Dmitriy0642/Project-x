@@ -11,14 +11,10 @@ const orderService = {
     return data;
   },
   getPurchasedProd: async () => {
-    const accesToken = localStorageService.getAccesToken();
     const { data } = await http.get(
-      `${userEndPoint}` +
-        localStorageService.getUserId() +
-        `/purchasedItem` +
-        `.json?auth=${accesToken}`
+      `${userEndPoint}/${localStorageService.getUserId()}/
+        purchasedItem`
     );
-
     return data;
   },
   getPurchasedProdQuantity: async (item) => {
@@ -27,14 +23,6 @@ const orderService = {
         item._id
       }/quantity`
     );
-    return data;
-  },
-  createPurchasedProd: async (prod) => {
-    const { data } = await http.patch(
-      `${userEndPoint}/${localStorageService.getUserId()}`,
-      prod
-    );
-
     return data;
   },
 };

@@ -1,4 +1,5 @@
 import http from "./http.service";
+import localStorageService from "./localStorage.service";
 
 const productEndPoint = "/product";
 
@@ -18,7 +19,7 @@ const productSerivce = {
     return data;
   },
   addSalesProduct: async (payload) => {
-    const { data } = await http.put(`/salesProduct`, payload);
+    const { data } = await http.patch(`/salesProduct/${payload._id}`, payload);
     return data;
   },
   changeQuantity: async (id, quan) => {
