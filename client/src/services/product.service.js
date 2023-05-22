@@ -4,6 +4,10 @@ import localStorageService from "./localStorage.service";
 const productEndPoint = "/product";
 
 const productSerivce = {
+  getAllProduct: async () => {
+    const { data } = await http.get(`${productEndPoint}`);
+    return data;
+  },
   createProduct: async (payload) => {
     const changeImg = payload.img.split(",");
     payload.img = changeImg;
@@ -15,17 +19,20 @@ const productSerivce = {
     return data;
   },
   addSalesProduct: async (payload) => {
-    const accesToken = localStorageService.getAccesToken();
-    const { data } = await http.put(
-      "/salesProduct" + `/${payload._id}` + `.json?auth=${accesToken}`,
-      payload
-    );
+    const { data } = await http.patch(`/salesProduct/${payload._id}`, payload);
     return data;
   },
   changeQuantity: async (id, quan) => {
     const { data } = await http.patch(
       `${productEndPoint}/${id}/quantity`,
       quan
+    );
+    return data;
+  },
+  changeProduct: async (product) => {
+    const { data } = await http.patch(
+      `${productEndPoint}/${product._id}`,
+      product
     );
     return data;
   },

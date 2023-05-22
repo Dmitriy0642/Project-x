@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styles from "../layouts.styles/bascet.module.css";
 import servicesBascet from "../../utils/bascetServices";
-import orderService from "../../services/orders.service";
 import bascetService from "../../services/bascet.service";
+import productSerivce from "../../services/product.service";
 
 const Counter = ({
   data,
@@ -13,7 +13,7 @@ const Counter = ({
   const [countDec, setCountInc] = useState();
   const [countInc, setCountDec] = useState();
   const [initProduct, setInitProduct] = useState();
-  const initialDataFromDb = orderService.getInitiProduct();
+  const initialDataFromDb = productSerivce.getAllProduct();
   useEffect(() => {
     initialDataFromDb
       .then((res) => {

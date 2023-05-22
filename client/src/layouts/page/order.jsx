@@ -37,7 +37,7 @@ const Order = () => {
     return Object.keys(errors).length === 0;
   };
   const isValid = Object.keys(errors).length === 0;
-
+  console.log(data, dataFromBascet);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const isValid = validate();
@@ -51,11 +51,11 @@ const Order = () => {
       "Спасибо за покупку в нашем магазине,ваш заказ оформлен ожидайте обратной связи"
     );
 
-    history.push("/");
-    await bascetService.refreshBascetAfterBuying();
-    setTimeout(() => {
-      window.location.reload();
-    }, 3000);
+    // history.push("/");
+    bascetService.refreshBascetAfterBuying();
+    // setTimeout(() => {
+    //   window.location.reload();
+    // }, 3000);
   };
   const handleChange = ({ target }) => {
     setData((prevState) => ({ ...prevState, [target.name]: target.value }));

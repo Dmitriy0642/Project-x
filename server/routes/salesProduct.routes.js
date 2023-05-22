@@ -14,15 +14,38 @@ router.get("/", async (req, res) => {
   }
 });
 
-///create SalesProduct
-router.post("/", async (req, res) => {
+///create SalesProduct and update
+router.patch("/:id", async (req, res) => {
   try {
-    const data = req.body;
-    const newdata = await SalesProduct.create(data);
-    res.status(201).send(newdata);
-  } catch (e) {
+    const { id } = req.params;
+    const productData = {
+      _id: id,
+      category: req.body.category,
+      firm: req.body.firm,
+      img: req.body.img,
+      name: req.body.name,
+      price: req.body.price,
+      quantity: req.body.quantity,
+    };
+
+    const existingProduct = await SalesProduct.findByIdAndUpdate(
+      id,
+      productData,
+      { new: true }
+    );
+
+    if (existingProduct) {
+      res.status(200).send(existingProduct);
+    } else {
+      const newProduct = await SalesProduct.create({
+        _id: id,
+        ...productData,
+      });
+      res.status(201).send(newProduct);
+    }
+  } catch (error) {
     res.status(500).json({
-      message: "На сервере произошла ошибка. Попробуйте позже",
+      message: "An error occurred on the server. Please try again later",
     });
   }
 });
@@ -40,28 +63,14 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-///change salesProduct By id
-router.patch("/:id", async (req, res) => {
+router.put("/", async (req, res) => {
   try {
-    const { id } = req.params;
-    const updatedProduct = await SalesProduct.findByIdAndUpdate(id, req.body, {
-      new: true,
-    });
-    await SalesProduct.updateOne(updatedProduct);
-    res.status(201).send(updatedProduct);
-  } catch (e) {
-    res.status(500).json({
-      message: "На сервере произошла ошибка. Попробуйте позже",
-    });
-  }
-});
-///change all product
-router.patch("/", async (req, res) => {
-  try {
-    const updatedProduct = await SalesProduct.updateMany(id, req.body, {
-      new: true,
-    });
-    res.status(201).send(updatedProduct);
+    const list = await SalesProduct.findOne();
+    if (!list) {
+      const newData = req.body;
+      await SalesProduct.create(newData);
+      res.status(200).send(newData);
+    }
   } catch (e) {
     res.status(500).json({
       message: "На сервере произошла ошибка. Попробуйте позже",

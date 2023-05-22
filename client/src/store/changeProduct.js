@@ -34,7 +34,7 @@ const {
 export const loadChangeProductList = () => async (dispatch) => {
   dispatch(changeProductRequested());
   try {
-    const { data } = await http.get("product");
+    const { data } = await http.get("/product");
     const arrInitValues = [];
     Object.keys(data).forEach((item) => arrInitValues.push(data[item]));
     const allSizes = arrInitValues.map((item) => (item = item.quantity));
