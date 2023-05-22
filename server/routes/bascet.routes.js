@@ -39,7 +39,7 @@ router.patch("/:id/:prodId", async (req, res) => {
     const { quantity } = req.body;
 
     const findeCurrentBascet = await Bascet.findOne({ user: id });
-    if (findeCurrentBascet === null) {
+    if (!findeCurrentBascet) {
       const newData = { user: id, bascet: [req.body] };
       await Bascet.create(newData);
     }
