@@ -1,37 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styles from "../layouts.styles/bascet.module.css";
 import servicesBascet from "../../utils/bascetServices";
 import bascetService from "../../services/bascet.service";
-import productSerivce from "../../services/product.service";
 
 const Counter = ({
   data,
   quantity,
   handleDecrementAmount,
   handleIncrementAmount,
+  initProduct,
 }) => {
   const [countDec, setCountInc] = useState();
   const [countInc, setCountDec] = useState();
-  const [initProduct, setInitProduct] = useState();
-  const initialDataFromDb = productSerivce.getAllProduct();
-  useEffect(() => {
-    initialDataFromDb
-      .then((res) => {
-        const dataFormat = Object.keys(res).map((item) => res[item]);
-        setInitProduct(dataFormat);
-      })
-      .catch((error) => error.message);
-  }, []);
+
   const handleDelete = async (e) => {
     await bascetService.deleteProductInBascet(e.target.id);
     window.location.reload();
   };
+
   const handleIncrement = (e) => {
     ///filtrade data from quantity
     const filterQuantityFromData = quantity.filter(
       (item) => `${item.size}` === `${e.target.id}`
     );
     ///getting data from database with db sizes and values
+
     const dataFromDb = initProduct.filter((item) => item._id === data._id);
 
     const getQuantityFromDb = dataFromDb[0].quantity.filter(
@@ -50,6 +43,7 @@ const Counter = ({
       (item) => `${item.size}` === `${e.target.id}`
     );
     ///getting data from database with db sizes and values
+
     const dataFromDb = initProduct.filter((item) => item._id === data._id);
     const getQuantityFromDb = dataFromDb[0].quantity.filter(
       (item) => `${item.size}` === `${e.target.id}`
@@ -67,7 +61,9 @@ const Counter = ({
     servicesBascet.decrement(quantity, e, setCountDec, data, initProduct);
   };
 
-  return (
+  return initProduct === undefined ? (
+    <h2>Loading</h2>
+  ) : (
     <>
       {quantity.map((quan) => (
         <div className={styles.button_block} key={quan.size}>

@@ -37,7 +37,6 @@ const Order = () => {
     return Object.keys(errors).length === 0;
   };
   const isValid = Object.keys(errors).length === 0;
-  console.log(data, dataFromBascet);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const isValid = validate();
