@@ -57,7 +57,7 @@ router.patch("/:id", [
 router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const createOrder = await Order.findById(id);
+    const createOrder = await Order.ffindOne(id);
     res.status(200).send(createOrder);
   } catch (e) {
     res.status(500).json({
@@ -70,7 +70,7 @@ router.get("/:id/purchasedItem/:prodId/quantity", async (req, res) => {
   try {
     const { id } = req.params;
     const { prodId } = req.params;
-    const findSelectedItem = await Order.findById(id);
+    const findSelectedItem = await Order.findOne({ user: id });
     if (!findSelectedItem) {
       return null;
     }
@@ -78,7 +78,7 @@ router.get("/:id/purchasedItem/:prodId/quantity", async (req, res) => {
       (item) => item._id.toString() === prodId
     );
     if (!findProductInPurchasedItem) {
-      return null;
+      return undefined;
     }
     res.status(200).send(findProductInPurchasedItem.quantity);
   } catch (e) {
@@ -94,24 +94,25 @@ router.patch("/:id/purchasedItem/:prodId", async (req, res) => {
     const { id, prodId } = req.params;
     const data = { ...req.body };
     const findPurchasedFromUserId = await Order.findOne({ user: id });
+
     if (findPurchasedFromUserId) {
       const findProductIndex = findPurchasedFromUserId.purchasedItem.findIndex(
         (item) => item._id === prodId
       );
+
       if (findProductIndex !== -1) {
         findPurchasedFromUserId.purchasedItem[findProductIndex] = data;
       } else {
         findPurchasedFromUserId.purchasedItem.push(data);
-        findPurchasedFromUserId.save();
-        res.status(200).send(findPurchasedFromUserId);
       }
+
       await findPurchasedFromUserId.save();
       res.status(200).send(findPurchasedFromUserId);
     } else {
       res.status(500).json({ message: "User not found" });
     }
   } catch (e) {
-    res.status(500).json({ message: "На сервере произошла ошибка" });
+    res.status(500).json({ message: "An error occurred on the server" });
   }
 });
 

@@ -13,55 +13,34 @@ router.get("/", async (req, res) => {
   }
 });
 ///crete Bascet and AddedToBascet
-router.patch("/:id", async (req, res) => {
+router.patch("/:id/:prodId", async (req, res) => {
   try {
+    const { id, prodId } = req.params;
     const findUserBasket = await Bascet.findOne({ user: id });
+
     if (!findUserBasket) {
       const newData = { user: id, bascet: [req.body] };
       await Bascet.create(newData);
       res.status(200).send(newData);
     } else {
-      const newItem = { ...req.body };
-      findUserBasket.bascet.push(newItem);
+      const findProductIndex = findUserBasket.bascet.findIndex(
+        (item) => item._id === prodId
+      );
+      if (findProductIndex !== -1) {
+        findUserBasket.bascet[findProductIndex] = req.body;
+      } else {
+        findUserBasket.bascet.push(req.body);
+      }
       await findUserBasket.save();
       res.status(200).send(findUserBasket);
     }
   } catch (e) {
     res.status(500).json({
-      message: "На сервере произошла ошибка. Попробуйте позже",
+      message: "An error occurred on the server. Please try again later",
     });
   }
 });
-///PushedToBascet
-router.patch("/:id/:prodId", async (req, res) => {
-  try {
-    const { id, prodId } = req.params;
-    const { quantity } = req.body;
 
-    const findeCurrentBascet = await Bascet.findOne({ user: id });
-    if (!findeCurrentBascet) {
-      const newData = { user: id, bascet: [req.body] };
-      await Bascet.create(newData);
-    }
-
-    const productExists = findeCurrentBascet.bascet.some(
-      (item) => item._id === prodId
-    );
-    if (productExists) {
-      await Bascet.findOneAndUpdate(
-        { user: id, "bascet._id": prodId },
-        { $set: { "bascet.$.quantity": quantity } },
-        { new: true }
-      );
-    } else {
-      const newItem = { ...req.body };
-      findeCurrentBascet.bascet.push(newItem);
-      await findeCurrentBascet.save();
-    }
-  } catch (error) {
-    res.status(500).json({ message: "На сервере произошла ошибка" });
-  }
-});
 ///counter
 router.patch("/:id/bascet/:prodId", async (req, res) => {
   try {
@@ -70,15 +49,8 @@ router.patch("/:id/bascet/:prodId", async (req, res) => {
     const { quantity } = req.body;
 
     const basket = await Bascet.findOne({ user: id });
-
     if (!basket) {
       return res.status(500).json({ message: "The user does not exist." });
-    }
-
-    if (basket.isUpdating) {
-      return res.status(429).json({
-        message: "Basket is currently being updated. Please try again later.",
-      });
     }
 
     basket.isUpdating = true;
@@ -123,14 +95,19 @@ router.delete("/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const list = await Bascet.find();
-    const findBascetById = list.filter(
-      (item) => JSON.stringify(item.user) === JSON.stringify(id)
-    );
-    const idBascet = findBascetById[0]._id;
-    await Bascet.findByIdAndDelete(idBascet);
-    res.status(200).json({
-      message: "Корзина обновленна",
-    });
+    if (list.length === 0) {
+      res.status(200).json({ message: "Корзина не найдена" });
+    }
+    if (list.length > 0) {
+      const findBascetById = list.filter(
+        (item) => JSON.stringify(item.user) === JSON.stringify(id)
+      );
+      const idBascet = findBascetById[0]._id;
+      await Bascet.findByIdAndDelete(idBascet);
+      res.status(200).json({
+        message: "Корзина обновленна",
+      });
+    }
   } catch (error) {
     res.status(500).json({
       message: "На сервере произошла ошибка",
