@@ -1,7 +1,7 @@
 import http from "./http.service";
 import localStorageService from "./localStorage.service";
 const bascetService = {
-  updateProductAddedToBascet: async (obj) => {
+  createAndPushToBascet: async (obj) => {
     const { data } = await http.patch(
       `/bascet/${localStorageService.getUserId()}/${obj._id}`,
       obj

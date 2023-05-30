@@ -1,5 +1,4 @@
 import http from "./http.service";
-import localStorageService from "./localStorage.service";
 
 const productEndPoint = "/product";
 

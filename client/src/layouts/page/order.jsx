@@ -7,10 +7,11 @@ import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
 import bascetService from "../../services/bascet.service";
 import writingDataToDb from "../../functions/writingDataToDb";
-
+import orderService from "../../services/orders.service";
 const Order = () => {
   const history = useHistory();
   const [dataFromBascet, setDataFromBascet] = useState();
+  const [quantityFromPurchased, setQuantityFromPurchased] = useState();
   const [data, setData] = useState({
     numtel: "",
     fio: "",
@@ -19,7 +20,6 @@ const Order = () => {
     post: "СДЭК",
   });
   const [errors, setErrors] = useState({});
-
   useEffect(() => {
     validate();
     bascetService
@@ -30,6 +30,13 @@ const Order = () => {
       })
       .catch((error) => error.message);
   }, [data]);
+  if (dataFromBascet !== undefined) {
+    const getQuantityPurchased = dataFromBascet.map((item) => {
+      orderService.getPurchasedProdQuantity(item).then((res) => {
+        setQuantityFromPurchased(res);
+      });
+    });
+  }
 
   const validate = () => {
     const errors = validator(data, validatorConfig);
@@ -42,7 +49,7 @@ const Order = () => {
     const isValid = validate();
     if (!isValid) return;
     try {
-      await writingDataToDb(data, dataFromBascet);
+      await writingDataToDb(data, dataFromBascet, quantityFromPurchased);
     } catch (error) {
       console.log(error.message);
     }
@@ -50,11 +57,11 @@ const Order = () => {
       "Спасибо за покупку в нашем магазине,ваш заказ оформлен ожидайте обратной связи"
     );
 
-    // history.push("/");
+    history.push("/");
     bascetService.refreshBascetAfterBuying();
-    // setTimeout(() => {
-    //   window.location.reload();
-    // }, 3000);
+    setTimeout(() => {
+      window.location.reload();
+    }, 3000);
   };
   const handleChange = ({ target }) => {
     setData((prevState) => ({ ...prevState, [target.name]: target.value }));

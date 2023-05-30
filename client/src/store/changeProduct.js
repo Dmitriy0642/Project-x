@@ -86,7 +86,7 @@ export const changeProductQuantity =
         return item;
       });
       dispatch(changeProductReceved(newData));
-      await bascetService.updateProductAddedToBascet(updatedObjData);
+      await bascetService.createAndPushToBascet(updatedObjData);
     } else if (
       secondQuantityFromObj[0].value === initialyQuantityFromObj[0].value
     ) {
