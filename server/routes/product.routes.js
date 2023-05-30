@@ -35,7 +35,6 @@ router.patch("/:id", async (req, res) => {
       req.body,
       { new: true }
     );
-    console.log(findAndUpdate);
     res.status(200).send(findAndUpdate);
   } catch (e) {
     res.status(500).json({
