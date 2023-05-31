@@ -54,9 +54,27 @@ router.patch("/:id", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const findById = SalesProduct.findById(id);
-    res.status(201).send(findById);
+    const findById = await SalesProduct.findOne({ _id: id });
+    res.status(200).send(findById);
   } catch (e) {
+    res.status(500).json({
+      message: "На сервере произошла ошибка. Попробуйте позже",
+    });
+  }
+});
+
+router.get("/:id/quantity", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const findById = await SalesProduct.findOne({ _id: id });
+    if (findById) {
+      res.status(200).send(findById.quantity);
+    } else {
+      res.status(500).json({
+        message: "Продукт не найден",
+      });
+    }
+  } catch (error) {
     res.status(500).json({
       message: "На сервере произошла ошибка. Попробуйте позже",
     });
