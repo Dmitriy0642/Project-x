@@ -69,10 +69,9 @@ router.get("/:id/quantity", async (req, res) => {
     const findById = await SalesProduct.findOne({ _id: id });
     if (findById) {
       res.status(200).send(findById.quantity);
-    } else {
-      res.status(500).json({
-        message: "Продукт не найден",
-      });
+    }
+    if (!findById) {
+      res.status(200).send(null);
     }
   } catch (error) {
     res.status(500).json({

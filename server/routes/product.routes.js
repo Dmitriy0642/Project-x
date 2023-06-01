@@ -85,14 +85,13 @@ router.get("/:id/quantity", async (req, res) => {
 router.patch("/:id/quantity", async (req, res) => {
   try {
     const { id } = req.params;
-    const { quantity } = req.body;
-    const findProduct = await Product.findByIdAndUpdate(
-      id,
-      { quantity: quantity },
-      { new: true }
-    );
-
-    res.status(200).send(findProduct);
+    console.log(req.body);
+    const findOne = await Product.findOne({ _id: id });
+    if (findOne) {
+      findOne.quantity = req.body;
+      await findOne.save();
+      res.status(200).send(findOne);
+    }
   } catch (e) {
     res.status(500).json({
       message: "An error occurred on the server. Please try again later.",
