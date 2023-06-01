@@ -7,7 +7,7 @@ const PurchasedProduct = () => {
   const data = useSelector(getPurchased());
 
   useEffect(() => {
-    if (data[0] !== null) {
+    if (data !== null) {
       data.map((item) => {
         item.quantity.forEach((quan) => {
           setAmount(

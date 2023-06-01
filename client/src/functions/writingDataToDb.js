@@ -4,20 +4,33 @@ import decrementPurchased from "./decrementPurchased";
 const writingDataToDb = async (
   dataForm,
   dataFromBascet,
-  quantityFromPurchased
+  quantityFromPurchased,
+  slaesProductQuantity
 ) => {
-  const dataFromPurchased = await dataFromBascet.map((item) => {
-    if (quantityFromPurchased.length === 0) {
-      decrementPurchased(item, item.quantity);
-      productSerivce.addSalesProduct(item);
-      orderService.createPurchasedProduct(item, dataForm);
+  const dataFromPurchased = dataFromBascet.map(async (item) => {
+    if (
+      quantityFromPurchased.length === 0 &&
+      slaesProductQuantity.length === 0
+    ) {
+      await decrementPurchased(item, item.quantity);
+      await productSerivce.addSalesProduct(item);
+      await orderService.createPurchasedProduct(item, dataForm);
     } else {
-      decrementPurchased(item, item.quantity);
+      await decrementPurchased(item, item.quantity);
       const newQuantity = item.quantity.map((j, index) => {
         if (quantityFromPurchased[index].value > 0) {
           return {
             ...j,
             value: (quantityFromPurchased[index].value += j.value),
+          };
+        }
+        return j;
+      });
+      const quantityFroSalesProduct = item.quantity.map((j, index) => {
+        if (slaesProductQuantity[index].value > 0) {
+          return {
+            ...j,
+            value: (slaesProductQuantity[index].value += j.value),
           };
         }
         return j;
@@ -32,8 +45,18 @@ const writingDataToDb = async (
         quantity: newQuantity,
         _id: item._id,
       };
-      orderService.createPurchasedProduct(newData, dataForm);
-      productSerivce.addSalesProduct(newData);
+      const dataForSalesProduct = {
+        category: item.category,
+        firm: item.firm,
+        img: [...item.img],
+        name: item.name,
+        price: item.price,
+        quantity: quantityFroSalesProduct,
+        _id: item._id,
+      };
+
+      await orderService.createPurchasedProduct(newData, dataForm);
+      await productSerivce.addSalesProduct(dataForSalesProduct);
     }
   });
 };

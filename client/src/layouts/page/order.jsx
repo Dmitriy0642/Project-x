@@ -8,10 +8,14 @@ import { useHistory } from "react-router-dom";
 import bascetService from "../../services/bascet.service";
 import writingDataToDb from "../../functions/writingDataToDb";
 import orderService from "../../services/orders.service";
+import productSerivce from "../../services/product.service";
+
 const Order = () => {
   const history = useHistory();
-  const [dataFromBascet, setDataFromBascet] = useState();
+  const dataFromBascet = bascetService.getBascetData();
+  const [itemFromBascet, setDataFromBascet] = useState();
   const [quantityFromPurchased, setQuantityFromPurchased] = useState();
+  const [slaesProductQuantity, setSalsesProductQuantity] = useState();
   const [data, setData] = useState({
     numtel: "",
     fio: "",
@@ -19,25 +23,25 @@ const Order = () => {
     address: "",
     post: "СДЭК",
   });
+
   const [errors, setErrors] = useState({});
   useEffect(() => {
     validate();
-    bascetService
-      .getBascetData()
-      .then((res) => {
-        const toFormat = Object.keys(res).map((item) => res[item]);
-        setDataFromBascet(toFormat);
-      })
-      .catch((error) => error.message);
-  }, [data]);
-  if (dataFromBascet !== undefined) {
-    const getQuantityPurchased = dataFromBascet.map((item) => {
-      orderService.getPurchasedProdQuantity(item).then((res) => {
-        setQuantityFromPurchased(res);
+    dataFromBascet.then((res) => {
+      const toFormat = Object.keys(res).map((item) => res[item]);
+      setDataFromBascet(toFormat);
+      toFormat.map((e) => {
+        orderService
+          .getPurchasedProdQuantity(e)
+          .then((res) => setQuantityFromPurchased(res));
+      });
+      toFormat.map((e) => {
+        productSerivce
+          .getSalesProductQuantity(e)
+          .then((res) => setSalsesProductQuantity(res));
       });
     });
-  }
-
+  }, [data]);
   const validate = () => {
     const errors = validator(data, validatorConfig);
     setErrors(errors);
@@ -49,7 +53,12 @@ const Order = () => {
     const isValid = validate();
     if (!isValid) return;
     try {
-      await writingDataToDb(data, dataFromBascet, quantityFromPurchased);
+      await writingDataToDb(
+        data,
+        itemFromBascet,
+        quantityFromPurchased,
+        slaesProductQuantity
+      );
     } catch (error) {
       console.log(error.message);
     }

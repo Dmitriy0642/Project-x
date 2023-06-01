@@ -7,11 +7,11 @@ import SelectedForm from "../../forms/selectedField";
 import { useDispatch, useSelector } from "react-redux";
 import { getProduct, removingProduct } from "../../store/product";
 import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 const DeleteProduct = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const prod = useSelector(getProduct());
-  const [product, setProduct] = useState();
   const [errors, setErrors] = useState({});
   const [data, setData] = useState({
     product: "",
@@ -24,7 +24,6 @@ const DeleteProduct = () => {
   };
 
   useEffect(() => {
-    setProduct(prod);
     validate();
   }, [data]);
 
@@ -33,6 +32,7 @@ const DeleteProduct = () => {
     setErrors(errors);
     return Object.keys(errors).length === 0;
   };
+  console.log(data.product);
   const isValid = Object.keys(errors).length === 0;
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -41,19 +41,20 @@ const DeleteProduct = () => {
     productSerivce.deleteProduct(data.product);
     dispatch(removingProduct(data));
     history.push("/");
+    toast.success("Товар удален");
     setTimeout(() => {
       window.location.reload();
     }, 1000);
   };
 
-  return product !== null ? (
+  return prod !== null ? (
     <div className="container mt-5">
       <div className="row">
         <div className="col-md-6 offset-md-3 shadow p-4">
           <form onSubmit={handleSubmit}>
             <SelectedForm
               name="product"
-              data={product}
+              data={prod}
               value={data.product}
               label="Выберите товар который необходимо удлаить"
               onChange={handleChange}
