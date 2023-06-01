@@ -7,10 +7,10 @@ import { getProduct } from "../../store/product";
 import TextField from "../../forms/textField";
 import productSerivce from "../../services/product.service";
 import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 const ChangeProduct = () => {
   const history = useHistory();
   const prod = useSelector(getProduct());
-  const [product, setProduct] = useState();
   const [errors, setErrors] = useState({});
   const [data, setData] = useState({
     product: "",
@@ -31,7 +31,6 @@ const ChangeProduct = () => {
   ];
 
   useEffect(() => {
-    setProduct(prod);
     validate();
   }, [data]);
   const handleChange = ({ target }) => {
@@ -55,20 +54,21 @@ const ChangeProduct = () => {
     } catch (error) {
       console.log(error.message);
     }
-    // history.push("/");
-    // setTimeout(() => {
-    //   window.location.reload();
-    // }, 1000);
+    history.push("/");
+    toast.success("Размеры успешно добавленны");
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
   };
 
-  return product !== null || product !== undefined ? (
+  return prod !== null ? (
     <div className="container mt-5">
       <div className="row">
         <div className="col-md-6 offset-md-3 shadow p-4">
           <form onSubmit={handleSubmit}>
             <SelectedForm
               name="product"
-              data={product}
+              data={prod}
               value={data.product}
               label="Выберите товар к которому необходимо добавить размеры"
               onChange={handleChange}

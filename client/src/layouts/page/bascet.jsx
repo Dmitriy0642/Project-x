@@ -8,6 +8,7 @@ import NotBascet from "../../ui/notBascet";
 import { useSelector } from "react-redux";
 import { getCurrentUsers } from "../../store/users";
 import bascetService from "../../services/bascet.service";
+import productSerivce from "../../services/product.service";
 
 const Bascet = () => {
   const currentUser = useSelector(getCurrentUsers());
@@ -15,6 +16,8 @@ const Bascet = () => {
   const history = useHistory();
   const [amount, setAmount] = useState(0);
   const [acceptDatafromBascet, setAcceptedData] = useState();
+  const [initProduct, setInitProduct] = useState();
+  const initialDataFromDb = productSerivce.getAllProduct();
   useEffect(() => {
     itemFrobBascet
       .then((res) => {
@@ -27,6 +30,12 @@ const Bascet = () => {
             );
           });
         });
+      })
+      .catch((error) => error.message);
+    initialDataFromDb
+      .then((res) => {
+        const dataFormat = Object.keys(res).map((item) => res[item]);
+        setInitProduct(dataFormat);
       })
       .catch((error) => error.message);
   }, []);
@@ -59,6 +68,7 @@ const Bascet = () => {
     }
   };
   return acceptDatafromBascet === undefined ||
+    initProduct === undefined ||
     acceptDatafromBascet.length === 0 ? (
     <NotBascet />
   ) : (
@@ -84,6 +94,7 @@ const Bascet = () => {
             <h2 className={styles.title_product}>Размеры товара</h2>
             {
               <Counter
+                initProduct={initProduct}
                 data={item}
                 quantity={item.quantity}
                 key={item._id}

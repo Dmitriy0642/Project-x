@@ -3,13 +3,6 @@ import localStorageService from "./localStorage.service";
 
 const userEndPoint = "/order";
 const orderService = {
-  create: async (payload) => {
-    const { data } = await http.patch(
-      `${userEndPoint}/${localStorageService.getUserId()}`,
-      payload
-    );
-    return data;
-  },
   getPurchasedProd: async () => {
     const { data } = await http.get(
       `${userEndPoint}/${localStorageService.getUserId()}/
@@ -25,12 +18,28 @@ const orderService = {
     );
     return data;
   },
-  createPurchasedProduct: async (prod) => {
+  createPurchasedProduct: async (prod, dataForm) => {
     const { data } = await http.patch(
       `${userEndPoint}/${localStorageService.getUserId()}/purchasedItem/${
         prod._id
       }`,
-      prod
+      {
+        fio: dataForm.fio,
+        addres: dataForm.addres,
+        numtel: dataForm.numtel,
+        post: dataForm.post,
+        sity: dataForm.sity,
+        purchasedItem: [
+          {
+            _id: prod._id,
+            category: prod.category,
+            firm: prod.firm,
+            name: prod.name,
+            price: prod.price,
+            quantity: [...prod.quantity],
+          },
+        ],
+      }
     );
     return data;
   },

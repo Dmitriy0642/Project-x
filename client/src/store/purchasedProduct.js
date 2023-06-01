@@ -32,7 +32,6 @@ export const loadListPurchased = () => async (dispatch) => {
   try {
     const { data } = await http.get("salesProduct");
     const foramtDataToArr = Object.keys(data).map((item) => data[item]);
-
     dispatch(purchasedReceved(foramtDataToArr));
   } catch (error) {
     dispatch(purchasedRequestFailed(error.message));

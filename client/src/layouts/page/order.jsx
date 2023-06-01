@@ -7,10 +7,15 @@ import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
 import bascetService from "../../services/bascet.service";
 import writingDataToDb from "../../functions/writingDataToDb";
+import orderService from "../../services/orders.service";
+import productSerivce from "../../services/product.service";
 
 const Order = () => {
   const history = useHistory();
-  const [dataFromBascet, setDataFromBascet] = useState();
+  const dataFromBascet = bascetService.getBascetData();
+  const [itemFromBascet, setDataFromBascet] = useState();
+  const [quantityFromPurchased, setQuantityFromPurchased] = useState();
+  const [slaesProductQuantity, setSalsesProductQuantity] = useState();
   const [data, setData] = useState({
     numtel: "",
     fio: "",
@@ -18,32 +23,42 @@ const Order = () => {
     address: "",
     post: "СДЭК",
   });
-  const [errors, setErrors] = useState({});
 
+  const [errors, setErrors] = useState({});
   useEffect(() => {
     validate();
-    bascetService
-      .getBascetData()
-      .then((res) => {
-        const toFormat = Object.keys(res).map((item) => res[item]);
-        setDataFromBascet(toFormat);
-      })
-      .catch((error) => error.message);
+    dataFromBascet.then((res) => {
+      const toFormat = Object.keys(res).map((item) => res[item]);
+      setDataFromBascet(toFormat);
+      toFormat.map((e) => {
+        orderService
+          .getPurchasedProdQuantity(e)
+          .then((res) => setQuantityFromPurchased(res));
+      });
+      toFormat.map((e) => {
+        productSerivce
+          .getSalesProductQuantity(e)
+          .then((res) => setSalsesProductQuantity(res));
+      });
+    });
   }, [data]);
-
   const validate = () => {
     const errors = validator(data, validatorConfig);
     setErrors(errors);
     return Object.keys(errors).length === 0;
   };
   const isValid = Object.keys(errors).length === 0;
-  console.log(data, dataFromBascet);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const isValid = validate();
     if (!isValid) return;
     try {
-      await writingDataToDb(data, dataFromBascet);
+      await writingDataToDb(
+        data,
+        itemFromBascet,
+        quantityFromPurchased,
+        slaesProductQuantity
+      );
     } catch (error) {
       console.log(error.message);
     }
@@ -51,11 +66,11 @@ const Order = () => {
       "Спасибо за покупку в нашем магазине,ваш заказ оформлен ожидайте обратной связи"
     );
 
-    // history.push("/");
+    history.push("/");
     bascetService.refreshBascetAfterBuying();
-    // setTimeout(() => {
-    //   window.location.reload();
-    // }, 3000);
+    setTimeout(() => {
+      window.location.reload();
+    }, 3000);
   };
   const handleChange = ({ target }) => {
     setData((prevState) => ({ ...prevState, [target.name]: target.value }));
