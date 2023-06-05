@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import icon_login from "../icons/login.png";
-import { Link, useHistory } from "react-router-dom";
+import React, { useState } from "react";
+import icon_login from "../icons/login40px.png";
+import { Link } from "react-router-dom";
 import styles from "./ui.styles/header.module.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { getCurrentUsers } from "../store/users";
 const Profile = () => {
   const currentUser = useSelector(getCurrentUsers());
