@@ -125,17 +125,30 @@ legend {
 .wrapper {
   display: flex;
   margin: 176px 0 0 0;
+  align-items: center;
+  justify-content: center;
+}
+
+.card_product {
+  margin: 0 20px 0 20px;
+  width: 370px;
+  height: 400px;
 }
 
 .card_img {
-  width: 100%;
+  width: 120%;
   height: 100%;
+}
+.card_img:hover {
+  transition: 1s;
+  opacity: 0.5;
 }
 
 .title_product {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: "Roboto", sans-serif;
+  margin: 14px 0 0 0;
   font-size: 18px;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

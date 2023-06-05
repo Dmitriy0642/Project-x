@@ -24,8 +24,8 @@ const ReviewFormCatalog = ({ match }) => {
         <div className={styles.card_product} key={item._id}>
           <Link to={`${url}/${item._id}`}>
             {<img src={item.img[0]} className={styles.card_img}></img>}
-            <h2 className={styles.title_product}>{item.name}</h2>
           </Link>
+          <h2 className={styles.title_product}>{item.name}</h2>
         </div>
       ))}
     </div>
