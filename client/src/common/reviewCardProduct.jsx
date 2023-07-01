@@ -5,6 +5,7 @@ import ReviewCardForm from "./reviewCardForm";
 import { getProduct } from "../store/product";
 import { useSelector } from "react-redux";
 import { getCategory } from "../store/categoryOfProduct";
+import Slider from "./slider";
 
 const ReviewCardProduct = ({ match }) => {
   const product = useSelector(getProduct());
@@ -20,7 +21,7 @@ const ReviewCardProduct = ({ match }) => {
     <div className={styles.main_div}>
       {singleData.map((item) => (
         <div className={styles.wrapper} key={item._id}>
-          <img src={item.img[0]} className={styles.img_product}></img>
+          <Slider image={item.img} />
           <ReviewCardForm
             obj={singleData}
             name={item.name}
