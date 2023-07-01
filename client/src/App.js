@@ -10,6 +10,7 @@ import Login from "./layouts/page/login";
 import Order from "./layouts/page/order";
 import LogOut from "./ui/logOut";
 import AdminPanel from "./layouts/page/adminPanel";
+import SideBar from "./common/gorisontalSideBar";
 import { useDispatch } from "react-redux";
 import { loadChangeProductList } from "./store/changeProduct";
 import { loadProductList } from "./store/product";

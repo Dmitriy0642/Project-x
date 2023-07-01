@@ -6,6 +6,7 @@ import { getProduct } from "../store/product";
 import { useSelector } from "react-redux";
 import { getCategory } from "../store/categoryOfProduct";
 import Slider from "./slider";
+import SideBar from "./gorisontalSideBar";
 
 const ReviewCardProduct = ({ match }) => {
   const product = useSelector(getProduct());
@@ -19,6 +20,7 @@ const ReviewCardProduct = ({ match }) => {
     <h1>Lodaing...</h1>
   ) : (
     <div className={styles.main_div}>
+      <SideBar allCatalog={arrOfCategory} usedId={singleData} url={name} id={id}/>
       {singleData.map((item) => (
         <div className={styles.wrapper} key={item._id}>
           <Slider image={item.img} />

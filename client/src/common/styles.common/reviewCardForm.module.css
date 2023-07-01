@@ -121,11 +121,14 @@ label {
 legend {
   display: block;
 }
-@media (max-width: 2000px) {
+
+@media(min-width: 1800px)  and (max-width: 2000px){
   .form {
     box-shadow: 0 4px 16px #000;
     width: 400px;
     height: 500px;
+    border: 7px solid black;
+    margin: 0 0 0 80px;
   }
 
   .title_form {
@@ -185,6 +188,7 @@ legend {
     color: black;
   }
 }
+
 
 @media (max-width: 1700px) {
   .form {
