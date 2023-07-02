@@ -150,6 +150,15 @@ legend {
     width: 50px;
     height: 50px;
   }
+  .links{
+    display: flex;
+    margin: 0 0 0 745px;
+  }
+  .links a{
+    margin: 7.5px 7.5px 0 7.5px;
+    width: 40px;
+    height: 40px;
+  }
 }
 
 @media (min-width: 1700px) and (max-width: 1800px) {
@@ -163,6 +172,13 @@ legend {
     width: 70px;
     height: 70px;
   }
+  .links{
+    display: flex;
+    margin: 0 0 0 550px;
+  }
+  .links a{
+    margin: 7.5px 15.5px 0 15.5px;
+  }
   .ancor {
     margin: 20px 0 0 42px;
     color: black;
@@ -174,6 +190,7 @@ legend {
   .icon_links {
     margin: 13px 0 0 520px;
   }
+ 
   .icon_links a {
     margin: 0 20px 0 20px;
     width: 50px;
@@ -212,6 +229,14 @@ legend {
     width: 50px;
     height: 50px;
   }
+
+  .links{
+    display: flex;
+    margin: 0 0 0 550px;
+  }
+  .links a{
+    margin: 7.5px 15.5px 0 15.5px;
+  }
 }
 
 @media (min-width: 1570px) and (max-width: 1650px) {
@@ -240,6 +265,13 @@ legend {
     margin: 0 10px 0 10px;
     width: 50px;
     height: 50px;
+  }
+  .links{
+    display: flex;
+    margin: 0 0 0 550px;
+  }
+  .links a{
+    margin: 7.5px 15.5px 0 15.5px;
   }
 }
 
@@ -272,6 +304,14 @@ legend {
     width: 50px;
     height: 50px;
   }
+
+  .links{
+    display: flex;
+    margin: 0 0 0 550px;
+  }
+  .links a{
+    margin: 7.5px 12.5px 0 12.5px;
+  }
 }
 
 @media (min-width: 1360px) and (max-width: 1480px) {
@@ -300,6 +340,13 @@ legend {
     margin: 0 5.5px 0 5.5px;
     width: 50px;
     height: 50px;
+  }
+  .links{
+    display: flex;
+    margin: 0 0 0 500px;
+  }
+  .links a{
+    margin: 7.5px 10.5px 0 10.5px;
   }
 }
 
@@ -330,6 +377,13 @@ legend {
     width: 50px;
     height: 50px;
   }
+  .links{
+    display: flex;
+    margin: 0 0 0 470px;
+  }
+  .links a{
+    margin: 7.5px 10.5px 0 10.5px;
+  }
 }
 
 @media (min-width: 1140px) and (max-width: 1270px) {
@@ -358,6 +412,14 @@ legend {
     margin: 0 3.5px 0 3.5px;
     width: 50px;
     height: 50px;
+  }
+
+  .links{
+    display: flex;
+    margin: 0 0 0 410px;
+  }
+  .links a{
+    margin: 7.5px 6.5px 0 6.5px;
   }
 }
 
@@ -388,6 +450,13 @@ legend {
     width: 50px;
     height: 50px;
   }
+  .links{
+    display: flex;
+    margin: 0 0 0 370px;
+  }
+  .links a{
+    margin: 7.5px 6.5px 0 6.5px;
+  }
 }
 
 @media (min-width: 950px) and (max-width: 1050px) {
@@ -417,6 +486,13 @@ legend {
     width: 50px;
     height: 50px;
   }
+  .links{
+    display: flex;
+    margin: 0 0 0 340px;
+  }
+  .links a{
+    margin: 7.5px 6.5px 0 6.5px;
+  }
 }
 
 @media (min-width: 840px) and (max-width: 950px) {
@@ -445,6 +521,13 @@ legend {
     margin: 0 3px 0 3px;
     width: 50px;
     height: 50px;
+  }
+  .links{
+    display: flex;
+    margin: 0 0 0 320px;
+  }
+  .links a{
+    margin: 7.5px 6.5px 0 6.5px;
   }
 }
 
