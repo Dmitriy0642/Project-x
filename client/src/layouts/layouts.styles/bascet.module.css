@@ -122,103 +122,1147 @@ legend {
   display: block;
 }
 
-.main_div {
-  font-family: "Roboto", sans-serif;
-  margin: 50px 0 0 280px;
+
+@media (min-width:1800px) and (max-width: 2000px) {
+  .main_div {
+    font-family: "Roboto", sans-serif;
+    margin: 50px 0 0 280px;
+  }
+  
+  .product_div {
+    display: flex;
+  }
+  
+  .img_product {
+    margin: 10px 0 20px 0;
+    width: 340px;
+    height: 450px;
+  }
+  
+  .first_div {
+    margin: 15px 25px 0 25px;
+  }
+  .title_product {
+    font-size: 20px;
+    margin: 20px 55px 0 55px;
+  }
+  
+  .second_div {
+    margin: 15px 25px 0 25px;
+  }
+  
+  .title_review {
+    margin: 13px 0 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .third_block {
+    margin: 15px 25px 0 25px;
+  }
+  
+  .button_block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .button_sizes {
+    margin: 20px 0 0 0;
+    color: black;
+    height: 50%;
+    width: 30%;
+    background-color: gainsboro;
+    border-radius: 20px;
+    border: 1px solid gray;
+  }
+  
+  .button_selected_value {
+    width: 30px;
+    height: 30px;
+    margin: 20px 15px 0 15px;
+    border-radius: 50%;
+    border: 1px solid black;
+  }
+  
+  .countAmount {
+    margin: 10px 0 25px 40px;
+  
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+  }
+  .balance_title {
+    margin: 10px 0 25px 40px;
+  
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+  }
+  
+  .block_finish_order {
+    margin: 0 0 0 590px;
+  }
+  
+  .button_added_finish_order {
+    margin: 30px 0 30px 0px;
+    border: 1px solid black;
+    border-radius: 20px;
+    height: 30px;
+    width: 150px;
+  }
+  
+  .button_delete_block {
+    display: flex;
+    justify-content: center;
+    margin: 60px 0 0 0;
+  }
+  
+  .button_delete {
+    border-radius: 1px solid black;
+    border: 1px solid black;
+    border-radius: 20px;
+    height: 30px;
+    width: 150px;
+  }
+  
 }
 
-.product_div {
-  display: flex;
+@media (min-width:1700px) and (max-width: 1800px) {
+  .main_div {
+    font-family: "Roboto", sans-serif;
+    margin: 50px 0 0 280px;
+  }
+  
+  .product_div {
+    display: flex;
+  }
+  
+  .img_product {
+    margin: 10px 0 20px 0;
+    width: 340px;
+    height: 450px;
+  }
+  
+  .first_div {
+    margin: 15px 25px 0 25px;
+  }
+  .title_product {
+    font-size: 20px;
+    margin: 20px 55px 0 55px;
+  }
+  
+  .second_div {
+    margin: 15px 25px 0 25px;
+  }
+  
+  .title_review {
+    margin: 13px 0 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .third_block {
+    margin: 15px 25px 0 25px;
+  }
+  
+  .button_block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .button_sizes {
+    margin: 20px 0 0 0;
+    color: black;
+    height: 50%;
+    width: 30%;
+    background-color: gainsboro;
+    border-radius: 20px;
+    border: 1px solid gray;
+  }
+  
+  .button_selected_value {
+    width: 30px;
+    height: 30px;
+    margin: 20px 15px 0 15px;
+    border-radius: 50%;
+    border: 1px solid black;
+  }
+  
+  .countAmount {
+    margin: 10px 0 25px 40px;
+  
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+  }
+  .balance_title {
+    margin: 10px 0 25px 40px;
+  
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+  }
+  
+  .block_finish_order {
+    margin: 0 0 0 590px;
+  }
+  
+  .button_added_finish_order {
+    margin: 30px 0 30px 0px;
+    border: 1px solid black;
+    border-radius: 20px;
+    height: 30px;
+    width: 150px;
+  }
+  
+  .button_delete_block {
+    display: flex;
+    justify-content: center;
+    margin: 60px 0 0 0;
+  }
+  
+  .button_delete {
+    border-radius: 1px solid black;
+    border: 1px solid black;
+    border-radius: 20px;
+    height: 30px;
+    width: 150px;
+  }
+  
 }
 
-.img_product {
-  margin: 10px 0 20px 0;
-  width: 20%;
-  height: 20%;
+@media (min-width:1650px) and (max-width: 1700px) {
+  .main_div {
+    font-family: "Roboto", sans-serif;
+    margin: 50px 0 0 280px;
+  }
+  
+  .product_div {
+    display: flex;
+  }
+  
+  .img_product {
+    margin: 10px 0 20px 0;
+    width: 300px;
+    height: 410px;
+  }
+  
+  .first_div {
+    margin: 15px 25px 0 25px;
+  }
+  .title_product {
+    font-size: 20px;
+    margin: 20px 55px 0 55px;
+  }
+  
+  .second_div {
+    margin: 15px 25px 0 25px;
+  }
+  
+  .title_review {
+    margin: 13px 0 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .third_block {
+    margin: 15px 25px 0 25px;
+  }
+  
+  .button_block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .button_sizes {
+    margin: 20px 0 0 0;
+    color: black;
+    height: 50%;
+    width: 30%;
+    background-color: gainsboro;
+    border-radius: 20px;
+    border: 1px solid gray;
+  }
+  
+  .button_selected_value {
+    width: 30px;
+    height: 30px;
+    margin: 20px 15px 0 15px;
+    border-radius: 50%;
+    border: 1px solid black;
+  }
+  
+  .countAmount {
+    margin: 10px 0 25px 40px;
+  
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+  }
+  .balance_title {
+    margin: 10px 0 25px 40px;
+  
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+  }
+  
+  .block_finish_order {
+    margin: 0 0 0 550px;
+  }
+  
+  .button_added_finish_order {
+    margin: 30px 0 30px 0px;
+    border: 1px solid black;
+    border-radius: 20px;
+    height: 30px;
+    width: 150px;
+  }
+  
+  .button_delete_block {
+    display: flex;
+    justify-content: center;
+    margin: 60px 0 0 0;
+  }
+  
+  .button_delete {
+    border-radius: 1px solid black;
+    border: 1px solid black;
+    border-radius: 20px;
+    height: 30px;
+    width: 150px;
+  }
+  
+}
+@media(min-width: 1570px) and (max-width: 1650px){
+  .main_div {
+    font-family: "Roboto", sans-serif;
+    margin: 50px 0 0 280px;
+  }
+  
+  .product_div {
+    display: flex;
+  }
+  
+  .img_product {
+    margin: 10px 0 20px 0;
+    width: 300px;
+    height: 410px;
+  }
+  
+  .first_div {
+    margin: 15px 25px 0 25px;
+  }
+  .title_product {
+    font-size: 20px;
+    margin: 20px 55px 0 55px;
+  }
+  
+  .second_div {
+    margin: 15px 25px 0 25px;
+  }
+  
+  .title_review {
+    margin: 13px 0 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .third_block {
+    margin: 15px 25px 0 25px;
+  }
+  
+  .button_block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .button_sizes {
+    margin: 20px 0 0 0;
+    color: black;
+    height: 50%;
+    width: 30%;
+    background-color: gainsboro;
+    border-radius: 20px;
+    border: 1px solid gray;
+  }
+  
+  .button_selected_value {
+    width: 30px;
+    height: 30px;
+    margin: 20px 15px 0 15px;
+    border-radius: 50%;
+    border: 1px solid black;
+  }
+  
+  .countAmount {
+    margin: 10px 0 25px 40px;
+  
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+  }
+  .balance_title {
+    margin: 10px 0 25px 40px;
+  
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+  }
+  
+  .block_finish_order {
+    margin: 0 0 0 540px;
+  }
+  
+  .button_added_finish_order {
+    margin: 30px 0 30px 0px;
+    border: 1px solid black;
+    border-radius: 20px;
+    height: 30px;
+    width: 150px;
+  }
+  
+  .button_delete_block {
+    display: flex;
+    justify-content: center;
+    margin: 60px 0 0 0;
+  }
+  
+  .button_delete {
+    border-radius: 1px solid black;
+    border: 1px solid black;
+    border-radius: 20px;
+    height: 30px;
+    width: 150px;
+  }
+  
 }
 
-.first_div {
-  margin: 15px 25px 0 25px;
-}
-.title_product {
-  font-size: 20px;
-  margin: 20px 55px 0 55px;
+@media(min-width: 1480px) and (max-width: 1570px){
+  .main_div {
+    font-family: "Roboto", sans-serif;
+    margin: 50px 0 0 280px;
+  }
+  
+  .product_div {
+    display: flex;
+  }
+  
+  .img_product {
+    margin: 10px 0 20px 0;
+    width: 280px;
+    height: 390px;
+  }
+  
+  .first_div {
+    margin: 15px 25px 0 25px;
+  }
+  .title_product {
+    font-size: 20px;
+    margin: 20px 55px 0 55px;
+  }
+  
+  .second_div {
+    margin: 15px 25px 0 25px;
+  }
+  
+  .title_review {
+    margin: 13px 0 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .third_block {
+    margin: 15px 25px 0 25px;
+  }
+  
+  .button_block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .button_sizes {
+    margin: 20px 0 0 0;
+    color: black;
+    height: 50%;
+    width: 30%;
+    background-color: gainsboro;
+    border-radius: 20px;
+    border: 1px solid gray;
+  }
+  
+  .button_selected_value {
+    width: 30px;
+    height: 30px;
+    margin: 20px 15px 0 15px;
+    border-radius: 50%;
+    border: 1px solid black;
+  }
+  
+  .countAmount {
+    margin: 10px 0 25px 40px;
+  
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+  }
+  .balance_title {
+    margin: 10px 0 25px 40px;
+  
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+  }
+  
+  .block_finish_order {
+    margin: 0 0 0 520px;
+  }
+  
+  .button_added_finish_order {
+    margin: 30px 0 30px 0px;
+    border: 1px solid black;
+    border-radius: 20px;
+    height: 30px;
+    width: 150px;
+  }
+  
+  .button_delete_block {
+    display: flex;
+    justify-content: center;
+    margin: 60px 0 0 0;
+  }
+  
+  .button_delete {
+    border-radius: 1px solid black;
+    border: 1px solid black;
+    border-radius: 20px;
+    height: 30px;
+    width: 150px;
+  }
+  
 }
 
-.second_div {
-  margin: 15px 25px 0 25px;
+
+@media(min-width: 1360px) and (max-width: 1480px){
+  .main_div {
+    font-family: "Roboto", sans-serif;
+    margin: 50px 0 0 200px;
+  }
+  
+  .product_div {
+    display: flex;
+  }
+  
+  .img_product {
+    margin: 10px 0 20px 0;
+    width: 260px;
+    height: 370px;
+  }
+  
+  .first_div {
+    margin: 15px 5px 0 5px;
+  }
+  .title_product {
+    font-size: 20px;
+    margin: 20px 55px 0 55px;
+  }
+  
+  .second_div {
+    margin: 15px 5px 0 5px;
+  }
+  
+  .title_review {
+    margin: 13px 0 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .third_block {
+    margin: 15px 5px 0 5px;
+  }
+  
+  .button_block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .button_sizes {
+    margin: 20px 0 0 0;
+    color: black;
+    height: 50%;
+    width: 30%;
+    background-color: gainsboro;
+    border-radius: 20px;
+    border: 1px solid gray;
+  }
+  
+  .button_selected_value {
+    width: 30px;
+    height: 30px;
+    margin: 20px 15px 0 15px;
+    border-radius: 50%;
+    border: 1px solid black;
+  }
+  
+  .countAmount {
+    margin: 10px 0 25px 40px;
+  
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+  }
+  .balance_title {
+    margin: 10px 0 25px 40px;
+  
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+  }
+  
+  .block_finish_order {
+    margin: 0 0 0 520px;
+  }
+  
+  .button_added_finish_order {
+    margin: 30px 0 30px 0px;
+    border: 1px solid black;
+    border-radius: 20px;
+    height: 30px;
+    width: 150px;
+  }
+  
+  .button_delete_block {
+    display: flex;
+    justify-content: center;
+    margin: 60px 0 0 0;
+  }
+  
+  .button_delete {
+    border-radius: 1px solid black;
+    border: 1px solid black;
+    border-radius: 20px;
+    height: 30px;
+    width: 150px;
+  }
+  
 }
 
-.title_review {
-  margin: 13px 0 0 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+@media(min-width: 1270px) and (max-width: 1360px){
+  .main_div {
+    font-family: "Roboto", sans-serif;
+    margin: 50px 0 0 180px;
+  }
+  
+  .product_div {
+    display: flex;
+  }
+  
+  .img_product {
+    margin: 10px 0 20px 0;
+    width: 240px;
+    height: 350px;
+  }
+  
+  .first_div {
+    margin: 15px 5px 0 5px;
+  }
+  .title_product {
+    font-size: 20px;
+    margin: 20px 55px 0 55px;
+  }
+  
+  .second_div {
+    margin: 15px 5px 0 5px;
+  }
+  
+  .title_review {
+    margin: 13px 0 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .third_block {
+    margin: 15px 5px 0 5px;
+  }
+  
+  .button_block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .button_sizes {
+    margin: 20px 0 0 0;
+    color: black;
+    height: 50%;
+    width: 30%;
+    background-color: gainsboro;
+    border-radius: 20px;
+    border: 1px solid gray;
+  }
+  
+  .button_selected_value {
+    width: 30px;
+    height: 30px;
+    margin: 20px 15px 0 15px;
+    border-radius: 50%;
+    border: 1px solid black;
+  }
+  
+  .countAmount {
+    margin: 10px 0 25px 40px;
+  
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+  }
+  .balance_title {
+    margin: 10px 0 25px 40px;
+  
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+  }
+  
+  .block_finish_order {
+    margin: 0 0 0 480px;
+  }
+  
+  .button_added_finish_order {
+    margin: 30px 0 30px 0px;
+    border: 1px solid black;
+    border-radius: 20px;
+    height: 30px;
+    width: 150px;
+  }
+  
+  .button_delete_block {
+    display: flex;
+    justify-content: center;
+    margin: 60px 0 0 0;
+  }
+  
+  .button_delete {
+    border-radius: 1px solid black;
+    border: 1px solid black;
+    border-radius: 20px;
+    height: 30px;
+    width: 150px;
+  }
+  
 }
 
-.third_block {
-  margin: 15px 25px 0 25px;
+
+@media(min-width: 1140px) and (max-width: 1270px){
+  .main_div {
+    font-family: "Roboto", sans-serif;
+    margin: 50px 0 0 100px;
+  }
+  
+  .product_div {
+    display: flex;
+  }
+  
+  .img_product {
+    margin: 10px 0 20px 0;
+    width: 220px;
+    height: 330px;
+  }
+  
+  .first_div {
+    margin: 15px 5px 0 5px;
+  }
+  .title_product {
+    font-size: 20px;
+    margin: 20px 55px 0 55px;
+  }
+  
+  .second_div {
+    margin: 15px 5px 0 5px;
+  }
+  
+  .title_review {
+    margin: 13px 0 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .third_block {
+    margin: 15px 5px 0 5px;
+  }
+  
+  .button_block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .button_sizes {
+    margin: 20px 0 0 0;
+    color: black;
+    height: 50%;
+    width: 30%;
+    background-color: gainsboro;
+    border-radius: 20px;
+    border: 1px solid gray;
+  }
+  
+  .button_selected_value {
+    width: 30px;
+    height: 30px;
+    margin: 20px 15px 0 15px;
+    border-radius: 50%;
+    border: 1px solid black;
+  }
+  
+  .countAmount {
+    margin: 10px 0 25px 40px;
+  
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+  }
+  .balance_title {
+    margin: 10px 0 25px 40px;
+  
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+  }
+  
+  .block_finish_order {
+    margin: 20px 0 0 455px;
+  }
+  
+  .button_added_finish_order {
+    margin: 30px 0 30px 0px;
+    border: 1px solid black;
+    border-radius: 20px;
+    height: 30px;
+    width: 150px;
+  }
+  
+  .button_delete_block {
+    display: flex;
+    justify-content: center;
+    margin: 60px 0 0 0;
+  }
+  
+  .button_delete {
+    border-radius: 1px solid black;
+    border: 1px solid black;
+    border-radius: 20px;
+    height: 30px;
+    width: 150px;
+  }
+  
 }
 
-.button_block {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+@media(min-width: 1050px) and (max-width: 1140px){
+  .main_div {
+    font-family: "Roboto", sans-serif;
+    margin: 50px 0 0 80px;
+  }
+  
+  .product_div {
+    display: flex;
+  }
+  
+  .img_product {
+    margin: 10px 0 20px 0;
+    width: 200px;
+    height: 310px;
+  }
+  
+  .first_div {
+    margin: 15px 5px 0 5px;
+  }
+  .title_product {
+    font-size: 20px;
+    margin: 20px 55px 0 55px;
+  }
+  
+  .second_div {
+    margin: 15px 5px 0 5px;
+  }
+  
+  .title_review {
+    margin: 13px 0 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .third_block {
+    margin: 15px 5px 0 5px;
+  }
+  
+  .button_block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .button_sizes {
+    margin: 20px 0 0 0;
+    color: black;
+    height: 50%;
+    width: 30%;
+    background-color: gainsboro;
+    border-radius: 20px;
+    border: 1px solid gray;
+  }
+  
+  .button_selected_value {
+    width: 30px;
+    height: 30px;
+    margin: 20px 15px 0 15px;
+    border-radius: 50%;
+    border: 1px solid black;
+  }
+  
+  .countAmount {
+    margin: 10px 0 25px 40px;
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+  }
+  .balance_title {
+    margin: 10px 0 25px 40px;
+  
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+  }
+  
+  .block_finish_order {
+    margin: 20px 0 0 435px;
+  }
+  
+  .button_added_finish_order {
+    margin: 30px 0 30px 0px;
+    border: 1px solid black;
+    border-radius: 20px;
+    height: 30px;
+    width: 150px;
+  }
+  
+  .button_delete_block {
+    display: flex;
+    justify-content: center;
+    margin: 60px 0 0 0;
+  }
+  
+  .button_delete {
+    border-radius: 1px solid black;
+    border: 1px solid black;
+    border-radius: 20px;
+    height: 30px;
+    width: 150px;
+  }
+  
 }
 
-.button_sizes {
-  margin: 20px 0 0 0;
-  color: black;
-  height: 50%;
-  width: 30%;
-  background-color: gainsboro;
-  border-radius: 20px;
-  border: 1px solid gray;
+@media(min-width: 950px) and (max-width: 1050px){
+  .main_div {
+    font-family: "Roboto", sans-serif;
+    margin: 50px 0 0 80px;
+  }
+  
+  .product_div {
+    display: flex;
+  }
+  
+  .img_product {
+    margin: 10px 0 20px 0;
+    width: 180px;
+    height: 290px;
+  }
+  
+  .first_div {
+    margin: 15px 5px 0 5px;
+  }
+  .title_product {
+    font-size: 20px;
+    margin: 20px 55px 0 55px;
+  }
+  
+  .second_div {
+    margin: 15px 5px 0 5px;
+  }
+  
+  .title_review {
+    margin: 13px 0 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .third_block {
+    margin: 15px 5px 0 5px;
+  }
+  
+  .button_block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .button_sizes {
+    margin: 20px 0 0 0;
+    color: black;
+    height: 50%;
+    width: 30%;
+    background-color: gainsboro;
+    border-radius: 20px;
+    border: 1px solid gray;
+  }
+  
+  .button_selected_value {
+    width: 30px;
+    height: 30px;
+    margin: 20px 15px 0 15px;
+    border-radius: 50%;
+    border: 1px solid black;
+  }
+  
+  .countAmount {
+    margin: 10px 0 25px 40px;
+  
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+  }
+  .balance_title {
+    margin: 10px 0 25px 40px;
+  
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+  }
+  
+  .block_finish_order {
+    margin: 20px 0 0 420px;
+  }
+  
+  .button_added_finish_order {
+    margin: 30px 0 30px 0px;
+    border: 1px solid black;
+    border-radius: 20px;
+    height: 30px;
+    width: 150px;
+  }
+  
+  .button_delete_block {
+    display: flex;
+    justify-content: center;
+    margin: 60px 0 0 0;
+  }
+  
+  .button_delete {
+    border-radius: 1px solid black;
+    border: 1px solid black;
+    border-radius: 20px;
+    height: 30px;
+    width: 150px;
+  }
+  
 }
 
-.button_selected_value {
-  width: 30px;
-  height: 30px;
-  margin: 20px 15px 0 15px;
-  border-radius: 50%;
-  border: 1px solid black;
-}
-
-.countAmount {
-  margin: 10px 0 25px 40px;
-
-  font-family: "Roboto", sans-serif;
-  font-size: 20px;
-}
-.balance_title {
-  margin: 10px 0 25px 40px;
-
-  font-family: "Roboto", sans-serif;
-  font-size: 20px;
-}
-
-.block_finish_order {
-  margin: 0 0 0 590px;
-}
-
-.button_added_finish_order {
-  margin: 30px 0 30px 0px;
-  border: 1px solid black;
-  border-radius: 20px;
-  height: 30px;
-  width: 150px;
-}
-
-.button_delete_block {
-  display: flex;
-  justify-content: center;
-  margin: 60px 0 0 0;
-}
-
-.button_delete {
-  border-radius: 1px solid black;
-  border: 1px solid black;
-  border-radius: 20px;
-  height: 30px;
-  width: 150px;
+@media(min-width: 840px) and (max-width: 950px){
+  .main_div {
+    font-family: "Roboto", sans-serif;
+    margin: 50px 0 0 100px;
+  }
+  
+  .product_div {
+    display: flex;
+  }
+  
+  .img_product {
+    margin: 10px 0 20px 0;
+    width: 150px;
+    height: 240px;
+  }
+  
+  .first_div {
+    margin: 15px 0px 0 0px;
+  }
+  .title_product {
+    font-size: 20px;
+    margin: 20px 55px 0 55px;
+  }
+  
+  .second_div {
+    margin: 15px 0px 0 0px;
+  }
+  
+  .title_review {
+    margin: 13px 0 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .third_block {
+    margin: 15px 0px 0 0px;
+  }
+  
+  .button_block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .button_sizes {
+    margin: 20px 0 0 0;
+    color: black;
+    height: 50%;
+    width: 30%;
+    background-color: gainsboro;
+    border-radius: 20px;
+    border: 1px solid gray;
+  }
+  
+  .button_selected_value {
+    width: 30px;
+    height: 30px;
+    margin: 20px 15px 0 15px;
+    border-radius: 50%;
+    border: 1px solid black;
+  }
+  
+  .countAmount {
+    margin: 10px 0 25px 40px;
+  
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+  }
+  .balance_title {
+    margin: 10px 0 25px 40px;
+  
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+  }
+  
+  .block_finish_order {
+    margin: 20px 0 0 350px;
+  }
+  
+  .button_added_finish_order {
+    margin: 30px 0 30px 0px;
+    border: 1px solid black;
+    border-radius: 20px;
+    height: 30px;
+    width: 150px;
+  }
+  
+  .button_delete_block {
+    display: flex;
+    justify-content: center;
+    margin: 60px 0 0 0;
+  }
+  
+  .button_delete {
+    border-radius: 1px solid black;
+    border: 1px solid black;
+    border-radius: 20px;
+    height: 30px;
+    width: 150px;
+  }
+  
 }
