@@ -123,199 +123,858 @@ legend {
 }
 
 @media(min-width: 1800px)  and (max-width: 2000px){
-  .form {
-    box-shadow: 0 4px 16px #000;
-    width: 400px;
-    height: 500px;
-    border: 7px solid black;
-    margin: 0 0 0 80px;
-  }
+ .form{
+  margin: 25px 0 0 120px;
+  height: 500px;
+  width: 350px;
+  border: 3px solid black;
+  box-shadow: 0 4px 16px black;
+ }
 
-  .title_form {
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    font-size: 23px;
-    margin: 15px 0 20px 0;
-  }
-  .form_category_change_size {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 20px;
-    margin: 0 0 40px 0;
-  }
+ .title_form{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+ }
 
-  .form_category {
-    margin: 20px 20px 20px 20px;
-    font-size: 18px;
-  }
+ .form_category{
+  margin: 20px 20px 20px 20px;
+  font-size: 18px;
+ }
 
-  .button_block {
-    margin: 20px 20px 55px 48px;
-  }
+.form_category_change_size{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 70px;
+}
 
-  .button_sizes {
-    margin: 0 10px 0 10px;
-    width: 60px;
-    border-radius: 20px;
-    background-color: gray;
-    border: 1px solid black;
-    color: wheat;
-  }
-  .button_sizes_active {
-    margin: 0 10px 0 10px;
-    width: 60px;
-    border-radius: 20px;
-    background-color: gray;
-    color: black;
-    border: 1px solid black;
-  }
+ .button_block{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 35px;
+ }
 
-  .add_to_bascet_disable {
-    border-radius: 20px;
-    background-color: gray;
-    border: 1px solid black;
-    color: wheat;
-    margin: 0 0 0 130px;
-  }
+ .button_block button{
+  margin: 0 15px 0 15px;
+  width: 34px;
+  height: 30px;
+  border: 2px solid black;
+ }
 
-  .add_to_bascet {
-    margin: 0 0 0 130px;
-    border: 1px solid black;
-    border-radius: 20px;
-    background: gray;
-    color: black;
-  }
+ .button_sizes{
+  border: 2px solid black;
+  width: 34px;
+  height: 30px;
+  color: black;
+  background: white;
+ }
+ .button_active{
+  background: black;
+  color: white;
+ }
+
+.button_block button:hover{
+  margin: 0 15px 0 15px;
+  width: 34px;
+  height: 30px;
+  border: 2px solid black;
+  color: white;
+  background-color: black;
+}
+
+ .add_to_bascet{
+  margin: 45px 0 0 90px;
+  border: 2px solid black;
+  width: 180px;
+ }
+
+ .add_to_bascet_disable{
+  margin: 45px 0 0 90px;
+  border: 2px solid black;
+  width: 180px;
+ }
+
 }
 
 
-@media (max-width: 1700px) {
-  .form {
-    box-shadow: 0 4px 16px #000;
-    width: 400px;
+@media (min-width: 1700px) and (max-width: 1800px){
+  .form{
+    margin: 25px 0 0 70px;
     height: 500px;
-  }
-
-  .title_form {
+    width: 350px;
+    border: 3px solid black;
+    box-shadow: 0 4px 16px black;
+   }
+  
+   .title_form{
+    display: flex;
     align-items: center;
     justify-content: center;
-    display: flex;
-    font-size: 23px;
-    margin: 15px 0 20px 0;
-  }
-  .form_category_change_size {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 20px;
-    margin: 0 0 40px 0;
-  }
-
-  .form_category {
+    margin-top: 30px;
+   }
+  
+   .form_category{
     margin: 20px 20px 20px 20px;
     font-size: 18px;
+   }
+  
+  .form_category_change_size{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 70px;
   }
-
-  .button_block {
-    margin: 20px 20px 55px 48px;
-  }
-
-  .button_sizes {
-    margin: 0 10px 0 10px;
-    width: 60px;
-    border-radius: 20px;
-    background-color: gray;
-    border: 1px solid black;
-    color: wheat;
-  }
-  .button_sizes_active {
-    margin: 0 10px 0 10px;
-    width: 60px;
-    border-radius: 20px;
-    background-color: gray;
+  
+   .button_block{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 35px;
+   }
+  
+   .button_block button{
+    margin: 0 15px 0 15px;
+    width: 34px;
+    height: 30px;
+    border: 2px solid black;
+   }
+  
+   .button_sizes{
+    border: 2px solid black;
+    width: 34px;
+    height: 30px;
     color: black;
-    border: 1px solid black;
-  }
+    background: white;
+   }
 
-  .add_to_bascet_disable {
-    border-radius: 20px;
-    background-color: gray;
-    border: 1px solid black;
-    color: wheat;
-    margin: 0 0 0 130px;
+   .button_active{
+    background: black;
+    color: white;
+   }
+  
+  .button_block button:hover{
+    margin: 0 15px 0 15px;
+    width: 34px;
+    height: 30px;
+    border: 2px solid black;
+    color: white;
+    background-color: black;
   }
-
-  .add_to_bascet {
-    margin: 0 0 0 130px;
-    border: 1px solid black;
-    border-radius: 20px;
-    background: gray;
-    color: black;
-  }
+  
+   .add_to_bascet{
+    margin: 45px 0 0 90px;
+    border: 2px solid black;
+    width: 180px;
+   }
+  
+   .add_to_bascet_disable{
+    margin: 45px 0 0 90px;
+    border: 2px solid black;
+    width: 180px;
+   }
+  
 }
 
-@media (max-width: 1600px) {
-  .form {
-    box-shadow: 0 4px 16px #000;
-    width: 400px;
+@media(min-width: 1650px) and (max-width: 1700px) {
+  .form{
+    margin: 25px 0 0 35px;
     height: 500px;
-  }
-
-  .title_form {
+    width: 350px;
+    border: 3px solid black;
+    box-shadow: 0 4px 16px black;
+   }
+  
+   .title_form{
+    display: flex;
     align-items: center;
     justify-content: center;
-    display: flex;
-    font-size: 23px;
-    margin: 15px 0 20px 0;
-  }
-  .form_category_change_size {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 20px;
-    margin: 0 0 40px 0;
-  }
-
-  .form_category {
+    margin-top: 30px;
+   }
+  
+   .form_category{
     margin: 20px 20px 20px 20px;
     font-size: 18px;
+   }
+  
+  .form_category_change_size{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 70px;
   }
-
-  .button_block {
-    margin: 20px 20px 55px 48px;
-  }
-
-  .button_sizes {
-    margin: 0 10px 0 10px;
-    width: 60px;
-    border-radius: 20px;
-    background-color: gray;
-    border: 1px solid black;
-    color: wheat;
-  }
-  .button_sizes_active {
-    margin: 0 10px 0 10px;
-    width: 60px;
-    border-radius: 20px;
-    background-color: gray;
+  
+   .button_block{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 35px;
+   }
+   .button_active{
+    background: black;
+    color: white;
+   }
+  
+   .button_block button{
+    margin: 0 15px 0 15px;
+    width: 34px;
+    height: 30px;
+    border: 2px solid black;
+   }
+  
+   .button_sizes{
+    border: 2px solid black;
+    width: 34px;
+    height: 30px;
     color: black;
-    border: 1px solid black;
+    background: white;
+   }
+  
+  .button_block button:hover{
+    margin: 0 15px 0 15px;
+    width: 34px;
+    height: 30px;
+    border: 2px solid black;
+    color: white;
+    background-color: black;
   }
-
-  .add_to_bascet_disable {
-    border-radius: 20px;
-    background-color: gray;
-    border: 1px solid black;
-    color: wheat;
-    margin: 0 0 0 130px;
-  }
-
-  .add_to_bascet {
-    margin: 0 0 0 130px;
-    border: 1px solid black;
-    border-radius: 20px;
-    background: gray;
-    color: black;
-  }
+  
+   .add_to_bascet{
+    margin: 45px 0 0 90px;
+    border: 2px solid black;
+    width: 180px;
+   }
+  
+   .add_to_bascet_disable{
+    margin: 45px 0 0 90px;
+    border: 2px solid black;
+    width: 180px;
+   }
+  
 }
+
+@media(min-width: 1570px) and (max-width: 1650px){
+  .form{
+    margin: 25px 0 0 35px;
+    height: 500px;
+    width: 350px;
+    border: 3px solid black;
+    box-shadow: 0 4px 16px black;
+   }
+  
+   .title_form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+   }
+   .button_active{
+    background: black;
+    color: white;
+   }
+  
+   .form_category{
+    margin: 20px 20px 20px 20px;
+    font-size: 18px;
+   }
+  
+  .form_category_change_size{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 70px;
+  }
+  
+   .button_block{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 35px;
+   }
+  
+   .button_block button{
+    margin: 0 15px 0 15px;
+    width: 34px;
+    height: 30px;
+    border: 2px solid black;
+   }
+  
+   .button_sizes{
+    border: 2px solid black;
+    width: 34px;
+    height: 30px;
+    color: black;
+    background: white;
+   }
+  
+  .button_block button:hover{
+    margin: 0 15px 0 15px;
+    width: 34px;
+    height: 30px;
+    border: 2px solid black;
+    color: white;
+    background-color: black;
+  }
+  
+   .add_to_bascet{
+    margin: 45px 0 0 90px;
+    border: 2px solid black;
+    width: 180px;
+   }
+  
+   .add_to_bascet_disable{
+    margin: 45px 0 0 90px;
+    border: 2px solid black;
+    width: 180px;
+   }
+  
+}
+
+
+@media(min-width: 1480px) and (max-width: 1570px){
+  .form{
+    margin: 25px 0 0 25px;
+    height: 500px;
+    width: 350px;
+    border: 3px solid black;
+    box-shadow: 0 4px 16px black;
+   }
+  
+   .title_form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+   }
+  
+   .form_category{
+    margin: 20px 20px 20px 20px;
+    font-size: 18px;
+   }
+  
+  .form_category_change_size{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 70px;
+  }
+  .button_active{
+    background: black;
+    color: white;
+   }
+  
+   .button_block{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 35px;
+   }
+  
+   .button_block button{
+    margin: 0 15px 0 15px;
+    width: 34px;
+    height: 30px;
+    border: 2px solid black;
+   }
+  
+   .button_sizes{
+    border: 2px solid black;
+    width: 34px;
+    height: 30px;
+    color: black;
+    background: white;
+   }
+  
+  .button_block button:hover{
+    margin: 0 15px 0 15px;
+    width: 34px;
+    height: 30px;
+    border: 2px solid black;
+    color: white;
+    background-color: black;
+  }
+  
+   .add_to_bascet{
+    margin: 45px 0 0 90px;
+    border: 2px solid black;
+    width: 180px;
+   }
+  
+   .add_to_bascet_disable{
+    margin: 45px 0 0 90px;
+    border: 2px solid black;
+    width: 180px;
+   }
+  
+}
+
+@media(min-width: 1360px) and (max-width: 1480px){
+  .form{
+    margin: 25px 0 0 25px;
+    height: 500px;
+    width: 350px;
+    border: 3px solid black;
+    box-shadow: 0 4px 16px black;
+   }
+  
+   .title_form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+   }
+  
+   .form_category{
+    margin: 20px 20px 20px 20px;
+    font-size: 18px;
+   }
+   .button_active{
+    background: black;
+    color: white;
+   }
+  
+  .form_category_change_size{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 70px;
+  }
+  
+   .button_block{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 35px;
+   }
+  
+   .button_block button{
+    margin: 0 15px 0 15px;
+    width: 34px;
+    height: 30px;
+    border: 2px solid black;
+   }
+  
+   .button_sizes{
+    border: 2px solid black;
+    width: 34px;
+    height: 30px;
+    color: black;
+    background: white;
+   }
+  
+  .button_block button:hover{
+    margin: 0 15px 0 15px;
+    width: 34px;
+    height: 30px;
+    border: 2px solid black;
+    color: white;
+    background-color: black;
+  }
+
+  
+   .add_to_bascet{
+    margin: 45px 0 0 90px;
+    border: 2px solid black;
+    width: 180px;
+   }
+  
+   .add_to_bascet_disable{
+    margin: 45px 0 0 90px;
+    border: 2px solid black;
+    width: 180px;
+   }
+  
+}
+
+
+@media(min-width: 1270px) and (max-width: 1360px){
+  .form{
+    margin: 25px 0 0 20px;
+    height: 500px;
+    width: 350px;
+    border: 3px solid black;
+    box-shadow: 0 4px 16px black;
+   }
+  
+   .title_form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+   }
+  
+   .form_category{
+    margin: 20px 20px 20px 20px;
+    font-size: 18px;
+   }
+
+   .button_active{
+    background: black;
+    color: white;
+   }
+  
+  .form_category_change_size{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 70px;
+  }
+  
+   .button_block{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 35px;
+   }
+  
+   .button_block button{
+    margin: 0 15px 0 15px;
+    width: 34px;
+    height: 30px;
+    border: 2px solid black;
+   }
+  
+   .button_sizes{
+    border: 2px solid black;
+    width: 34px;
+    height: 30px;
+    color: black;
+    background: white;
+   }
+  
+  .button_block button:hover{
+    margin: 0 15px 0 15px;
+    width: 34px;
+    height: 30px;
+    border: 2px solid black;
+    color: white;
+    background-color: black;
+  }
+  
+   .add_to_bascet{
+    margin: 45px 0 0 90px;
+    border: 2px solid black;
+    width: 180px;
+   }
+  
+   .add_to_bascet_disable{
+    margin: 45px 0 0 90px;
+    border: 2px solid black;
+    width: 180px;
+   }
+  
+}
+
+@media(min-width: 1140px) and (max-width: 1270px){
+  .form{
+    margin: 25px 0 0 15px;
+    height: 500px;
+    width: 350px;
+    border: 3px solid black;
+    box-shadow: 0 4px 16px black;
+   }
+  
+   .title_form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+   }
+  
+   .form_category{
+    margin: 20px 20px 20px 20px;
+    font-size: 18px;
+   }
+  
+  .form_category_change_size{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 70px;
+  }
+  
+   .button_block{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 35px;
+   }
+  
+   .button_block button{
+    margin: 0 15px 0 15px;
+    width: 34px;
+    height: 30px;
+    border: 2px solid black;
+   }
+   .button_active{
+    background: black;
+    color: white;
+   }
+  
+   .button_sizes{
+    border: 2px solid black;
+    width: 34px;
+    height: 30px;
+    color: black;
+    background: white;
+   }
+  
+  .button_block button:hover{
+    margin: 0 15px 0 15px;
+    width: 34px;
+    height: 30px;
+    border: 2px solid black;
+    color: white;
+    background-color: black;
+  }
+  
+   .add_to_bascet{
+    margin: 45px 0 0 90px;
+    border: 2px solid black;
+    width: 180px;
+   }
+  
+   .add_to_bascet_disable{
+    margin: 45px 0 0 90px;
+    border: 2px solid black;
+    width: 180px;
+   }
+  
+}
+
+@media(min-width: 1050px) and (max-width: 1140px){
+  .form{
+    margin: 25px 0 0 10px;
+    height: 500px;
+    width: 350px;
+    border: 3px solid black;
+    box-shadow: 0 4px 16px black;
+   }
+  
+   .title_form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+   }
+  
+   .form_category{
+    margin: 20px 20px 20px 20px;
+    font-size: 18px;
+   }
+  
+  .form_category_change_size{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 70px;
+  }
+  
+   .button_block{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 35px;
+   }
+  
+   .button_active{
+    background: black;
+    color: white;
+   }
+
+   .button_block button{
+    margin: 0 15px 0 15px;
+    width: 34px;
+    height: 30px;
+    border: 2px solid black;
+   }
+  
+   .button_sizes{
+    border: 2px solid black;
+    width: 34px;
+    height: 30px;
+    color: black;
+    background: white;
+   }
+  
+  .button_block button:hover{
+    margin: 0 15px 0 15px;
+    width: 34px;
+    height: 30px;
+    border: 2px solid black;
+    color: white;
+    background-color: black;
+  }
+  
+   .add_to_bascet{
+    margin: 45px 0 0 90px;
+    border: 2px solid black;
+    width: 180px;
+   }
+  
+   .add_to_bascet_disable{
+    margin: 45px 0 0 90px;
+    border: 2px solid black;
+    width: 180px;
+   }
+  
+}
+
+@media(min-width: 950px) and (max-width: 1050px){
+  .form{
+    margin: 35px 0 0 70px;
+    height: 500px;
+    width: 350px;
+    border: 3px solid black;
+    box-shadow: 0 4px 16px black;
+   }
+  
+   .title_form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+   }
+  
+   .form_category{
+    margin: 20px 20px 20px 20px;
+    font-size: 18px;
+   }
+  
+  .form_category_change_size{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 70px;
+  }
+  
+   .button_block{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 35px;
+   }
+
+   .button_active{
+    background: black;
+    color: white;
+   }
+  
+   .button_block button{
+    margin: 0 15px 0 15px;
+    width: 34px;
+    height: 30px;
+    border: 2px solid black;
+   }
+  
+   .button_sizes{
+    border: 2px solid black;
+    width: 34px;
+    height: 30px;
+    color: black;
+    background: white;
+   }
+  
+  .button_block button:hover{
+    margin: 0 15px 0 15px;
+    width: 34px;
+    height: 30px;
+    border: 2px solid black;
+    color: white;
+    background-color: black;
+  }
+  
+   .add_to_bascet{
+    margin: 45px 0 0 90px;
+    border: 2px solid black;
+    width: 180px;
+   }
+  
+   .add_to_bascet_disable{
+    margin: 45px 0 0 90px;
+    border: 2px solid black;
+    width: 180px;
+   }
+  
+}
+
+@media(min-width: 840px) and (max-width: 950px){
+  .form{
+    margin: 35px 0 0 70px;
+    height: 500px;
+    width: 350px;
+    border: 3px solid black;
+    box-shadow: 0 4px 16px black;
+   }
+  
+   .title_form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+   }
+  
+   .form_category{
+    margin: 20px 20px 20px 20px;
+    font-size: 18px;
+   }
+  
+  .form_category_change_size{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 70px;
+  }
+  
+  .button_active{
+    background: black;
+    color: white;
+   }
+
+   .button_block{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 35px;
+   }
+  
+   .button_block button{
+    margin: 0 15px 0 15px;
+    width: 34px;
+    height: 30px;
+    border: 2px solid black;
+   }
+  
+   .button_sizes{
+    border: 2px solid black;
+    width: 34px;
+    height: 30px;
+    color: black;
+    background: white;
+   }
+  
+  .button_block button:hover{
+    margin: 0 15px 0 15px;
+    width: 34px;
+    height: 30px;
+    border: 2px solid black;
+    color: white;
+    background-color: black;
+  }
+  
+   .add_to_bascet{
+    margin: 45px 0 0 90px;
+    border: 2px solid black;
+    width: 180px;
+   }
+  
+   .add_to_bascet_disable{
+    margin: 45px 0 0 90px;
+    border: 2px solid black;
+    width: 180px;
+   }
+  
+}
+

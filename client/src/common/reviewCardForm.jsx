@@ -45,11 +45,11 @@ const ReviewCardForm = ({ name, price, _id, quantity, obj }) => {
 
   return (
     <div className={styles.form}>
-      <h2 className={styles.title_form}>Параметры Товара</h2>
-      <h2 className={styles.form_category}>{`Имя товара : ${name}`}</h2>
-      <h2 className={styles.form_category}>{`Цена товара : ${price}$`}</h2>
-      <h2 className={styles.form_category}>{`Уникальный номер : ${_id}$`}</h2>
-      <h2 className={styles.form_category_change_size}>Выберите размер</h2>
+      <h2 className={styles.title_form}>About prod</h2>
+      <h2 className={styles.form_category}>{`Name product : ${name}`}</h2>
+      <h2 className={styles.form_category}>{`Price : ${price}$`}</h2>
+      <h2 className={styles.form_category}>{`Id : ${_id}$`}</h2>
+      <h2 className={styles.form_category_change_size}>Change Size</h2>
       <div className={styles.button_block}>
         {quantity.map((item) => (
           <button
@@ -57,8 +57,8 @@ const ReviewCardForm = ({ name, price, _id, quantity, obj }) => {
             key={item.size}
             className={
               size !== `${item.size}`
-                ? styles.button_sizes_active
-                : styles.button_sizes
+              ? styles.button_sizes
+              : styles.button_active
             }
           >{`${item.size}`}</button>
         ))}
@@ -72,7 +72,7 @@ const ReviewCardForm = ({ name, price, _id, quantity, obj }) => {
         }}
         disabled={!isValid}
       >
-        Добавить в корзину
+        Add in Bascet
       </button>
     </div>
   );
