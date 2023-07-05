@@ -10,7 +10,7 @@ import Login from "./layouts/page/login";
 import Order from "./layouts/page/order";
 import LogOut from "./ui/logOut";
 import AdminPanel from "./layouts/page/adminPanel";
-import SideBar from "./common/gorisontalSideBar";
+import Filter from "./layouts/page/filter";
 import { useDispatch } from "react-redux";
 import { loadChangeProductList } from "./store/changeProduct";
 import { loadProductList } from "./store/product";
@@ -35,6 +35,7 @@ function App() {
         <Route path="/logout" component={LogOut} />
         <Route exact path="/adminPage/:other?" component={AdminPanel} />
         <Route path="/basket" component={Bascet} />
+        <Route path="/filter" component={Filter} />
         <Route path="/login/:type?" component={Login} />
         <Route path="/:name/:postId" component={ReviewCardProduct} />
         <Route path="/order" component={Order} />

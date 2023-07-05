@@ -524,10 +524,10 @@ legend {
   }
   .links{
     display: flex;
-    margin: 0 0 0 320px;
+    margin: 0 0 0 300px;
   }
   .links a{
-    margin: 7.5px 6.5px 0 6.5px;
+    margin: 7.5px 4.5px 0 4.5px;
   }
 }
 
