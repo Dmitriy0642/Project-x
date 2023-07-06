@@ -13,6 +13,21 @@ router.get("/", async (req, res) => {
     });
   }
 });
+
+router.get("/:quantity", async (req,res)=>{
+  try {
+    const list = await Product.find()
+    const listQuantity = await list.map((item)=>{
+      return item.quantity
+    })
+    res.status(200).send(listQuantity)
+  } catch (error) {
+    res.status(500).json({
+      message: "Server are has problem"
+    })
+  }
+})
+
 ///find by id
 router.get("/:id", async (req, res) => {
   try {
@@ -69,6 +84,9 @@ router.delete("/:id", async (req, res) => {
     });
   }
 });
+
+  
+
 ///find quantity by id
 router.get("/:id/quantity", async (req, res) => {
   try {

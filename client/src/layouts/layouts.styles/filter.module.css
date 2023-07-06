@@ -148,6 +148,7 @@ legend {
         margin: 30px 0 30px 410px;
     }
     .card_title{
+        
         margin: 25px 35px 0 35px;
     }
     .img_card{
@@ -174,7 +175,7 @@ legend {
 
     .prdouct_card{
         display: flex;
-        margin: 30px 0 30px 410px;
+        margin: 30px 0 30px 200px;
     }
     .card_title{
         margin: 25px 35px 0 35px;
