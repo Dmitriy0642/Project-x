@@ -126,6 +126,60 @@ legend {
   font-family: "Roboto", sans-serif;
 }
 
+.product_div{
+    display: flex;
+    margin: 30px 0 40px 50px;
+}
+
+.card_product{
+    border: 4px solid black;
+    margin: 0 20px 0 200px;
+    width: 400px;
+    height: 300px;
+}
+
+.title{
+    font-size: 18px;
+    margin: 15px 0 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card_title{
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
+
+.div_buttons{
+    display: flex;
+}
+
+.span_button{
+    border: 2px solid black;
+    border-radius: 5px;
+    margin: 12px 0 5px 165px;
+    cursor: pointer;
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.span_button:hover {
+    color: white;
+    background-color: black;
+}
+
+.img_card{
+    cursor: pointer;
+}
+
+
+
+
 @media (min-width:1800px) and (max-width: 2000px){
    
     .main_title{
@@ -155,6 +209,7 @@ legend {
         width: 200x;
         height: 300px;
     }
+
 }
 
 @media (min-width:1700px) and (max-width: 1800px){
@@ -184,6 +239,8 @@ legend {
         width: 200x;
         height: 300px;
     }
+
+    
 }
 
 @media (min-width:1650px) and (max-width: 1700px){

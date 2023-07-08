@@ -7,6 +7,10 @@ const productSerivce = {
     const { data } = await http.get(`${productEndPoint}`);
     return data;
   },
+  getAllProductQuantity : async (payload) => {
+    const {data} = await http.get(`${productEndPoint}/quantity`, payload)
+    return data
+  },
   createProduct: async (payload) => {
     const changeImg = payload.img.split(",");
     payload.img = changeImg;
