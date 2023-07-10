@@ -17,7 +17,7 @@ const ReviewFormCatalog = ({ match }) => {
     `${getNameCategory}`,
     firm
   );
-
+  
   return filtradeData !== undefined ? (
     <div className={styles.wrapper}>
       {filtradeData.map((item) => (
