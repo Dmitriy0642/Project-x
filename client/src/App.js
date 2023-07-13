@@ -17,6 +17,7 @@ import { loadProductList } from "./store/product";
 import { loadListCategory } from "./store/categoryOfProduct";
 import { loadUsersList } from "./store/users";
 import { loadListPurchased } from "./store/purchasedProduct";
+import AboutShop from "./layouts/page/aboutShop";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,6 +35,7 @@ function App() {
       <Switch>
         <Route path="/logout" component={LogOut} />
         <Route exact path="/adminPage/:other?" component={AdminPanel} />
+        <Route path="/aboutShop" component={AboutShop}/>
         <Route path="/basket" component={Bascet} />
         <Route path="/filter" component={Filter} />
         <Route path="/login/:type?" component={Login} />

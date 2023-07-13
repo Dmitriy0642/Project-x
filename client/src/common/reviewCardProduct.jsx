@@ -5,7 +5,7 @@ import ReviewCardForm from "./reviewCardForm";
 import { getProduct } from "../store/product";
 import { useSelector } from "react-redux";
 import { getCategory } from "../store/categoryOfProduct";
-import Slider from "./slider";
+import ChangePhoto from "./changePhoto";
 import SideBar from "./gorisontalSideBar";
 
 const ReviewCardProduct = ({ match }) => {
@@ -23,7 +23,7 @@ const ReviewCardProduct = ({ match }) => {
       <SideBar allCatalog={arrOfCategory} usedId={singleData} url={name} id={id}/>
       {singleData.map((item) => (
         <div className={styles.wrapper} key={item._id}>
-          <Slider image={item.img} />
+          <ChangePhoto image={item.img} />
           <ReviewCardForm
             obj={singleData}
             name={item.name}
