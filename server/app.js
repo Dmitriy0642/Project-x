@@ -12,11 +12,7 @@ app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use("/api", routes);
 
-// if (process.env.NODE_ENV === "production") {
-//   console.log("Prodcution");
-// } else {
-//   console.log("development");
-// }
+
 
 async function start() {
   try {

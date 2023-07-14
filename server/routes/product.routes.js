@@ -103,7 +103,6 @@ router.get("/:id/quantity", async (req, res) => {
 router.patch("/:id/quantity", async (req, res) => {
   try {
     const { id } = req.params;
-    console.log(req.body);
     const findOne = await Product.findOne({ _id: id });
     if (findOne) {
       findOne.quantity = req.body;

@@ -8,5 +8,6 @@ router.use("/bascet", require("./bascet.routes"));
 router.use("/salesProduct", require("./salesProduct.routes"));
 router.use("/product", require("./product.routes"));
 router.use("/category", require("./category.routes"));
+router.use("/sliders", require("./slider.routes"))
 
 module.exports = router;
