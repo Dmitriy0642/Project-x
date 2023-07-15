@@ -122,6 +122,11 @@ legend {
   display: block;
 }
 
+.main_div{
+  width: 500px;
+  height: 280px;
+  margin: 0 auto;
+}
 
 @media (min-width: 1850px) and (max-width: 2000px) {
  
