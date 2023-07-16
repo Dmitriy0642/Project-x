@@ -27,7 +27,7 @@ const Slider = ({sliders}) => {
             <div className={styles.right_arrow} onClick={goToNext}>→</div>
             <div className={styles.dot_container}>
             {sliders.map((item,index)=>(
-                <div key={index} className={styles.single_dot} onClick={()=>goToSlide(index)}>•</div>
+                <div key={index} className={currentIndex === index ? styles.single_dot_active : styles.single_dot} onClick={()=>goToSlide(index)}></div>
             ))}
             </div>
         </div>
