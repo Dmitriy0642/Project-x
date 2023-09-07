@@ -21,9 +21,9 @@ const Header = () => {
         <img src={icon_logo} alt="" className={styles.img_logo} />
       </Link>
       <ul className={styles.ancor}>
-        <Link to="/">Главная</Link>
+        <Link to="/">Main</Link>
         <Link to="#">Каталог</Link>
-        <Link to="/aboutShop">О нас</Link>
+        <Link to="/aboutShop">About shop</Link>
       </ul>
       {
         currentUser === undefined || currentUser === null ?(  

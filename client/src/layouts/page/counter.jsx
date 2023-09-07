@@ -94,7 +94,7 @@ const Counter = ({
           onClick={handleDelete}
           id={data._id}
         >
-          Удалить товар
+          Delete product
         </button>
       </div>
     </>

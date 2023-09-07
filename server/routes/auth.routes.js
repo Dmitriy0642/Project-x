@@ -114,7 +114,6 @@ router.post("/token", async (req, res) => {
       _id: data._id,
     });
     await tokenService.save(data._id, tokens.refreshToken);
-
     res.status(200).send({ ...tokens, userId: data._id });
   } catch (e) {
     res.status(500).json({

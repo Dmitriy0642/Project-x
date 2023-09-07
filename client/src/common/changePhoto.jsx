@@ -3,7 +3,6 @@ import styles from "./styles.common/changePhoto.module.css"
 
 const ChangePhoto = ({image}) => {
     const [dataImage,setDataImage] = useState(null)
-    
     useEffect(()=>{
         setDataImage(image[0])
     },[image])

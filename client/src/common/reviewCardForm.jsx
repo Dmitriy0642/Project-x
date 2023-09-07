@@ -16,24 +16,28 @@ const ReviewCardForm = ({ name, price, _id, quantity, obj }) => {
   const dispatch = useDispatch();
   const [size, setSize] = useState(null);
   const [dataInBascet, setDataBascet] = useState();
+  const [user,setUser] = useState()
   const dataFromBascet = bascetService.getBascetData();
-
+  
+  
   useEffect(() => {
     dataFromBascet
       .then((res) => {
         const toFormat = Object.keys(res).map((item) => res[item]);
         setDataBascet(toFormat);
+        setUser(currentUser)
       })
       .catch((error) => error.message);
   }, []);
   const handleClick = (e) => {
     setSize(e.target.innerText);
   };
-  const isValid = currentUser !== null;
-
-  if (isValid === false) {
-    toast.error("Чтобы добавить товар вам необходимо зарегестрироваться");
-  }
+ 
+   
+   if(user === null){
+      toast.error("For buying product , you must sign up")
+   }
+  
 
   const handleSelect = () => {
     if (size === null) {
@@ -70,7 +74,7 @@ const ReviewCardForm = ({ name, price, _id, quantity, obj }) => {
         onClick={() => {
           handleSelect(obj[0]);
         }}
-        disabled={!isValid}
+        disabled={!user}
       >
         Add in Bascet
       </button>

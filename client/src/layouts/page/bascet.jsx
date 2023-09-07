@@ -74,24 +74,24 @@ const Bascet = () => {
   ) : (
     <div className={styles.main_div}>
       <h2 className={styles.countAmount}>
-        Общая стоимость товара в корзине : {amount}$
+      Price of products in basket : {amount}$
       </h2>
       <h2 className={styles.balance_title}>
-        Ваш Баланс : {currentUser ? currentUser.balance : 0}$
+        Your balance : {currentUser ? currentUser.balance : 0}$
       </h2>
       {acceptDatafromBascet.map((item) => (
         <div className={styles.product_div} key={item._id}>
           <img src={item.img[0]} alt="" className={styles.img_product} />
           <div className={styles.first_div}>
-            <h2 className={styles.title_product}>Имя продукта</h2>
+            <h2 className={styles.title_product}>Name product</h2>
             <h2 className={styles.title_review}>{item.name}</h2>
           </div>
           <div className={styles.second_div}>
-            <h2 className={styles.title_product}>Цена товара</h2>
+            <h2 className={styles.title_product}>Price product</h2>
             <h2 className={styles.title_review}>{item.price}$</h2>
           </div>
           <div className={styles.third_block}>
-            <h2 className={styles.title_product}>Размеры товара</h2>
+            <h2 className={styles.title_product}>Sizes</h2>
             {
               <Counter
                 initProduct={initProduct}
@@ -110,7 +110,7 @@ const Bascet = () => {
           className={styles.button_added_finish_order}
           onClick={handleClick}
         >
-          Оформить заказ
+          Order products
         </button>
       </div>
     </div>

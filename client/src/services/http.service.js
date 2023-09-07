@@ -31,11 +31,10 @@ http.interceptors.request.use(
       error.response && error.response.status >= 400 && error.response < 500;
     if (!expectedErrors) {
       if (error.message === "INVALID_PASSWORD") {
-        console.log(error);
         toast.error("INVALID_PASSWORD");
       }
       if (error.message === "Network Error") {
-        console.log(error);
+        toast.error("REBOOT_PAGE")
       }
       if (
         error.message === "Request failed with status code 400" ||
