@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "../layouts.styles/aboutShop.module.css"
 import Slider from "../../common/slider";
 import sliderService from "../../services/slides.service";
+import { Link } from "react-router-dom";
 const AboutShop = () => {
 
     const [currentImage,setCurrentImage] = useState()
@@ -15,19 +16,38 @@ useEffect(()=>{
 },[])
 
 
-    
 return currentImage === null ? (<h1>Loading...</h1>):(
     <div className={styles.container}>
-        <div className={styles.first_block_text}>
-            <div className={styles.first_text_under_block}>
-                <h2 className={styles.first_text}>Hello everyone, who visited this site.Here you can find ,stylish clothes , at good price .You are can make sure , in this .Our clients writing we, more 100 positive review, of all world,because they are satisfied us service.</h2>
-            </div>
-            <div className={styles.second_text_underblock}>
-                <h2 className={styles.text}>In us colletion include , Stone Island most popular brand .We are cooperate with it brand , who give us , more rare colletiotions , and good prices .You are find it , from us site, also you can see ,most popular brand Nike .This shop , specialize on rare , and most popular model shoes .</h2>
-            </div>
+        <div className={styles.line}>
+        </div>
+        <div className={styles.first_block}>
+            {currentImage === undefined ? <h2>Loading</h2>:<img src={currentImage[1]} alt="" />}
+            <h1 className={styles.main_text}>You are visit web site, CompassShop</h1>
+                    <li className={styles.list}>Ours clients is around 20k users</li>
+                    <li>Constant discount of often clients</li>
+                    <li>Delivery in Europe durning 5 days</li>
+                    <Link to="/"><button className={styles.button}>Show more</button></Link>
+        </div>
+        <div className={styles.line}>
+        </div>
+        <div className={styles.second_block}>
+                <h2 className={styles.main_text_second_block}>Why is it worth , use especially it shop?</h2>
+                {currentImage === undefined ? <h2>Loading</h2>: <img src={currentImage[2]} alt="" className={styles.img_second_block}/>}
+                    <div className={styles.under_text_second_block}>
+                        <li className={styles.list}>Especially offers , at purchased from 3 things</li>
+                        <li className={styles.list}>Often sale ,and especially beneficial offers exactly for you</li>
+                        <li className={styles.list}>At purchased things at 1000$ free delivery , only for Europe</li>
+                        <div className={styles.button_block}>
+                                <Link to="/t-shirt"><button className={styles.button}>Tshirts</button></Link>
+                                <Link to="/sweatshirt"><button className={styles.button}>Hoodie</button></Link>
+                                <Link to="/boots"><button className={styles.button}>Shoes</button></Link>
+                        </div>
+                    </div>
+        </div>
+        <div className={styles.line}>
         </div>
         <div className={styles.main_div}>
-            <Slider sliders={currentImage}/>
+            {/* <Slider sliders={currentImage}/> */}
         </div>
     </div>  
     )
