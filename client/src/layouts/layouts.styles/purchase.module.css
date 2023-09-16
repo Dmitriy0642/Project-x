@@ -187,11 +187,12 @@ legend {
     margin: 20px 0 0 0;
     color: black;
     height: 70%;
-    width: 40%;
+    width: auto;
     background-color: gainsboro;
     border-radius: 20px;
     border: 1px solid gray;
   }
+  
   
   .countAmount {
     font-size: 20px;
@@ -261,7 +262,7 @@ legend {
     margin: 20px 0 0 0;
     color: black;
     height: 70%;
-    width: 40%;
+    width: auto;
     background-color: gainsboro;
     border-radius: 20px;
     border: 1px solid gray;
@@ -334,7 +335,7 @@ legend {
     margin: 20px 0 0 0;
     color: black;
     height: 70%;
-    width: 40%;
+    width: auto;
     background-color: gainsboro;
     border-radius: 20px;
     border: 1px solid gray;
@@ -407,7 +408,7 @@ legend {
     margin: 20px 0 0 0;
     color: black;
     height: 70%;
-    width: 40%;
+    width: auto;
     background-color: gainsboro;
     border-radius: 20px;
     border: 1px solid gray;
@@ -480,7 +481,7 @@ legend {
     margin: 20px 0 0 0;
     color: black;
     height: 70%;
-    width: 40%;
+    width: auto;
     background-color: gainsboro;
     border-radius: 20px;
     border: 1px solid gray;
@@ -553,7 +554,7 @@ legend {
     margin: 20px 0 0 0;
     color: black;
     height: 70%;
-    width: 40%;
+    width: auto;
     background-color: gainsboro;
     border-radius: 20px;
     border: 1px solid gray;
@@ -626,7 +627,7 @@ legend {
     margin: 20px 0 0 0;
     color: black;
     height: 70%;
-    width: 40%;
+    width: auto;
     background-color: gainsboro;
     border-radius: 20px;
     border: 1px solid gray;
@@ -699,7 +700,7 @@ legend {
     margin: 20px 0 0 0;
     color: black;
     height: 70%;
-    width: 40%;
+    width: auto;
     background-color: gainsboro;
     border-radius: 20px;
     border: 1px solid gray;
@@ -772,7 +773,7 @@ legend {
     margin: 20px 0 0 0;
     color: black;
     height: 70%;
-    width: 40%;
+    width: auto;
     background-color: gainsboro;
     border-radius: 20px;
     border: 1px solid gray;
@@ -845,7 +846,7 @@ legend {
     margin: 20px 0 0 0;
     color: black;
     height: 70%;
-    width: 40%;
+    width: auto;
     background-color: gainsboro;
     border-radius: 20px;
     border: 1px solid gray;
@@ -918,7 +919,7 @@ legend {
     margin: 20px 0 0 0;
     color: black;
     height: 70%;
-    width: 40%;
+    width:auto;
     background-color: gainsboro;
     border-radius: 20px;
     border: 1px solid gray;
