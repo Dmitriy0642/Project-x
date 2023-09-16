@@ -63,7 +63,7 @@ const Order = () => {
       console.log(error.message);
     }
     toast.success(
-      "Спасибо за покупку в нашем магазине,ваш заказ оформлен ожидайте обратной связи"
+      "Thanks per buying clothes in ours shop"
     );
 
     history.push("/");
@@ -84,7 +84,7 @@ const Order = () => {
             <TextField
               name="fio"
               type="text"
-              label="ФИО"
+              label="FIO"
               value={data.fio}
               onChange={handleChange}
               error={errors.fio}
@@ -92,7 +92,7 @@ const Order = () => {
             <TextField
               name="numtel"
               type="text"
-              label="Номер телефона"
+              label="Num tel"
               value={data.numtel}
               onChange={handleChange}
               error={errors.numtel}
@@ -100,7 +100,7 @@ const Order = () => {
             <TextField
               name="sity"
               type="text"
-              label="Город"
+              label="City"
               value={data.sity}
               onChange={handleChange}
               error={errors.sity}
@@ -108,7 +108,7 @@ const Order = () => {
             <TextField
               name="address"
               type="text"
-              label="Точный Адрес"
+              label="Current adress"
               value={data.address}
               onChange={handleChange}
               error={errors.address}
@@ -127,7 +127,7 @@ const Order = () => {
               className="btn btn-primary w-100 mx-auto"
               disabled={!isValid}
             >
-              Отправить
+              Send
             </button>
           </form>
         </div>

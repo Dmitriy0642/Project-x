@@ -22,7 +22,6 @@ const Header = () => {
       </Link>
       <ul className={styles.ancor}>
         <Link to="/">Main</Link>
-        <Link to="#">Каталог</Link>
         <Link to="/aboutShop">About shop</Link>
       </ul>
       {

@@ -78,7 +78,7 @@ export const changeProductQuantity =
         return item;
       });
       const updatedObjData = { ...objData, quantity: updatedQuantity };
-      toast.success("Товар добавлен в корзину");
+      toast.success("Product added to basket");
       const newData = changeProduct.map((item) => {
         if (item._id === updatedObjData._id) {
           return updatedObjData;
@@ -90,7 +90,7 @@ export const changeProductQuantity =
     } else if (
       secondQuantityFromObj[0].value === initialyQuantityFromObj[0].value
     ) {
-      toast.error("В наличии нет размера данного товара");
+      toast.error("In availability, not have size ");
     }
   };
 

@@ -21,19 +21,19 @@ const PurchasedProduct = () => {
   return data !== null ? (
     <div className={styles.container}>
       <h2 className={styles.countAmount}>
-        Общая сумма проданых товаров : {amount}$
+      Summ saled product : {amount}$
       </h2>
-      <h2 className={styles.title}>Проданные товары</h2>
+      <h2 className={styles.title}>Sales product</h2>
       <div className={styles.block}>
         {data.map((item) => (
           <div key={item._id} className={styles.item_block}>
             <img src={item.img[0]} className={styles.img} />
             <div className={styles.info_about_product}>
-              <h2 className={styles.under_titile}>Название товара</h2>
+              <h2 className={styles.under_titile}>Name product</h2>
               <h2 className={styles.info_title}>{item.name}</h2>
             </div>
             <div className={styles.main_block_sizes}>
-              <h2 className={styles.titile_sizes}>Купленные размеры</h2>
+              <h2 className={styles.titile_sizes}>Saled sizes</h2>
               {item.quantity.map((quan) => (
                 <div className={styles.block_sizes} key={quan.size}>
                   <button className={styles.button_sizes}>

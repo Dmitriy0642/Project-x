@@ -1,114 +1,114 @@
 const validatorConfig = {
   email: {
-    isRequired: { message: "Email ,обязателен для заполнения" },
-    isEmail: { message: "Email введен не корректно" },
+    isRequired: { message: "Email required" },
+    isEmail: { message: "Email is wrong" },
   },
   password: {
-    isRequired: { message: "Пароль ,обязателен для заполнения" },
-    isCapitalSymbol: { message: "Пароль должен содержать заглавную букву" },
+    isRequired: { message: "Password required" },
+    isCapitalSymbol: { message: "Password must have one uppercase letter" },
     isCapitalLength: {
-      message: "Длинна пароля должна быть больше 8 символов",
+      message: "Length password must be more 8 symbols",
     },
   },
   fio: {
-    isRequired: { message: "ФИО Обязательно для заполнения" },
+    isRequired: { message: "FIO required" },
   },
   numtel: {
-    isRequired: { message: "Телефон обязателен для заполнения" },
-    isNumTel: { message: "Введите только цифры" },
+    isRequired: { message: "Num phone required" },
+    isNumTel: { message: "Input only numbers" },
     isCapitalLength: {
-      message: "Длинна номера ,должна быть не меньше 8 символов",
+      message: "Length numtel must be more 8 symbols",
     },
   },
   passwordagain: {
-    isRequired: { message: "Пароль ,обязателен для заполнения" },
-    isCapitalSymbol: { message: "Пароль должен содержать заглавную букву" },
+    isRequired: { message: "Password required" },
+    isCapitalSymbol: { message: "Password must have one uppercase letter" },
     isCapitalLength: {
-      message: "Длинна пароля должна быть больше 8 символов",
+      message: "Length password must be more 8 symbols",
     },
-    isCapitalValidationPass: { message: "Пароли не совпадают " },
+    isCapitalValidationPass: { message: "password not match " },
   },
   sity: {
-    isRequired: { message: "Город обязателен для заполнения" },
+    isRequired: { message: "City required" },
   },
   address: {
     isRequired: {
-      message: "Адресс обязателен для заполнения",
+      message: "Adress required",
     },
   },
   firm: {
     isRequired: {
-      message: "Фирма обязательна для заполнения",
+      message: "Firm required",
     },
   },
   price: {
     isRequired: {
-      message: "Цена обязательна для заполнения",
+      message: "Price required",
     },
   },
   category: {
     isRequired: {
-      message: "Выберите категорию товара",
+      message: "Select category product",
     },
   },
   img: {
     isRequired: {
-      message: "Необходимо добавить фото в формате ссылки",
+      message: "Photo in format links",
     },
   },
   name: {
     isRequired: {
-      message: "Название товара обязателен для заполнения",
+      message: "Name of product required",
     },
   },
   _id: {
     isRequired: {
-      message: "Идентификатор товара обязателен для заполнения",
+      message: "Id required",
     },
   },
   product: {
     isRequired: {
-      message: "Продукт обязателен для заполнения",
+      message: "Product required",
     },
   },
   size: {
     isRequired: {
-      message: "Размер обязателен к заполнению",
+      message: "Size required",
     },
   },
   size1: {
     isRequired: {
-      message: "Размер обязателен к заполнению",
+      message: "Size required",
     },
   },
   size2: {
     isRequired: {
-      message: "Размер обязателен к заполнению",
+      message: "Size required",
     },
   },
   size3: {
     isRequired: {
-      message: "Размер обязателен к заполнению",
+      message: "Size required",
     },
   },
   value: {
     isRequired: {
-      message: "Количество товара обязательно к заполнению",
+      message: "Count of product required",
     },
   },
   value1: {
     isRequired: {
-      message: "Количество товара обязательно к заполнению",
+      message: "Count of product required",
     },
   },
   value2: {
     isRequired: {
-      message: "Количество товара обязательно к заполнению",
+      message: "Count of product required",
     },
   },
   value3: {
     isRequired: {
-      message: "Количество товара обязательно к заполнению",
+      message: "Count of product required",
     },
   },
 };

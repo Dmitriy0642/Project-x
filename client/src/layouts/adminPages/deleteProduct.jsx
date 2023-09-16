@@ -41,7 +41,7 @@ const DeleteProduct = () => {
     productSerivce.deleteProduct(data.product);
     dispatch(removingProduct(data));
     history.push("/");
-    toast.success("Товар удален");
+    toast.success("Product deleted");
     setTimeout(() => {
       window.location.reload();
     }, 1000);
@@ -56,16 +56,16 @@ const DeleteProduct = () => {
               name="product"
               data={prod}
               value={data.product}
-              label="Выберите товар который необходимо удлаить"
+              label="Choose product which necessary to delete"
               onChange={handleChange}
-              defaultOption="Выберите вариант"
+              defaultOption="Select option"
               error={errors.product}
             />
             <button
               disabled={!isValid}
               className="btn btn-primary w-100 mx-auto"
             >
-              Отправить
+              Send
             </button>
           </form>
         </div>

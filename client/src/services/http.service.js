@@ -40,7 +40,7 @@ http.interceptors.request.use(
         error.message === "Request failed with status code 400" ||
         error.code === 400
       ) {
-        toast.error("Пользователь с таким email уже зарегестрирован");
+        toast.error("User with this email exist");
       } else {
         console.log(error);
         toast.warning(error.message);

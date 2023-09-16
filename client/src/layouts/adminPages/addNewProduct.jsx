@@ -63,10 +63,10 @@ const AddNewProduct = () => {
       <div className="row">
         <div className="col-md-6 offset-md-3 shadow p-4">
           <form onSubmit={handleSubmit}>
-            {<h2>Добавить продукт</h2>}
+            {<h2>Add Product</h2>}
             <TextField
               type="text"
-              label="Название товара"
+              label="Name product"
               onChange={handleChange}
               value={data.name}
               error={errors.name}
@@ -74,7 +74,7 @@ const AddNewProduct = () => {
             />
             <TextField
               type="text"
-              label="Фирма товара"
+              label="Firm product"
               onChange={handleChange}
               value={data.firm}
               error={errors.firm}
@@ -82,7 +82,7 @@ const AddNewProduct = () => {
             />
             <TextField
               type="text"
-              label="Цена товара"
+              label="Price product"
               onChange={handleChange}
               value={data.price}
               error={errors.price}
@@ -90,7 +90,7 @@ const AddNewProduct = () => {
             />
             <TextField
               type="text"
-              label="Фото товара"
+              label="Photo product"
               onChange={handleChange}
               value={data.img}
               error={errors.img}
@@ -99,9 +99,9 @@ const AddNewProduct = () => {
             <SelectedForm
               value={data.category}
               data={categ}
-              label="Выберите категорию товара"
+              label="Select category product"
               onChange={handleChange}
-              defaultOption="Выберите вариант"
+              defaultOption="Choose option"
               error={errors.category}
               name="category"
             />
@@ -110,7 +110,7 @@ const AddNewProduct = () => {
               disabled={!isValid}
               className="btn btn-primary w-100 mx-auto"
             >
-              Отправить
+              Send
             </button>
           </form>
         </div>

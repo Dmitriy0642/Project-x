@@ -39,7 +39,7 @@ const RegisterForm = () => {
       <TextField
         type="text"
         value={data.fio}
-        label="Фио"
+        label="FIO"
         onChange={handleChange}
         name="fio"
         error={errors.fio}
@@ -47,7 +47,7 @@ const RegisterForm = () => {
       <TextField
         type="text"
         value={data.numtel}
-        label="Номер Телефона"
+        label="Num Phone"
         onChange={handleChange}
         name="numtel"
         error={errors.numtel}
@@ -63,7 +63,7 @@ const RegisterForm = () => {
       <TextField
         type="password"
         value={data.password}
-        label="Пароль"
+        label="Password"
         onChange={handleChange}
         name="password"
         error={errors.password}
@@ -71,14 +71,14 @@ const RegisterForm = () => {
       <TextField
         type="password"
         value={data.passwordagain}
-        label="Повторите пароль"
+        label="Repeat password"
         onChange={handleChange}
         name="passwordagain"
         error={errors.passwordagain}
       />
 
       <button disabled={!isValid} className="btn btn-primary w-100 mx-auto">
-        Отправить
+        Send
       </button>
     </form>
   );

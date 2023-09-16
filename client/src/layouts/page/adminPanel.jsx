@@ -37,24 +37,24 @@ const AdminPanel = () => {
         <div className={styles.first_under_block}>
           <Link to="/adminPage/addNewProduct">
             <div className={styles.added_new_product}>
-              <h2 className={styles.title}>Добавить товар</h2>
+              <h2 className={styles.title}>Add product</h2>
             </div>
           </Link>
           <Link to="/adminPage/purchasedItem">
             <div className={styles.history_purchased}>
-              <h2 className={styles.title}>История покупок</h2>
+              <h2 className={styles.title}>History purchases</h2>
             </div>
           </Link>
         </div>
         <div className={styles.second_under_block}>
           <Link to="/adminPage/delete">
             <div className={styles.delete_procut}>
-              <h2 className={styles.title}>Удаление товара</h2>
+              <h2 className={styles.title}>Delete product</h2>
             </div>
           </Link>
           <Link to="/adminPage/changeQuantity">
             <div className={styles.chage_product}>
-              <h2 className={styles.title}>Добавить размер</h2>
+              <h2 className={styles.title}>Add Sizes</h2>
             </div>
           </Link>
         </div>

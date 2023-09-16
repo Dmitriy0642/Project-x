@@ -4,7 +4,7 @@ const NotBascet = () => {
   return (
     <div className={styles.wrapper}>
       <h2 className={styles.title_notbascet}>
-        На данный момент ,корзина пуста
+        Basket is empty
       </h2>
     </div>
   );

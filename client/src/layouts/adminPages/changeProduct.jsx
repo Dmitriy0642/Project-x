@@ -55,7 +55,7 @@ const ChangeProduct = () => {
       console.log(error.message);
     }
     history.push("/");
-    toast.success("Размеры успешно добавленны");
+    toast.success("Success");
     setTimeout(() => {
       window.location.reload();
     }, 1000);
@@ -70,14 +70,14 @@ const ChangeProduct = () => {
               name="product"
               data={prod}
               value={data.product}
-              label="Выберите товар к которому необходимо добавить размеры"
+              label="Choose product to necessary add size to him"
               onChange={handleChange}
-              defaultOption="Выберите вариант"
+              defaultOption="Select option"
               error={errors.product}
             />
             <TextField
               type="text"
-              label="Название размера"
+              label="Name size"
               onChange={handleChange}
               value={data.size}
               error={errors.size}
@@ -85,7 +85,7 @@ const ChangeProduct = () => {
             />
             <TextField
               type="text"
-              label="Количество товара в размере"
+              label="Quantity of sizes"
               onChange={handleChange}
               value={data.value}
               error={errors.value}
@@ -93,7 +93,7 @@ const ChangeProduct = () => {
             />
             <TextField
               type="text"
-              label="Название размера"
+              label="Name size"
               onChange={handleChange}
               value={data.size1}
               error={errors.size1}
@@ -101,7 +101,7 @@ const ChangeProduct = () => {
             />
             <TextField
               type="text"
-              label="Количество товара в размере"
+              label="Quantity of sizes"
               onChange={handleChange}
               value={data.value1}
               error={errors.value1}
@@ -109,7 +109,7 @@ const ChangeProduct = () => {
             />
             <TextField
               type="text"
-              label="Название размера"
+              label="Name size"
               onChange={handleChange}
               value={data.size2}
               error={errors.size2}
@@ -117,7 +117,7 @@ const ChangeProduct = () => {
             />
             <TextField
               type="text"
-              label="Количество товара в размере"
+              label="Quantity of sizes"
               onChange={handleChange}
               value={data.value2}
               error={errors.value2}
@@ -125,7 +125,7 @@ const ChangeProduct = () => {
             />
             <TextField
               type="text"
-              label="Название размера"
+              label="Name size"
               onChange={handleChange}
               value={data.size3}
               error={errors.size3}
@@ -133,7 +133,7 @@ const ChangeProduct = () => {
             />
             <TextField
               type="text"
-              label="Количество товара в размере"
+              label="Quantity of sizes"
               onChange={handleChange}
               value={data.value3}
               error={errors.value3}
@@ -143,7 +143,7 @@ const ChangeProduct = () => {
               disabled={!isValid}
               className="btn btn-primary w-100 mx-auto"
             >
-              Отправить
+              Send
             </button>
           </form>
         </div>

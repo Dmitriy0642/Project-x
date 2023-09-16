@@ -44,13 +44,13 @@ const LoginForm = () => {
       <TextField
         type="password"
         value={data.password}
-        label="Пароль"
+        label="Password"
         onChange={handleChange}
         name="password"
         error={errors.password}
       />
       <button disabled={!isValid} className="btn btn-primary w-100 mx-auto">
-        Отправить
+        Send
       </button>
     </form>
   );
